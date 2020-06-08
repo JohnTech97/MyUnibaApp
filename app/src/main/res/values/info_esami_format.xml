@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CreatoreElencoEsami">
+        <attr name="titolo" format="string"/>
+        <attr name="descrizione" format="string"/>
+        <attr name="icona" format="reference"/>
+        <attr name="angoli" format="integer"/>
+
+    </declare-styleable>
+</resources>

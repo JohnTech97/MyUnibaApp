@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Funzionalità">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/home"
+                    android:icon="@drawable/home_icon"
+                    android:title="Torna alla home page" />
+
+                <item
+                    android:id="@+id/segreteria"
+                    android:icon="@drawable/segretary_icon"
+                    android:title="Segreteria online" />
+
+                <item
+                    android:id="@+id/esami"
+                    android:icon="@drawable/exam_icon"
+                    android:title="Elenco esami" />
+
+                <item
+                    android:id="@+id/carriera"
+                    android:icon="@drawable/career_icon"
+                    android:title="Analizza carriera" />
+            </group>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Profilo">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/logout_icon"
+                    android:title="Disconnettiti" />
+                <item
+                    android:id="@+id/informazioni"
+                    android:icon="@drawable/info_icon"
+                    android:title="Informazioni" />
+                <item
+                    android:id="@+id/who_we_are"
+                    android:icon="@drawable/about_us_icon"
+                    android:title="Chi siamo" />
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>

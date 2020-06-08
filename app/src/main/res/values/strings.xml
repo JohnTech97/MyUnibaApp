@@ -1,3 +1,18 @@
 <resources>
+    <!-- Stringhe di utilità-->
     <string name="app_name">MyUnibaApp</string>
+    <string name="open_drawer">Open Navigation Drawer</string>
+    <string name="close_drawer">Close Navigation Drawer</string>
+    <string name="credentials_file_name">"credenziali.txt</string>
+
+    <!-- Stringhe per il login-->
+    <string name="title_activity_login">Effettua il Login</string>
+    <string name="prompt_email">Nome utente o email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Accedi</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="login_valid">"Benvenuto "</string>
+    <string name="invalid_username">"Nome utente o email non valido"</string>
+    <string name="invalid_password">"Password sbagliata"</string>
+    <string name="login_failed">"Accesso non effettuato.\nRiprovare"</string>
 </resources>
