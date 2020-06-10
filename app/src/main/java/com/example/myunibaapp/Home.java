@@ -9,9 +9,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.myunibaapp.schedeNavigationBar.Profilo;
 import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +33,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this, drawer, toolbar,R.string.open_drawer, R.string.close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -43,20 +45,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             close();
         }
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        item.setChecked(true);
+        switch (item.getItemId()) {
+            case R.id.home:
+                break;
+            case R.id.profilo_menu:
+                startActivity(new Intent(Home.this, Profilo.class));
+                break;
+            case R.id.esami:
+
+                break;
+            case R.id.carriera:
+
+                break;
+            case R.id.who_we_are:
+
+                break;
+
+        }
         return true;
     }
 
-    private void close(){
-        AlertDialog.Builder conferma= new AlertDialog.Builder(Home.this);
+    private void close() {
+        AlertDialog.Builder conferma = new AlertDialog.Builder(Home.this);
         conferma.setTitle("Conferma");
         conferma.setMessage("Sei sicuro di voler chiudere l'applicazione?");
         conferma.setPositiveButton("Si", new DialogInterface.OnClickListener() {

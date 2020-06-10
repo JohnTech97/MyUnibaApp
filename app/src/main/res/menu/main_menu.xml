@@ -37,6 +37,10 @@
 
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/profilo_menu"
+                    android:icon="@drawable/logout_icon"
+                    android:title="Visualizza profilo" />
+                <item
                     android:id="@+id/logout"
                     android:icon="@drawable/logout_icon"
                     android:title="Disconnettiti" />
