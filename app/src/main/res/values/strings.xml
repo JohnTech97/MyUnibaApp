@@ -7,7 +7,7 @@
 
     <!-- Stringhe per il login-->
     <string name="title_activity_login">Effettua il Login</string>
-    <string name="prompt_email">Nome utente o email</string>
+    <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Accedi</string>
     <string name="action_sign_in_short">Sign in</string>

@@ -1,4 +1,4 @@
-package com.example.myunibaapp;
+package sms.myunibapp;
 
 import android.content.Context;
 

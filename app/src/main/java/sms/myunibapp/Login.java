@@ -1,4 +1,4 @@
-package com.example.myunibaapp;
+package sms.myunibapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.myunibapp.R;
 
 import java.io.BufferedReader;
 import java.io.File;
