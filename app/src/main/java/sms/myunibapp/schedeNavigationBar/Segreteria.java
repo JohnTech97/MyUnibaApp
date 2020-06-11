@@ -1,14 +1,16 @@
 package sms.myunibapp.schedeNavigationBar;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import com.example.myunibapp.R;
 
-public class Profilo extends Activity {
+public class Segreteria extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profilo);
+        setContentView(R.layout.activity_segreteria);
     }
 }

@@ -31,10 +31,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Nome Placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/profilo"
-        app:layout_constraintTop_toBottomOf="@+id/profilo" />
+        app:layout_constraintTop_toBottomOf="@+id/profilo"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/matricola"
@@ -42,59 +43,184 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Matricola placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/profilo"
-        app:layout_constraintTop_toBottomOf="@+id/nome_utente" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_utente"
+        android:textStyle="bold"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-        <View
-            android:id="@+id/gruppo_informazioni1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/widgets_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/top_background">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/gruppo_informazioni1"
-            app:layout_constraintTop_toTopOf="@+id/gruppo_informazioni1" />
+            android:text="Informazioni generali"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button3"
+        <LinearLayout
+            android:id="@+id/gruppo_informazioni1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/widgets_background"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome e Cognome"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/nome_cognome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Matricola"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cdl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="@+id/gruppo_informazioni1"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            android:layout_marginStart="24dp"
+            android:text="Corso di laurea selezionato"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gruppo_informazioni1" />
+
+        <LinearLayout
+            android:id="@+id/gruppo_informazioni2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/widgets_background"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cdl">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/corso_di_laurea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Percorso"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:id="@+id/percorso"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sede"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/sede"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iscrizione"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/iscrizione"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stato"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/stato"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placeholder" />
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Informazioni generali"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

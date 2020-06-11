@@ -3,5 +3,5 @@
     <color name="background_lighter">#ddffff</color>
     <color name="background">#c8ffff</color>
     <color name="background_buttons">#5400CDD4</color>
-    <color name="widgets_background">#9A00BCD4</color>
+    <color name="widgets_background">#d5d5d5</color>
 </resources>

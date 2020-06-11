@@ -4,9 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,7 +16,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
+import sms.myunibapp.schedeNavigationBar.Esami;
+import sms.myunibapp.schedeNavigationBar.Libretto;
 import sms.myunibapp.schedeNavigationBar.Profilo;
+import sms.myunibapp.schedeNavigationBar.Segreteria;
 
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,21 +62,29 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.home:
+                //do nothing
+                break;
+            case R.id.segreteria:
+                startActivity(new Intent(Home.this, Segreteria.class));
+                break;
+            case R.id.esami:
+                startActivity(new Intent(Home.this, Esami.class));
+                break;
+            case R.id.carriera:
+                startActivity(new Intent(Home.this, Libretto.class));
                 break;
             case R.id.profilo_menu:
                 startActivity(new Intent(Home.this, Profilo.class));
                 break;
-            case R.id.esami:
-
-                break;
-            case R.id.carriera:
-
-                break;
             case R.id.who_we_are:
 
                 break;
-
+            case R.id.logout:
+                startActivity(new Intent(Home.this, Login.class));
+                finish();
+                break;
         }
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

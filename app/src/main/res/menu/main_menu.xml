@@ -9,7 +9,7 @@
                 <item
                     android:id="@+id/home"
                     android:icon="@drawable/home_icon"
-                    android:title="Torna alla home page" />
+                    android:title="Home Page" />
 
                 <item
                     android:id="@+id/segreteria"
@@ -24,7 +24,7 @@
                 <item
                     android:id="@+id/carriera"
                     android:icon="@drawable/career_icon"
-                    android:title="Analizza carriera" />
+                    android:title="Libretto" />
             </group>
 
         </menu>
@@ -41,10 +41,6 @@
                     android:icon="@drawable/user_icon"
                     android:title="Visualizza profilo" />
                 <item
-                    android:id="@+id/logout"
-                    android:icon="@drawable/logout_icon"
-                    android:title="Disconnettiti" />
-                <item
                     android:id="@+id/informazioni"
                     android:icon="@drawable/info_icon"
                     android:title="Informazioni" />
@@ -52,6 +48,10 @@
                     android:id="@+id/who_we_are"
                     android:icon="@drawable/about_us_icon"
                     android:title="Chi siamo" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/logout_icon"
+                    android:title="Esci" />
             </group>
 
         </menu>

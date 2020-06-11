@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Profilo"></activity>
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Esami"></activity>
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Segreteria" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Profilo" />
         <activity android:name="sms.myunibapp.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +24,9 @@
         </activity>
         <activity
             android:name="sms.myunibapp.Login"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Libretto"></activity>
-        <activity android:name="sms.myunibapp.Home"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Libretto" />
+        <activity android:name="sms.myunibapp.Home" />
     </application>
 
 </manifest>
