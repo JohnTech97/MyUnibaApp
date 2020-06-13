@@ -16,7 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
-import sms.myunibapp.schedeNavigationBar.Esami;
+import sms.myunibapp.schedeNavigationBar.BachecaEsiti;
+import sms.myunibapp.schedeNavigationBar.EsamiPrenotabili;
 import sms.myunibapp.schedeNavigationBar.Libretto;
 import sms.myunibapp.schedeNavigationBar.Profilo;
 import sms.myunibapp.schedeNavigationBar.Segreteria;
@@ -39,9 +40,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawer.addDrawerListener(mainMenu);
+        mainMenu.syncState();
 
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(this);
@@ -59,7 +60,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        item.setChecked(true);
         switch (item.getItemId()) {
             case R.id.home:
                 //do nothing
@@ -67,8 +67,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.segreteria:
                 startActivity(new Intent(Home.this, Segreteria.class));
                 break;
-            case R.id.esami:
-                startActivity(new Intent(Home.this, Esami.class));
+            case R.id.lista_esami:
+                startActivity(new Intent(Home.this, EsamiPrenotabili.class));
+                break;
+            case R.id.bacheca_prenotazioni:
+                //startActivity(new Intent(Home.this, BachecaEsiti.class));
+                break;
+            case R.id.bacheca_esiti:
+                startActivity(new Intent(Home.this, BachecaEsiti.class));
                 break;
             case R.id.carriera:
                 startActivity(new Intent(Home.this, Libretto.class));

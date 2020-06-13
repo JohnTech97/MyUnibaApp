@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:parentTag="android.widget.LinearLayout">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Materia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <TextView
+        android:id="@+id/nome_esame_esito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placeholder"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#0000aa"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esito"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <sms.myunibapp.EsitoEsameCustomView
+        android:id="@+id/esito"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data esame" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <TextView
+        android:id="@+id/data_esito_esame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placeholder"
+        android:textSize="20sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Docente" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <TextView
+        android:id="@+id/docente_bacheca_esiti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placeholder"
+        android:textSize="20sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp"/>
+
+    <Button
+        android:id="@+id/accettazione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accetta"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="46dp"/>
+
+    <TextView
+        android:id="@+id/refuse_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rifiuta e torna indietro"/>
+
+
+</merge>
