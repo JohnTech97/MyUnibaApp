@@ -22,17 +22,6 @@ import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
 
-
-    class Utente{
-        public final String username;
-        public final String password;
-
-        public Utente(String user, String pass){
-            username=user;
-            password=pass;
-        }
-    }
-
     private static Utente utente;
 
     @Override
@@ -63,7 +52,6 @@ public class Login extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
-        Button exit=findViewById(R.id.exit_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,12 +59,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                close();
-            }
-        });
     }
 
     @Override

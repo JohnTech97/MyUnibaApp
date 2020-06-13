@@ -9,10 +9,13 @@
     <string name="title_activity_login">Effettua il Login</string>
     <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Accedi</string>
+    <string name="action_sign_in">ACCEDI</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="login_valid">"Benvenuto "</string>
     <string name="invalid_username">"Nome utente o email non valido"</string>
     <string name="invalid_password">"Password sbagliata"</string>
     <string name="login_failed">"Accesso non effettuato.\nRiprovare"</string>
+    <string name="benvenuto_in_myunibapp">Benvenuto in MyUnibApp</string>
+    <string name="accedi_per_continuare">ACCEDI PER CONTINUARE</string>
+    <string name="accedi_come_ospite">accedi come ospite</string>
 </resources>
