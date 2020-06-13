@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/login_page"
     tools:context="sms.myunibapp.Login">
 
     <LinearLayout
@@ -52,9 +51,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="49dp"
+            android:drawableLeft="@drawable/ic_user"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
+            android:backgroundTint="#C4C4C4"
+            android:textColor="#5A5A5A"
             android:textColorHint="#B6B7B9" />
 
         <EditText
@@ -63,9 +65,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
+            android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_password"
+            android:backgroundTint="#C4C4C4"
             android:inputType="textPassword"
+            android:textColor="#8F8F8F"
             android:textColorHint="#B6B7B9" />
 
         <Button
@@ -78,20 +83,47 @@
             android:hint="@string/action_sign_in"
             android:textColorHint="#fff" />
 
-        <TextView
-            android:id="@+id/ospite"
-            android:layout_width="144dp"
-            android:layout_height="31dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="29dp"
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/accedi_come_ospite"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="oppure"
+                android:textColor="#4A5360"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ospite"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/accedi_come_ospite"
+                android:textAlignment="center"
+                android:textColor="#2D3BAA"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lost_credenziali"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginTop="57dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins"
+            android:text="HAI DIMENTICATO LE CREDENZIALI?"
             android:textAlignment="center"
-            android:textColor="#2D3BAA"
-            android:textSize="14sp" />
-
-
+            android:textColor="#6C7480"
+            android:textSize="12sp" />
     </LinearLayout>
 
 
