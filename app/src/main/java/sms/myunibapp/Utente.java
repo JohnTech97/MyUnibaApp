@@ -2,11 +2,29 @@ package sms.myunibapp;
 
 public class Utente {
 
-    public final String username;
-    public final String password;
+    private int matricola;
+    private String username, email, gender;
 
-    public Utente(String user, String pass){
-        this.username = user;
-        this.password = pass;
+    public Utente(int matricola, String username) {
+        this.matricola = matricola;
+        this.username = username;
+        this.email = email;
+        this.gender = gender;
+    }
+
+    public int getMatricola() {
+        return matricola;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }

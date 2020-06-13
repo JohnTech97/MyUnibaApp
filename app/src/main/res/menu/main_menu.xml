@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Funzionalità">
+    <group android:checkableBehavior="single">
 
-        <menu>
+        <item android:title="Funzionalità">
 
-            <group android:checkableBehavior="single">
+            <menu>
+
                 <item
                     android:id="@+id/home"
                     android:icon="@drawable/home_icon"
@@ -16,26 +17,38 @@
                     android:icon="@drawable/segretary_icon"
                     android:title="Segreteria online" />
 
-                <item
-                    android:id="@+id/esami"
-                    android:icon="@drawable/exam_icon"
-                    android:title="Elenco esami" />
 
                 <item
                     android:id="@+id/carriera"
                     android:icon="@drawable/career_icon"
                     android:title="Libretto" />
-            </group>
 
-        </menu>
+            </menu>
+        </item>
+        <item
+            android:icon="@drawable/exam_icon"
+            android:title="Esami">
+            <menu>
 
-    </item>
+                <item
+                    android:id="@+id/lista_esami"
+                    android:icon="@drawable/exam_list_icon"
+                    android:title="Elenco esami" />
+                <item
+                    android:id="@+id/bacheca_prenotazioni"
+                    android:icon="@drawable/exam_booking_icon"
+                    android:title="Bacheca prenotazioni" />
+                <item
+                    android:id="@+id/bacheca_esiti"
+                    android:icon="@drawable/exam_results_icon"
+                    android:title="Bacheca esiti" />
 
-    <item android:title="Profilo">
+            </menu>
+        </item>
 
-        <menu>
+        <item android:title="Profilo">
 
-            <group android:checkableBehavior="single">
+            <menu>
                 <item
                     android:id="@+id/profilo_menu"
                     android:icon="@drawable/user_icon"
@@ -52,10 +65,11 @@
                     android:id="@+id/logout"
                     android:icon="@drawable/logout_icon"
                     android:title="Esci" />
-            </group>
 
-        </menu>
+            </menu>
 
-    </item>
+        </item>
 
+    </group>
 </menu>
+
