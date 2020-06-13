@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity {
@@ -28,24 +29,6 @@ public class Login extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //controllo se l'utente aveva già memorizzato le sue credenziali e se aveva scelto di mantenere l'accesso
-        File f = new File(getCacheDir(), String.valueOf(R.string.credentials_file_name));
-        if (f.exists()) {
-            BufferedReader in;
-            try {
-                in = new BufferedReader(new FileReader(f));
-                String ricorda, utente, pass;
-                ricorda = in.readLine();
-                utente = in.readLine();
-                pass = in.readLine();
-                in.close();
-                //se l'utente aveva chiesto di ricordare le credenziali si passa direttamente alla schermata home
-                if(ricorda.equals("true")){
-                    login(utente, pass);
-                }
-
-            } catch (IOException e) {}
-        }
         //se non esiste si procede con il login
         setContentView(R.layout.activity_login);
 

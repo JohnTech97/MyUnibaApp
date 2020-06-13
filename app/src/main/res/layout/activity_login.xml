@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F5C3D3DF"
     tools:context="sms.myunibapp.Login">
 
     <LinearLayout
@@ -47,7 +48,7 @@
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="340dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="49dp"
@@ -55,23 +56,21 @@
             android:drawablePadding="5dp"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
-            android:backgroundTint="#C4C4C4"
-            android:textColor="#5A5A5A"
-            android:textColorHint="#B6B7B9" />
+            android:backgroundTint="#FFF"
+            android:textColorHint="#FFF" />
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="340dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_password"
-            android:backgroundTint="#C4C4C4"
+            android:backgroundTint="#FFF"
             android:inputType="textPassword"
-            android:textColor="#8F8F8F"
-            android:textColorHint="#B6B7B9" />
+            android:textColorHint="#FFF" />
 
         <Button
             android:id="@+id/login"
@@ -117,7 +116,7 @@
             android:id="@+id/lost_credenziali"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_marginTop="57dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins"
             android:text="HAI DIMENTICATO LE CREDENZIALI?"
