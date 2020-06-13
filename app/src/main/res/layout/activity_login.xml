@@ -19,7 +19,7 @@
             android:layout_width="250dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="65dp"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/uniba" />
 
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="49dp"
-            android:drawableLeft="@drawable/ic_user"
+            android:drawableStart="@drawable/ic_user"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
-            android:drawableLeft="@drawable/ic_password"
+            android:drawableStart="@drawable/ic_password"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_password"
             android:backgroundTint="#C4C4C4"
