@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "963562302114",
+    "firebase_url": "https://myunibaapp.firebaseio.com",
+    "project_id": "myunibaapp",
+    "storage_bucket": "myunibaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963562302114:android:9e9ca56c2b11fcd0b6c5fb",
+        "android_client_info": {
+          "package_name": "com.example.myunibaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963562302114-568l4sv0bmdeimtnev2tvrrvvih20v9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBsR4G4bTtZdIDlnuU8-vT-fM8m07LN_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963562302114-568l4sv0bmdeimtnev2tvrrvvih20v9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
