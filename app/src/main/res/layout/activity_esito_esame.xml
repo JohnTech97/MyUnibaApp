@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="40dp">
+
+
+        <TextView
+            android:id="@+id/esiti_da_mostrare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:text="Nessun esito da mostrare" />
     </LinearLayout>
 
 </HorizontalScrollView>
