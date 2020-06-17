@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sms.myunibapp.SplashScreen"
-    android:background="@drawable/splash_screen_drawable">
+    android:background="@color/background_lighter"
+    tools:context="sms.myunibapp.SplashScreen">
 
+    <ImageView
+        android:id="@+id/logoUniba"
+        android:layout_width="212dp"
+        android:layout_height="216dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="222dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/uniba" />
 </androidx.constraintlayout.widget.ConstraintLayout>

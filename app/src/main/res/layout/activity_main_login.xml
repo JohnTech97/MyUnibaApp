@@ -8,6 +8,11 @@
     android:background="#F5C3D3DF"
     tools:context="sms.myunibapp.LoginActivity">
 
+    <include
+        android:id="@+id/llProgressBar"
+        android:visibility="gone"
+        layout="@layout/progress_bar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +25,7 @@
             android:layout_width="250dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="38dp"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/uniba" />
 
@@ -51,16 +56,18 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="49dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="#FFF"
             android:drawableStart="@drawable/ic_user"
             android:drawablePadding="5dp"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
-            android:backgroundTint="#FFF"
+            android:isScrollContainer="false"
+            android:textColor="#FFFFFF"
             android:textColorHint="#FFF" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/email_for_password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -70,14 +77,14 @@
             android:hint="@string/prompt_password"
             android:backgroundTint="#FFF"
             android:inputType="textPassword"
-            android:textColorHint="#FFF" />
+            android:textColorHint="#FFFFFF" />
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/button_login"
             android:hint="@string/action_sign_in"
             android:textColorHint="#fff" />
@@ -113,13 +120,13 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/lost_credenziali"
+            android:id="@+id/lost_password"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_marginTop="47dp"
             android:layout_gravity="center"
+            android:layout_marginTop="45dp"
             android:fontFamily="@font/poppins"
-            android:text="HAI DIMENTICATO LE CREDENZIALI?"
+            android:text="HAI DIMENTICATO LA PASSWORD?"
             android:textAlignment="center"
             android:textColor="#6C7480"
             android:textSize="12sp" />
