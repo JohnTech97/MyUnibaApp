@@ -12,8 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaPrenotazioni"></activity>
+        android:theme="@style/FullScreen">
+        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaPrenotazioni" />
         <activity android:name="sms.myunibapp.DettaglioEsame" />
         <activity android:name="sms.myunibapp.schedeNavigationBar.EsamiPrenotabili" />
         <activity android:name="sms.myunibapp.schedeNavigationBar.Segreteria" />

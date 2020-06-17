@@ -43,7 +43,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Void aVoid) {
 
-
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
