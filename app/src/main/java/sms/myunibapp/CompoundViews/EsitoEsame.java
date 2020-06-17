@@ -61,16 +61,22 @@ public class EsitoEsame extends LinearLayout {
 
     }
 
-    public void setEsito(int voto){
-        if(voto<18){
+    public void setEsito(String esito){
+        //se supera l'esame il bottone di accettazione rimane visibile
+        try{
+            if(Integer.parseInt(esito)<18){
+                accetta.setVisibility(View.GONE);
+                refuseBack.setText("Torna indietro");
+            }
+        }catch (NumberFormatException e){
             accetta.setVisibility(View.GONE);
             refuseBack.setText("Torna indietro");
         }
-        esito.setVoto(voto);
+        this.esito.setEsito(esito);
     }
 
-    public int getEsito(){
-        return esito.getVoto();
+    public String getEsito(){
+        return esito.getEsito();
     }
 
     public void setNomeEsame(String nomeEsame) {

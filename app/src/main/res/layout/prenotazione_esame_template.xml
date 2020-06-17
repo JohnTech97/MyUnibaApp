@@ -26,7 +26,7 @@
             android:layout_height="16dp" />
 
         <TextView
-            android:id="@+id/nome_esame_esito"
+            android:id="@+id/nome_esame_prenotazione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Placeholder"
@@ -41,16 +41,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Esito" />
+            android:text="Tipo prova:" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="16dp" />
 
-        <sms.myunibapp.EsitoEsameCustomView
-            android:id="@+id/esito"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/tipo_esame_prenotazione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orale"
+            android:textSize="20sp"/>
 
         <Space
             android:layout_width="match_parent"
@@ -66,7 +68,47 @@
             android:layout_height="16dp" />
 
         <TextView
-            android:id="@+id/data_esito_esame"
+            android:id="@+id/data_prenotazione_esame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placeholder"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edificio" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/edificio_prenotazione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placeholder"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aula" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/aula_prenotazione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Placeholder"
@@ -86,7 +128,7 @@
             android:layout_height="16dp" />
 
         <TextView
-            android:id="@+id/docente_bacheca_esiti"
+            android:id="@+id/docente_bacheca_prenotazioni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Placeholder"
@@ -97,20 +139,10 @@
             android:layout_height="32dp" />
 
         <Button
-            android:id="@+id/accettazione"
+            android:id="@+id/cancellazione_prenotazione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accetta" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <TextView
-            android:id="@+id/refuse_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rifiuta e torna indietro" />
+            android:text="Disdici prenotazione" />
 
     </LinearLayout>
 
