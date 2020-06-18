@@ -67,7 +67,7 @@
             android:textColorHint="#FFF" />
 
         <EditText
-            android:id="@+id/email_for_password"
+            android:id="@+id/password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

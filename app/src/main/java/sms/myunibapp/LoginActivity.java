@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Acquisizione credeziali per il login
         editTextUsername = findViewById(R.id.username);
-        editTextPassword = findViewById(R.id.email_for_password);
+        editTextPassword = findViewById(R.id.password);
 
         mLoginButton = findViewById(R.id.button_login);  //bottone per il login
 
@@ -91,8 +92,11 @@ public class LoginActivity extends AppCompatActivity {
         /*
         RECUPERO PASSWORD
          */
-        forgotTextLink.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
+        forgotTextLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
+            }
         });
     }
 

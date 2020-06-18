@@ -41,7 +41,7 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                 finish();
             }
-        },5000);
+        },3000);
     }
 
     private void animateLogo() {

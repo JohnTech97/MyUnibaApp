@@ -1,0 +1,65 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="84dp"
+            android:height="84dp"
+            android:viewportWidth="84"
+            android:viewportHeight="84">
+            <path
+                android:name="circle_done"
+                android:pathData="M 42 4.2 C 31.978 4.2 22.36 8.185 15.272 15.272 C 8.185 22.36 4.2 31.978 4.2 42 C 4.2 52.022 8.185 61.64 15.272 68.728 C 22.36 75.815 31.978 79.8 42 79.8 C 52.022 79.8 61.64 75.815 68.728 68.728 C 75.815 61.64 79.8 52.022 79.8 42 C 79.8 31.978 75.815 22.36 68.728 15.272 C 61.64 8.185 52.022 4.2 42 4.2 Z"
+                android:strokeColor="#ff5c5c"
+                android:strokeWidth="8.4"/>
+            <path
+                android:name="not_done1"
+                android:pathData="M 21.605 21.605 L 63.016 63.009"
+                android:strokeColor="#ff5c5c"
+                android:strokeWidth="5.27027027027027"
+                android:trimPathEnd="0"
+                android:strokeLineCap="round"/>
+            <path
+                android:name="not_done2"
+                android:pathData="M 21.605 63.009 L 63.016 21.605"
+                android:strokeColor="#ff5c5c"
+                android:strokeWidth="5.27027027027027"
+                android:trimPathEnd="0"
+                android:strokeLineCap="round"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="circle_done">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:duration="195"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="not_done1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:duration="500"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="not_done2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:duration="500"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

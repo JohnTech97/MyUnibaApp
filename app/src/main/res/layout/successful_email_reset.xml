@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F5C3D3DF"
-    tools:context="sms.myunibapp.ForgotPasswordActivity">
+    tools:context="sms.myunibapp.LoginActivity">
 
     <include
         android:id="@+id/llProgressBar"
@@ -40,13 +40,22 @@
             android:textColor="#1D2B3E"
             android:textSize="45sp" />
 
+        <ImageView
+            android:id="@+id/done"
+            android:layout_width="259dp"
+            android:layout_height="116dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/avd_done" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="31dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="RECUPERA LA TUA PASSWORD"
+            android:text="CONTROLLA LE EMAIL!"
             android:textAlignment="center"
             android:textColor="#5A5B5D"
             android:textSize="18sp"/>
@@ -57,33 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
-            android:text="Inserisci nel campo sottostante la tua email.\nTi invieremo un link per reimpostarla"
+            android:text="Ti abbiamo inviato il link per recuperare la password.\nSegui le istruzioni per reimpostare la tua password"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/email_for_password_reset"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#FFF"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="5dp"
-            android:hint="Inserisci la tua mail"
-            android:inputType="textEmailAddress"
-            android:textColor="#FFF"
-            android:textColorHint="#FFF" />
-
-        <Button
-            android:id="@+id/reimposta_password"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/button_login"
-            android:hint="REIMPOSTA"
-            android:textColorHint="#fff" />
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>
