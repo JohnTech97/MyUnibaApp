@@ -6,12 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F5C3D3DF"
-    tools:context="sms.myunibapp.LoginActivity">
-
-    <include
-        android:id="@+id/llProgressBar"
-        android:visibility="gone"
-        layout="@layout/progress_bar"/>
+    tools:context="sms.myunibapp.Login">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,7 +72,8 @@
             android:hint="@string/prompt_password"
             android:backgroundTint="#FFF"
             android:inputType="textPassword"
-            android:textColorHint="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFF"/>
 
         <Button
             android:id="@+id/button_login"
@@ -130,6 +126,7 @@
             android:textAlignment="center"
             android:textColor="#6C7480"
             android:textSize="12sp" />
+
     </LinearLayout>
 
 

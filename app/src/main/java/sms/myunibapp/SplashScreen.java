@@ -27,8 +27,9 @@ public class SplashScreen extends AppCompatActivity {
             PER NASCONDERE LA BARRA DI NAVIGAZIONE
          */
         View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE
+                // Hide the nav bar and status bar
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         /*
             PER ANIMARE IL LOGO
@@ -38,10 +39,10 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                startActivity(new Intent(SplashScreen.this, Login.class));
                 finish();
             }
-        },3000);
+        },SPLASH_DELAY);
     }
 
     private void animateLogo() {

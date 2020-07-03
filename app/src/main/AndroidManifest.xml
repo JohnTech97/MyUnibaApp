@@ -12,26 +12,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/FullScreen">
-        <activity android:name="sms.myunibapp.ForgotPasswordActivity"/>
-        <activity android:name="sms.myunibapp.resetPasswordEsito.NotSuccessfulEmailSent"/>
-        <activity android:name="sms.myunibapp.resetPasswordEsito.SuccessfulEmailSent"/>
-        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaPrenotazioni" />
-        <activity android:name="sms.myunibapp.DettaglioEsame" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.EsamiPrenotabili" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Segreteria" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Profilo" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaEsiti" />
-        <activity android:name="sms.myunibapp.SplashScreen">
+        android:theme="@style/FullScreenSchede">
+
+        <!-- SPLASH SCREEN -->
+        <activity android:name="sms.myunibapp.SplashScreen" android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="sms.myunibapp.LoginActivity"
-            android:label="@string/title_activity_login" />
+
+        <!-- ACTVITY PER IL LOGIN -->
+        <activity android:name="sms.myunibapp.Login" android:label="@string/title_activity_login" android:theme="@style/FullScreen"/>
+        <activity android:name="sms.myunibapp.ForgotPasswordActivity" android:theme="@style/FullScreen"/>
+        <activity android:name="sms.myunibapp.resetPasswordEsito.NotSuccessfulEmailSent" android:theme="@style/FullScreen"/>
+        <activity android:name="sms.myunibapp.resetPasswordEsito.SuccessfulEmailSent" android:theme="@style/FullScreen"/>
+
+        <!-- ACTVITY APP -->
+        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaPrenotazioni" />
+        <activity android:name="sms.myunibapp.DettaglioEsame" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.EsamiPrenotabili" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Segreteria" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.Profilo" />
+        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaEsiti" />
         <activity android:name="sms.myunibapp.schedeNavigationBar.Libretto" />
         <activity android:name="sms.myunibapp.Home" />
 

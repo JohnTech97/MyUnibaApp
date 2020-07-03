@@ -2,24 +2,19 @@
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
     android:pivotX="50%"
     android:pivotY="50%"
-    android:fromDegrees="0"
-    android:toDegrees="360">
+    android:fromDegrees="-90"
+    android:toDegrees="270">
 
     <shape
         android:shape="ring"
-        android:innerRadiusRatio="3"
-        android:thicknessRatio="9"
         android:useLevel="false">
-
-        <size
-            android:width="76dip"
-            android:height="76dip" />
 
         <gradient
             android:type="sweep"
             android:useLevel="false"
             android:startColor="#2D3BAA"
-            android:endColor="#684832C1"
+            android:centerColor="#00BCD4"
+            android:endColor="#4832C1"
             android:angle="0"/>
 
     </shape>

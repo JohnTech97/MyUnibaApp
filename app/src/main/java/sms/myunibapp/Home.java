@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                 break;
             case R.id.logout:
-                startActivity(new Intent(Home.this, LoginActivity.class));
+                startActivity(new Intent(Home.this, Login.class));
                 finish();
                 break;
         }

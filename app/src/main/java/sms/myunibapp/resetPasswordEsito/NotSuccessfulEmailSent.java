@@ -36,7 +36,7 @@ public class NotSuccessfulEmailSent extends AppCompatActivity {
         }
 
         TextView lblClickable = (TextView) findViewById(R.id.text_link);
-        String htmlText = "Se hai problemi con l'accesso, puoi cliccare su <A HREF='https://www.uniba.it/studenti/servizi-informatici/posta-elettronica-e-servizi-associati'>AIUTAMI</A> per essere reinderizzato alla pagina per il recuper delle credenziali di Esse3 ";
+        String htmlText = "Se hai problemi con l'accesso, puoi cliccare su <A HREF='https://www.uniba.it/studenti/servizi-informatici/posta-elettronica-e-servizi-associati'>AIUTAMI</A> per essere reinderizzato alla pagina di recupero delle credenziali di Esse3 ";
         lblClickable.setText(Html.fromHtml(htmlText));
         lblClickable.setMovementMethod(LinkMovementMethod.getInstance());
 
