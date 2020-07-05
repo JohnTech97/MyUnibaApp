@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:gravity="center_horizontal"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
@@ -19,7 +19,6 @@
             android:id="@+id/logoUniba"
             android:layout_width="250dp"
             android:layout_height="160dp"
-            android:layout_gravity="center"
             android:layout_marginTop="38dp"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/uniba" />
@@ -27,7 +26,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="31dp"
-            android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Benvenuto in MyUnibApp"
@@ -38,7 +36,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="31dp"
-            android:layout_gravity="center"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/poppins_medium"
             android:text="ACCEDI PER CONTINUARE"
@@ -50,7 +47,6 @@
             android:id="@+id/username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:backgroundTint="#FFF"
             android:drawableStart="@drawable/ic_user"
@@ -65,7 +61,6 @@
             android:id="@+id/password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="18dp"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="5dp"
@@ -75,11 +70,18 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#FFF"/>
 
+        <CheckBox
+            android:id="@+id/remember"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Ricorda credenziali"
+            android:layout_marginTop="18dp"/>
+
         <Button
             android:id="@+id/button_login"
             android:layout_width="280dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/button_login"
             android:hint="@string/action_sign_in"
@@ -89,13 +91,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="oppure"
@@ -106,7 +107,6 @@
                 android:id="@+id/ospite"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/ospite_login"
@@ -119,7 +119,6 @@
             android:id="@+id/lost_password"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_gravity="center"
             android:layout_marginTop="45dp"
             android:fontFamily="@font/poppins"
             android:text="HAI DIMENTICATO LA PASSWORD?"

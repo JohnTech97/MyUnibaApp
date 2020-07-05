@@ -1,10 +1,9 @@
 package sms.myunibapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,9 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myunibapp.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
+import com.example.myunibapp.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.concurrent.Executor;
 
 public class Login extends AppCompatActivity {
 
@@ -42,6 +47,7 @@ public class Login extends AppCompatActivity {
 
         initializeVariables(); //Inizializzazione delle variabili
 
+        checkRemember();
         /*
         ACCESSO ALL'APPLICAZIONE
          */
@@ -54,23 +60,12 @@ public class Login extends AppCompatActivity {
             String username = editTextUsername.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
 
-            if(!validateUsername() | !validatePassword()){
+            if (!validateUsername() | !validatePassword()) {
                 return;
-            }else{
-                username += EMAIL_UNIBA;
-                firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
-
-                    if (task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Login avvenuto con successo", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), Home.class));
-                    } else {
-                        Toast.makeText(Login.this, "Error! " + task.getException().getMessage() , Toast.LENGTH_LONG).show();
-                    }
-                });
+            } else {
+                authenticate(username, password);
             }
         });
-
-        //TODO se questa troia funziona ci devi mettere i permessi per la fingerprint
 
         /*
         RECUPERO PASSWORD
@@ -83,6 +78,61 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    private void checkRemember() {
+        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        boolean ricorda = pref.getBoolean("Remember", false);
+        if (ricorda) {
+            rememberMe.setChecked(true);
+            String mail, pass;
+            mail = pref.getString("Email", "");
+            pass = pref.getString("Pass", "");
+            startAuthentication(mail, pass);
+        }
+    }
+
+    private void startAuthentication(String m, String p) {
+        //autenticazione con il sensore di impronte, se esiste l'hardware nello smartphone
+        BiometricManager manager = BiometricManager.from(this);
+        if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) { //se c'è l'hardware dedicato ed esistono impronte registrate
+            Executor ex = ContextCompat.getMainExecutor(this);
+            BiometricPrompt fingerPrints = new BiometricPrompt(this, ex, new BiometricPrompt.AuthenticationCallback() {
+                @Override
+                public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
+                    //se l'autenticazione ha successo si procede al login su firebase
+                    authenticate(m, p);
+                }
+            });
+            fingerPrints.authenticate(new BiometricPrompt.PromptInfo.Builder()
+                    .setTitle("Accesso biometrico per MyUnibApp")
+                    .setSubtitle("Autenticazione con le impronte digitali")
+                    .setNegativeButtonText("Annulla")
+                    .setDescription("Puoi effettuare l'accesso all'applicazione con le dita, invece di inserire manualmente le tue credenziali").build());
+        } else if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED
+                || manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE) {//se non ci sono impronte registrate nel sistema, o non esiste l'hardware
+            editTextUsername.setText(m);
+            editTextPassword.setText(p);
+        }
+
+    }
+
+    private void authenticate(String mail, String pass) {
+        firebaseAuth.signInWithEmailAndPassword(mail + EMAIL_UNIBA, pass).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+                editor.putBoolean("Remember", rememberMe.isChecked());
+                editor.putString("Email", mail);
+                editor.putString("Pass", pass);
+                editor.apply();
+                Toast.makeText(Login.this, "Login avvenuto con successo", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Home.class));
+                finish();
+            } else {
+                Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void initializeVariables() {
         //Acquisizione credeziali per il login
         this.editTextUsername = findViewById(R.id.username);
@@ -90,12 +140,14 @@ public class Login extends AppCompatActivity {
 
         this.mLoginButton = findViewById(R.id.button_login);  //bottone per il login
 
+        this.rememberMe = findViewById(R.id.remember);
+
         this.forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
 
         this.firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
     }
 
-    private Boolean validateUsername(){
+    private Boolean validateUsername() {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Username è corretto
 
         String username = editTextUsername.getText().toString().trim();
@@ -110,7 +162,7 @@ public class Login extends AppCompatActivity {
         return isCorrect;
     }
 
-    private Boolean validatePassword(){
+    private Boolean validatePassword() {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Password è corretta
 
         String password = editTextPassword.getText().toString().trim();

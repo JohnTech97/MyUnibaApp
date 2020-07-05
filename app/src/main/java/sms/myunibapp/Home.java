@@ -2,8 +2,10 @@ package sms.myunibapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -38,6 +40,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         nav = findViewById(R.id.navigation_menu);
         toolbar = findViewById(R.id.menu_starter);
 
+        //inizializzazione dati esami da firebase
+        String n=Esami.initializeData(this);
+
+        TextView t=findViewById(R.id.info_text);
+        t.setText(n);
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -86,6 +93,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                 break;
             case R.id.logout:
+                SharedPreferences.Editor editor= getSharedPreferences("Settings", MODE_PRIVATE).edit();
+                editor.putBoolean("Remember", false);
+                editor.apply();
                 startActivity(new Intent(Home.this, Login.class));
                 finish();
                 break;
