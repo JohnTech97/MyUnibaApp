@@ -115,6 +115,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 System.exit(0);
             }
         });
+        conferma.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         conferma.show();
     }
 }

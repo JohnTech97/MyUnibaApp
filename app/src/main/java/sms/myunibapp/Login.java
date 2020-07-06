@@ -1,6 +1,7 @@
 package sms.myunibapp;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -181,6 +183,31 @@ public class Login extends AppCompatActivity {
             isCorrect = false;
         }
         return isCorrect;
+    }
+
+    @Override
+    public void onBackPressed() {
+        close();
+    }
+
+    private void close() {
+        AlertDialog.Builder conferma = new AlertDialog.Builder(Login.this);
+        conferma.setTitle("Conferma");
+        conferma.setMessage("Sei sicuro di voler chiudere l'applicazione?");
+        conferma.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                System.exit(0);
+            }
+        });
+        conferma.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        conferma.show();
     }
 
 }
