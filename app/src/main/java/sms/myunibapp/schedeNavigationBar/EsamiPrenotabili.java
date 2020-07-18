@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,7 +21,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.CompoundViews.InfoEsamePrenotabili;
+import java.util.ArrayList;
+
+import sms.myunibapp.CompoundViews.EsamePrenotabile;
+import sms.myunibapp.DettaglioEsame;
 import sms.myunibapp.Esami;
 
 public class EsamiPrenotabili extends AppCompatActivity {
@@ -35,9 +39,8 @@ public class EsamiPrenotabili extends AppCompatActivity {
         LinearLayout listaEsami =findViewById(R.id.lista_esami_prenotabili);
 
         db= FirebaseDatabase.getInstance();
-        DatabaseReference ref= db.getReference("Studente/"+FirebaseAuth.getInstance().getCurrentUser().getEmail().replaceAll(".", "_")+"/Esami da superare");//a firebase non piace "."
-
-        ref.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref= db.getReference().child("Studente").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace(".", "_")).child("Esami da superare");//a firebase non piace "."
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
 
@@ -47,16 +50,16 @@ public class EsamiPrenotabili extends AppCompatActivity {
                 int count= (int)data.getChildrenCount();
 
                 nEsami.setText(r.getQuantityString(R.plurals.n_esami_da_superare, count, count));
-                if(count==1){
+                if(count==1 || count==0){
                     nEsami.setTextColor(Color.GREEN);
                 }
 
                 for(DataSnapshot d:data.getChildren()){
-                    InfoEsamePrenotabili esame=new InfoEsamePrenotabili(EsamiPrenotabili.this);
+                    EsamePrenotabile esame=new EsamePrenotabile(EsamiPrenotabili.this);
                     Esami.Esame exam= Esami.getEsame(d.getValue(String.class));
 
                     esame.inflate();
-                    esame.setTitoloEsame(exam.getNome());//da ottenere la risorsa in base alla lingua
+                    esame.setTitoloEsame(exam.getNome());//TODO da ottenere la risorsa in base alla lingua
                     esame.setLink(exam.getNome());
                     esame.setCfu(exam.getCfu());
                     esame.setEsamiPrenotabili(exam.getDate().size());
@@ -65,8 +68,16 @@ public class EsamiPrenotabili extends AppCompatActivity {
                     esame.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            InfoEsamePrenotabili i=(InfoEsamePrenotabili)v;
-                            Toast.makeText(EsamiPrenotabili.this, i.getLink(),Toast.LENGTH_SHORT).show();
+                            EsamePrenotabile ep=(EsamePrenotabile)v;
+                            Intent i=new Intent(EsamiPrenotabili.this, DettaglioEsame.class);
+                            Esami.Esame exam= Esami.getEsame(ep.getLink());
+                            i.putExtra("nomeEsame", exam.getNome());
+                            i.putExtra("tipo", exam.getTipo());
+                            i.putExtra("dateAppelli", exam.getDate());
+                            i.putExtra("edifici", exam.getEdifici());
+                            i.putExtra("aule", exam.getAule());
+                            i.putExtra("docente", exam.getDocente());
+                            startActivity(i);
                         }
                     });
                     esame.setBackground(getDrawable(R.drawable.widgets_background));
@@ -84,13 +95,6 @@ public class EsamiPrenotabili extends AppCompatActivity {
 
             }
         });
-
-        //TODO: ottenere le informazioni degli esami dalla rete e non manualmente da codice
-        /*String titoliEsami []= new String[]{"Calcolo", "Analisi", "Matematica discreta", "Statistica", "Architettura", "Programmazione 2"};
-        String links []=new String[]{"myuniba.exams.calculus","myuniba.exams.analisys","myuniba.exams.discreteMath",
-                "myuniba.exams.statistycs","myuniba.exams.architecture","myuniba.exams.dataScience2"};
-        int cfu[]=new int[]{12, 9, 6, 6, 9, 12};
-        int nEsamiPrenotabili[]=new int[]{3, 15, 6, 8, 20, 21};*/
 
     }
 

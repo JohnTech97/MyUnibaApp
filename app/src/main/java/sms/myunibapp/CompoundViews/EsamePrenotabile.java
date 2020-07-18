@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.myunibapp.R;
 
-public class InfoEsamePrenotabili extends ConstraintLayout {
+public class EsamePrenotabile extends ConstraintLayout {
 
     private TextView titoloEsame, cfu, nEsami;
     private ImageView iconaEsame;
@@ -24,17 +24,17 @@ public class InfoEsamePrenotabili extends ConstraintLayout {
     private final int dimensioniMassime = 200;
 
 
-    public InfoEsamePrenotabili(Context c) {
+    public EsamePrenotabile(Context c) {
         super(c);
         initializeViews(c);
     }
 
-    public InfoEsamePrenotabili(Context c, @Nullable AttributeSet attrs) {
+    public EsamePrenotabile(Context c, @Nullable AttributeSet attrs) {
         super(c, attrs);
         initializeViews(c);
     }
 
-    public InfoEsamePrenotabili(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public EsamePrenotabile(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(c, attrs, defStyleAttr);
         initializeViews(c);
     }

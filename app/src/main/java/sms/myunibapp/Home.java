@@ -41,10 +41,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar = findViewById(R.id.menu_starter);
 
         //inizializzazione dati esami da firebase
-        String n=Esami.initializeData(this);
 
         TextView t=findViewById(R.id.info_text);
-        t.setText(n);
+        Esami.initializeData();
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
