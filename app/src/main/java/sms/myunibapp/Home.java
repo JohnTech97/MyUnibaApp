@@ -3,8 +3,11 @@ package sms.myunibapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
+import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.OutcomeBoard;
 import sms.myunibapp.unibaServices.BookableExams;
 import sms.myunibapp.unibaServices.Booklet;
@@ -27,9 +31,10 @@ import sms.myunibapp.unibaServices.Secretary;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawer;
-    NavigationView nav;
-    Toolbar toolbar;
+    private DrawerLayout drawer;
+    private NavigationView nav;
+    private Toolbar toolbar;
+    private GridLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +44,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer = findViewById(R.id.menu_navigazione);
         nav = findViewById(R.id.navigation_menu);
         toolbar = findViewById(R.id.menu_starter);
+        layout = findViewById(R.id.widgets);
 
         //inizializzazione dati esami da firebase
 
-        TextView t=findViewById(R.id.info_text);
         ExamsData.initializeData();
         setSupportActionBar(toolbar);
 
@@ -52,6 +57,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(this);
+        initializeWidgets();
+    }
+
+    private void initializeWidgets() {
+        SharedPreferences editor = getSharedPreferences("Widgets", MODE_PRIVATE);
+        /*editor.putInt("numberOfWidgets", 4);
+        editor.putString("icon1", "home_icon");
+        editor.putString("nomeWidget1", "Torna alla home");
+
+        editor.putString("icon2", "segretary_icon");
+        editor.putString("nomeWidget2", "Segreteria");
+
+        editor.putString("icon3", "career_icon");
+        editor.putString("nomeWidget3", "Libretto");
+
+        editor.putString("icon4", "exam_list_icon");
+        editor.putString("nomeWidget4", "Esami prenotabili");*/
+
+        int numberOfWidgets=editor.getInt("numberOfWidgets", 0);
+        Resources res=getResources();
+        for(int i=1;i<=numberOfWidgets;i++){
+            String nomeWidget=editor.getString("icon"+i, "");
+            int id=res.getIdentifier(nomeWidget,"drawable", getPackageName());
+            Drawable icon=getDrawable(id);
+            String testo=editor.getString("nomeWidget"+i, "");
+            DashboardWidgets widget= new DashboardWidgets(this);
+            widget.inflate();
+            widget.setIcona(icon);
+            widget.setNomeWidget(testo);
+
+            layout.addView(widget);
+        }
 
     }
 

@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreenSchede">
-
+        <activity android:name="sms.myunibapp.advancedViews.DashboardWidgets"></activity>
         <!-- SPLASH SCREEN -->
         <activity
             android:name="sms.myunibapp.SplashScreen"
@@ -24,9 +24,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- ACTVITY PER IL LOGIN -->
+        </activity> <!-- ACTVITY PER IL LOGIN -->
         <activity
             android:name="sms.myunibapp.Login"
             android:label="@string/title_activity_login"
@@ -39,9 +37,7 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name="sms.myunibapp.forgotPassword.SuccessfulEmailSent"
-            android:theme="@style/FullScreen" />
-
-        <!-- ACTVITY APP -->
+            android:theme="@style/FullScreen" /> <!-- ACTVITY APP -->
         <activity android:name="sms.myunibapp.unibaServices.BookingsBoard" />
         <activity android:name="sms.myunibapp.unibaServices.BookableExamsDetails" />
         <activity android:name="sms.myunibapp.unibaServices.BookableExams" />

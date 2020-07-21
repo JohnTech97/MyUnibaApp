@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#F5C3D3DF"
-    tools:context="sms.myunibapp.Home">
+    tools:context="sms.myunibapp.Home"
+    android:orientation="vertical">
 
-    <!-- A CardView that contains a TextView -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        app:cardElevation="13dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="#F5C3D3DF"
+        android:layout_height="500dp">
 
-        <TextView
-            android:id="@+id/info_text"
+        <GridLayout
+            android:id="@+id/widgets"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Dashboard" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:padding="24dp">
 
+        </GridLayout>
 
+    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Personalizza widget" />
+
+</LinearLayout>
