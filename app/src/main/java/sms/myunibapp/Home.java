@@ -18,11 +18,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
-import sms.myunibapp.schedeNavigationBar.BachecaEsiti;
-import sms.myunibapp.schedeNavigationBar.EsamiPrenotabili;
-import sms.myunibapp.schedeNavigationBar.Libretto;
-import sms.myunibapp.schedeNavigationBar.Profilo;
-import sms.myunibapp.schedeNavigationBar.Segreteria;
+import sms.myunibapp.unibaServices.OutcomeBoard;
+import sms.myunibapp.unibaServices.BookableExams;
+import sms.myunibapp.unibaServices.Booklet;
+import sms.myunibapp.unibaServices.Profile;
+import sms.myunibapp.unibaServices.Secretary;
 
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +43,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         //inizializzazione dati esami da firebase
 
         TextView t=findViewById(R.id.info_text);
-        Esami.initializeData();
+        ExamsData.initializeData();
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -71,22 +71,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 //do nothing
                 break;
             case R.id.segreteria:
-                startActivity(new Intent(Home.this, Segreteria.class));
+                startActivity(new Intent(Home.this, Secretary.class));
                 break;
             case R.id.lista_esami:
-                startActivity(new Intent(Home.this, EsamiPrenotabili.class));
+                startActivity(new Intent(Home.this, BookableExams.class));
                 break;
             case R.id.bacheca_prenotazioni:
                 //startActivity(new Intent(Home.this, BachecaEsiti.class));
                 break;
             case R.id.bacheca_esiti:
-                startActivity(new Intent(Home.this, BachecaEsiti.class));
+                startActivity(new Intent(Home.this, OutcomeBoard.class));
                 break;
             case R.id.carriera:
-                startActivity(new Intent(Home.this, Libretto.class));
+                startActivity(new Intent(Home.this, Booklet.class));
                 break;
             case R.id.profilo_menu:
-                startActivity(new Intent(Home.this, Profilo.class));
+                startActivity(new Intent(Home.this, Profile.class));
                 break;
             case R.id.who_we_are:
 

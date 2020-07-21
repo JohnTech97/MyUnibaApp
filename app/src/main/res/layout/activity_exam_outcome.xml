@@ -4,15 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sms.myunibapp.CompoundViews.InfoEsamePrenotabile">
+    tools:context="sms.myunibapp.advancedViews.ExamOutcomeDetails">
 
     <LinearLayout
-        android:id="@+id/prenotabili"
+        android:id="@+id/esiti"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="40dp">
 
+
+        <TextView
+            android:id="@+id/esiti_da_mostrare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:text="Nessun esito da mostrare" />
     </LinearLayout>
 
 </HorizontalScrollView>

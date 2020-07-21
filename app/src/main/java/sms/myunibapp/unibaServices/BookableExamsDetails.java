@@ -1,26 +1,24 @@
-package sms.myunibapp;
+package sms.myunibapp.unibaServices;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
 
 import java.util.ArrayList;
 
-import sms.myunibapp.CompoundViews.EsamePrenotabile;
-import sms.myunibapp.CompoundViews.InfoEsamePrenotabile;
+import sms.myunibapp.advancedViews.BookableExamDetails;
 
-public class DettaglioEsame extends AppCompatActivity {
+public class BookableExamsDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
-        setContentView(R.layout.activity_dettaglio_esame);
+        setContentView(R.layout.activity_exams_details);
         LinearLayout listaEsami = findViewById(R.id.prenotabili);
 
         Bundle b=getIntent().getExtras();
@@ -32,7 +30,7 @@ public class DettaglioEsame extends AppCompatActivity {
         String docente =b.getString("docente");
 
         for(int i=0; i<dateAppelli.size();i++){
-            InfoEsamePrenotabile esame=new InfoEsamePrenotabile(this);
+            BookableExamDetails esame=new BookableExamDetails(this);
 
             esame.inflate();
             esame.setTitoloEsame(nomeEsame);

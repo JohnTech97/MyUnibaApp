@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.advancedViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,28 +10,28 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-public class EsitoEsameCustomView extends View {
+public class ExamOutcomeCustomDrawing extends View {
 
     private Paint positivoBorder, negativoBorder, positivo, negativo, fill;
 
     private String esito = "0", bocciato = "Bocciato";
 
-    public EsitoEsameCustomView(Context context) {
+    public ExamOutcomeCustomDrawing(Context context) {
         super(context);
         initialize();
     }
 
-    public EsitoEsameCustomView(Context context, @Nullable AttributeSet attrs) {
+    public ExamOutcomeCustomDrawing(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initialize();
     }
 
-    public EsitoEsameCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ExamOutcomeCustomDrawing(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize();
     }
 
-    public EsitoEsameCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ExamOutcomeCustomDrawing(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initialize();
     }

@@ -1,4 +1,4 @@
-package sms.myunibapp.schedeNavigationBar;
+package sms.myunibapp.unibaServices;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,15 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
 
-import sms.myunibapp.CompoundViews.EsitoEsame;
+import sms.myunibapp.advancedViews.ExamOutcomeDetails;
 
-public class BachecaEsiti extends AppCompatActivity {
+public class OutcomeBoard extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle b){
         super.onCreate(b);
-        setContentView(R.layout.activity_esito_esame);
+        setContentView(R.layout.activity_exam_outcome);
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 
         String nomi[]=new String[]{"Calcolo", "Data Mining", "Economia", "Fisica"};
@@ -28,7 +28,7 @@ public class BachecaEsiti extends AppCompatActivity {
         if (nomi.length!=0){
             findViewById(R.id.esiti_da_mostrare).setVisibility(View.GONE);
             for(int i=0;i<nomi.length;i++){
-                EsitoEsame esito=new EsitoEsame(this);
+                ExamOutcomeDetails esito=new ExamOutcomeDetails(this);
                 esito.inflate();
 
                 esito.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));

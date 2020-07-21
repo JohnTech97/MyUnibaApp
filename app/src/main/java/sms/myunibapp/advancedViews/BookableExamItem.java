@@ -1,4 +1,4 @@
-package sms.myunibapp.CompoundViews;
+package sms.myunibapp.advancedViews;
 
 
 import android.content.Context;
@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.myunibapp.R;
 
-public class EsamePrenotabile extends ConstraintLayout {
+public class BookableExamItem extends ConstraintLayout {
 
     private TextView titoloEsame, cfu, nEsami;
     private ImageView iconaEsame;
@@ -24,17 +24,17 @@ public class EsamePrenotabile extends ConstraintLayout {
     private final int dimensioniMassime = 200;
 
 
-    public EsamePrenotabile(Context c) {
+    public BookableExamItem(Context c) {
         super(c);
         initializeViews(c);
     }
 
-    public EsamePrenotabile(Context c, @Nullable AttributeSet attrs) {
+    public BookableExamItem(Context c, @Nullable AttributeSet attrs) {
         super(c, attrs);
         initializeViews(c);
     }
 
-    public EsamePrenotabile(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BookableExamItem(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(c, attrs, defStyleAttr);
         initializeViews(c);
     }
@@ -47,7 +47,7 @@ public class EsamePrenotabile extends ConstraintLayout {
      */
     private void initializeViews(Context context) {
         ctx = context;
-        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.esame_info_template, this, true);
+        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.template_exam_basic_info, this, true);
     }
 
     public void inflate() {

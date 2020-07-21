@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Esami {
+public class ExamsData {
 
     public static class Esame{
         //firebase
@@ -99,7 +99,7 @@ public class Esami {
 
     private static Map<String, Esame> esami=new HashMap<>();
 
-    private Esami(){}
+    private ExamsData(){}
 
     public static void initializeData(){
 

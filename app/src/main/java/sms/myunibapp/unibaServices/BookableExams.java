@@ -1,8 +1,7 @@
-package sms.myunibapp.schedeNavigationBar;
+package sms.myunibapp.unibaServices;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,8 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myunibapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,20 +20,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import sms.myunibapp.advancedViews.BookableExamItem;
+import sms.myunibapp.ExamsData;
 
-import sms.myunibapp.CompoundViews.EsamePrenotabile;
-import sms.myunibapp.DettaglioEsame;
-import sms.myunibapp.Esami;
-
-public class EsamiPrenotabili extends AppCompatActivity {
+public class BookableExams extends AppCompatActivity {
 
     private FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esami_prenotabili);
+        setContentView(R.layout.activity_bookable_exams_list);
 
         LinearLayout listaEsami =findViewById(R.id.lista_esami_prenotabili);
 
@@ -55,22 +51,21 @@ public class EsamiPrenotabili extends AppCompatActivity {
                 }
 
                 for(DataSnapshot d:data.getChildren()){
-                    EsamePrenotabile esame=new EsamePrenotabile(EsamiPrenotabili.this);
-                    Esami.Esame exam= Esami.getEsame(d.getValue(String.class));
+                    BookableExamItem esame=new BookableExamItem(BookableExams.this);
+                    ExamsData.Esame exam= ExamsData.getEsame(d.getValue(String.class));
 
                     esame.inflate();
                     esame.setTitoloEsame(exam.getNome());//TODO da ottenere la risorsa in base alla lingua
                     esame.setLink(exam.getNome());
                     esame.setCfu(exam.getCfu());
                     esame.setEsamiPrenotabili(exam.getDate().size());
-                    esame.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
                     esame.setClickable(true);
                     esame.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            EsamePrenotabile ep=(EsamePrenotabile)v;
-                            Intent i=new Intent(EsamiPrenotabili.this, DettaglioEsame.class);
-                            Esami.Esame exam= Esami.getEsame(ep.getLink());
+                            BookableExamItem ep=(BookableExamItem)v;
+                            Intent i=new Intent(BookableExams.this, BookableExamsDetails.class);
+                            ExamsData.Esame exam= ExamsData.getEsame(ep.getLink());
                             i.putExtra("nomeEsame", exam.getNome());
                             i.putExtra("tipo", exam.getTipo());
                             i.putExtra("dateAppelli", exam.getDate());
@@ -80,10 +75,9 @@ public class EsamiPrenotabili extends AppCompatActivity {
                             startActivity(i);
                         }
                     });
-                    esame.setBackground(getDrawable(R.drawable.widgets_background));
-                    esame.setPadding(0,0,0, 24);
-                    ((ConstraintLayout.LayoutParams)esame.getLayoutParams()).topMargin=24;
-
+                    Space space=new Space(BookableExams.this);
+                    space.setMinimumHeight(24);
+                    listaEsami.addView(space);
                     listaEsami.addView(esame);
 
                 }

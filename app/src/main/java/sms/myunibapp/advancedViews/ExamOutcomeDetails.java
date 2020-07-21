@@ -1,11 +1,8 @@
-package sms.myunibapp.CompoundViews;
+package sms.myunibapp.advancedViews;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,39 +12,37 @@ import android.widget.TextView;
 
 import com.example.myunibapp.R;
 
-import sms.myunibapp.EsitoEsameCustomView;
-
-public class EsitoEsame extends LinearLayout {
+public class ExamOutcomeDetails extends LinearLayout {
 
     private Context ctx;
 
     private TextView nomeEsame, data, docente, refuseBack;
-    private EsitoEsameCustomView esito;
+    private ExamOutcomeCustomDrawing esito;
     private Button accetta;
 
-    public EsitoEsame(Context context) {
+    public ExamOutcomeDetails(Context context) {
         super(context);
         initializeViews(context);
     }
 
-    public EsitoEsame(Context context, @Nullable AttributeSet attrs) {
+    public ExamOutcomeDetails(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initializeViews(context);
     }
 
-    public EsitoEsame(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ExamOutcomeDetails(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initializeViews(context);
     }
 
-    public EsitoEsame(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ExamOutcomeDetails(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initializeViews(context);
     }
 
     private void initializeViews(Context context) {
         ctx = context;
-        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.esito_esame_template, this, true);
+        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.template_exam_outcome, this, true);
     }
 
     public void inflate() {

@@ -42,13 +42,13 @@
             android:theme="@style/FullScreen" />
 
         <!-- ACTVITY APP -->
-        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaPrenotazioni" />
-        <activity android:name="sms.myunibapp.DettaglioEsame" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.EsamiPrenotabili" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Segreteria" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Profilo" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.BachecaEsiti" />
-        <activity android:name="sms.myunibapp.schedeNavigationBar.Libretto" />
+        <activity android:name="sms.myunibapp.unibaServices.BookingsBoard" />
+        <activity android:name="sms.myunibapp.unibaServices.BookableExamsDetails" />
+        <activity android:name="sms.myunibapp.unibaServices.BookableExams" />
+        <activity android:name="sms.myunibapp.unibaServices.Secretary" />
+        <activity android:name="sms.myunibapp.unibaServices.Profile" />
+        <activity android:name="sms.myunibapp.unibaServices.OutcomeBoard" />
+        <activity android:name="sms.myunibapp.unibaServices.Booklet" />
         <activity android:name="sms.myunibapp.Home" />
 
         <meta-data

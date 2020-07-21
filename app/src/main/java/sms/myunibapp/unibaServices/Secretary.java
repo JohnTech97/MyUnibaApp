@@ -1,4 +1,4 @@
-package sms.myunibapp.schedeNavigationBar;
+package sms.myunibapp.unibaServices;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.myunibapp.R;
 
-public class Segreteria extends AppCompatActivity {
+public class Secretary extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

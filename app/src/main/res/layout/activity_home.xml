@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_starter">
 
-            <include layout="@layout/activity_home_widgets"/>
+            <include layout="@layout/activity_home_dashboard"/>
 
         </ScrollView>
 

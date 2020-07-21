@@ -1,13 +1,13 @@
 package sms.myunibapp;
 
-public class Utente {
+public class User {
 
     private int matricola, annoDiRegolamento, ordinamento;
     private String username, nome, cognome, corsoDiLaurea, percorso, sede, iscrizione, classe, gender, normativa;
     private boolean stato;
 
-    public Utente(int matricola, int annoDiRegolamento, int ordinamento, String username, String nome, String cognome,
-                  String corsoDiLaurea, String percorso, String sede, String iscrizione, String classe, String gender, String normativa, boolean stato) {
+    public User(int matricola, int annoDiRegolamento, int ordinamento, String username, String nome, String cognome,
+                String corsoDiLaurea, String percorso, String sede, String iscrizione, String classe, String gender, String normativa, boolean stato) {
         this.matricola = matricola;
         this.annoDiRegolamento = annoDiRegolamento;
         this.ordinamento = ordinamento;

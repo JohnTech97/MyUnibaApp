@@ -1,4 +1,4 @@
-package sms.myunibapp.CompoundViews;
+package sms.myunibapp.advancedViews;
 
 
 import android.content.Context;
@@ -11,26 +11,21 @@ import androidx.annotation.Nullable;
 
 import com.example.myunibapp.R;
 
-public class BookableExamItem extends LinearLayout {
+public class BookableExamDetails extends LinearLayout {
 
     private TextView titoloEsame, aula, docente, edificio, tipo, data;
 
-    private Context ctx;
-    private String esame;
-
-    private final int dimensioniMassime = 200;
-
-    public BookableExamItem(Context c) {
+    public BookableExamDetails(Context c) {
         super(c);
         initializeViews(c);
     }
 
-    public BookableExamItem(Context c, @Nullable AttributeSet attrs) {
+    public BookableExamDetails(Context c, @Nullable AttributeSet attrs) {
         super(c, attrs);
         initializeViews(c);
     }
 
-    public BookableExamItem(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BookableExamDetails(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(c, attrs, defStyleAttr);
         initializeViews(c);
     }
@@ -42,8 +37,7 @@ public class BookableExamItem extends LinearLayout {
      * @param context the current context for the view.
      */
     private void initializeViews(Context context) {
-        ctx = context;
-        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.esame_info_template, this, true);
+        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.template_exam_details, this, true);
     }
 
     public void inflate() {
@@ -52,12 +46,12 @@ public class BookableExamItem extends LinearLayout {
         // built-in images so you don't need to add images, but in
         // a real application your images should be in the
         // application package so they are always available.
-        titoloEsame = findViewById(R.id.nome_esame_prenotazione);
-        tipo = findViewById(R.id.tipo_esame_prenotazione);
-        data = findViewById(R.id.data_prenotazione_esame);
-        edificio = findViewById(R.id.edificio_prenotazione);
-        aula = findViewById(R.id.aula_prenotazione);
-        docente = findViewById(R.id.docente_bacheca_prenotazioni);
+        titoloEsame = findViewById(R.id.nome_esame_prenotabile);
+        tipo = findViewById(R.id.tipo_esame_prenotabile);
+        data = findViewById(R.id.data_esame_prenotabile);
+        edificio = findViewById(R.id.edificio_prenotabile);
+        aula = findViewById(R.id.aula_prenotabile);
+        docente = findViewById(R.id.docente_prenotabile);
     }
 
     public String getTitoloEsame() {
@@ -107,5 +101,4 @@ public class BookableExamItem extends LinearLayout {
     public void setData(String data) {
         this.data.setText(data);
     }
-
 }
