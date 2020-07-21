@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.example.myunibapp.R;
 
-public class DettaglioEsamePrenotato extends LinearLayout {
+public class BookableExamItem extends LinearLayout {
 
     private TextView titoloEsame, aula, docente, edificio, tipo, data;
 
@@ -20,17 +20,17 @@ public class DettaglioEsamePrenotato extends LinearLayout {
 
     private final int dimensioniMassime = 200;
 
-    public DettaglioEsamePrenotato(Context c) {
+    public BookableExamItem(Context c) {
         super(c);
         initializeViews(c);
     }
 
-    public DettaglioEsamePrenotato(Context c, @Nullable AttributeSet attrs) {
+    public BookableExamItem(Context c, @Nullable AttributeSet attrs) {
         super(c, attrs);
         initializeViews(c);
     }
 
-    public DettaglioEsamePrenotato(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BookableExamItem(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(c, attrs, defStyleAttr);
         initializeViews(c);
     }

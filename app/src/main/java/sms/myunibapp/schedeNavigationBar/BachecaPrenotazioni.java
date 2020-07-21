@@ -8,8 +8,7 @@ import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
 
-import sms.myunibapp.CompoundViews.DettaglioEsamePrenotato;
-import sms.myunibapp.CompoundViews.EsitoEsame;
+import sms.myunibapp.CompoundViews.BookableExamItem;
 
 public class BachecaPrenotazioni extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class BachecaPrenotazioni extends AppCompatActivity {
         String provvisorio[]=new String[]{""};
 
         for(int i=0;i<provvisorio.length;i++){
-            DettaglioEsamePrenotato esamePrenotato=new DettaglioEsamePrenotato(this);
+            BookableExamItem esamePrenotato=new BookableExamItem(this);
             esamePrenotato.inflate();
 
             esamePrenotato.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
