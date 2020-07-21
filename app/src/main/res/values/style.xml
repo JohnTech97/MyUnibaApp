@@ -4,6 +4,9 @@
         <item name="android:statusBarColor">@color/background_lighter</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorAccent">#142031</item>
+        <item name="errorTextColor">#FD1E1E</item>
+        <item name="android:navigationBarColor">@color/background_lighter</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
     <style name="FullScreenSchede" parent="Theme.AppCompat.Light.NoActionBar">

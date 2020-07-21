@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F5C3D3DF"
+    android:orientation="vertical"
+    android:isScrollContainer="false"
     tools:context="sms.myunibapp.Login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:isScrollContainer="false"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/logoUniba"
-            android:layout_width="250dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="38dp"
+            android:layout_width="239dp"
+            android:layout_height="194dp"
+            android:layout_gravity="center"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/uniba" />
 
@@ -43,33 +45,54 @@
             android:textColor="#5A5B5D"
             android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/username"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:backgroundTint="#FFF"
-            android:drawableStart="@drawable/ic_user"
-            android:drawablePadding="5dp"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
+            android:layout_marginTop="10dp"
+            app:errorTextColor="#F5F81111"
             android:isScrollContainer="false"
-            android:textCursorDrawable="@null"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFF" />
+            app:hintEnabled="false">
 
-        <EditText
-            android:id="@+id/password"
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFF"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="5dp"
+                android:hint="@string/prompt_email"
+                android:paddingBottom="15dp"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFF" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="5dp"
-            android:hint="@string/prompt_password"
-            android:backgroundTint="#FFF"
-            android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFF"/>
+            app:errorTextColor="#F5F81111"
+            android:isScrollContainer="false"
+            app:hintEnabled="false"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/background">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:backgroundTint="#FFF"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="5dp"
+                android:paddingBottom="15dp"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFF" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/remember"
@@ -79,13 +102,13 @@
             android:buttonTint="#FFFFFF"
             android:fontFamily="@font/poppins_semibold"
             android:text="Ricorda credenziali"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="280dp"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_login"
             android:hint="@string/action_sign_in"
             android:textColorHint="#fff" />
@@ -94,8 +117,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,10 +142,11 @@
         </LinearLayout>
 
         <TextView
+            android:isScrollContainer="false"
             android:id="@+id/lost_password"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/poppins"
             android:text="HAI DIMENTICATO LA PASSWORD?"
             android:textAlignment="center"
@@ -130,6 +154,5 @@
             android:textSize="12sp" />
 
     </LinearLayout>
-
 
 </LinearLayout>

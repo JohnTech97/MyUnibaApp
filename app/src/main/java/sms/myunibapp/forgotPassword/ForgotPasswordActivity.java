@@ -1,7 +1,8 @@
-package sms.myunibapp;
+package sms.myunibapp.forgotPassword;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -12,14 +13,13 @@ import android.widget.EditText;
 import com.example.myunibapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
-import sms.myunibapp.resetPasswordEsito.NotSuccessfulEmailSent;
-import sms.myunibapp.resetPasswordEsito.SuccessfulEmailSent;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private EditText emailForPassword;
+    private TextInputLayout textInputLayout;
     Button mRecoveryButton;
     FirebaseAuth firebaseAuth;
 
@@ -28,10 +28,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        emailForPassword = findViewById(R.id.email_for_password_reset);
-        mRecoveryButton = findViewById(R.id.reimposta_password);
+        initializeVariables(); //Inizializzazione delle variabili
 
-        firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
 
         /* REIMPOSTA PASSWORD*/
         mRecoveryButton.setOnClickListener(v -> {
@@ -40,7 +38,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
             //Se il campo username è vuoto
             if (email.isEmpty()) {
-                emailForPassword.setError("Inserisci username");
+                textInputLayout.setError("Inserisci la mail corretta");
                 emailForPassword.requestFocus();
                 return;
             }
@@ -58,4 +56,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             });
         });
     }
+
+    private void initializeVariables() {
+
+        emailForPassword = findViewById(R.id.email_for_password_reset);
+        textInputLayout = findViewById(R.id.text_input_mail);
+        mRecoveryButton = findViewById(R.id.reimposta_password);
+        this.firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
+    }
 }
+

@@ -19,9 +19,12 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import com.example.myunibapp.R;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.concurrent.Executor;
+
+import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
 
 public class Login extends AppCompatActivity {
 
@@ -153,10 +156,10 @@ public class Login extends AppCompatActivity {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Username è corretto
 
         String username = editTextUsername.getText().toString().trim();
-
+        TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
         //Se il campo username è vuoto
         if (username.isEmpty()) {
-            editTextUsername.setError("Inserisci username");
+            textInputLayout.setError("Inserisci username");
             editTextUsername.requestFocus();
             isCorrect = false;
         }
@@ -168,18 +171,12 @@ public class Login extends AppCompatActivity {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Password è corretta
 
         String password = editTextPassword.getText().toString().trim();
-
-        //Se il campo password è vuoto
-        if (password.isEmpty()) {
-            editTextPassword.setError("Inserisci password");
-            editTextPassword.requestFocus();
-            isCorrect = false;
-        }
+        TextInputLayout textInputLayout = findViewById(R.id.text_input_password);
 
         //Se la password è più corta di 6 caratteri
         if (password.length() < 6) {
-            editTextPassword.setError("La password deve contenere almeno 6 caratteri");
-            editTextPassword.requestFocus();
+            textInputLayout.setError("La password deve contenere almeno 6 caratteri");
+            //editTextPassword.requestFocus();
             isCorrect = false;
         }
         return isCorrect;

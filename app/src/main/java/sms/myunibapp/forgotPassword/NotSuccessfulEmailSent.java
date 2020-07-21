@@ -1,4 +1,5 @@
-package sms.myunibapp.resetPasswordEsito;
+package sms.myunibapp.forgotPassword;
+
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
