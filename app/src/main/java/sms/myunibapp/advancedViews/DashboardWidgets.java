@@ -10,8 +10,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myunibapp.R;
 
@@ -19,7 +21,7 @@ public class DashboardWidgets extends CardView {
 
     private ImageView icona;
     private TextView nomeWidget;
-
+    private Class target;
 
     public DashboardWidgets(@NonNull Context context) {
         super(context);
@@ -61,4 +63,9 @@ public class DashboardWidgets extends CardView {
     public void setNomeWidget(String nomeWidget) {
         this.nomeWidget.setText(nomeWidget);
     }
+
+    public Class getTarget(){return target;}
+
+    public void setTarget(Class t){target=t;}
+
 }

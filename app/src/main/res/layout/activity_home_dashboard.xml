@@ -8,8 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:background="#F5C3D3DF"
-        android:layout_height="500dp">
+        android:layout_height="500dp"
+        android:layout_gravity="center">
 
         <GridLayout
             android:id="@+id/widgets"
@@ -23,9 +23,10 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/personalizzazione_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Personalizza widget" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Personalizza widget"/>
 
 </LinearLayout>
