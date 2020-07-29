@@ -1,147 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Materia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+        <LinearLayout
+            android:layout_width="1200px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/widgets_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
-    <TextView
-        android:id="@+id/nome_esame_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:textColor="#0000aa"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Materia"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo prova:" />
+            <TextView
+                android:id="@+id/nome_esame_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textColor="#0000aa"
+                android:textSize="20sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    <TextView
-        android:id="@+id/tipo_esame_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Orale"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo prova:"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data esame" />
+            <TextView
+                android:id="@+id/tipo_esame_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orale"
+                android:textSize="20sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    <TextView
-        android:id="@+id/data_esame_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data esame"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edificio" />
+            <TextView
+                android:id="@+id/data_esame_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    <TextView
-        android:id="@+id/edificio_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edificio"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aula" />
+            <TextView
+                android:id="@+id/edificio_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    <TextView
-        android:id="@+id/aula_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aula"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Docente" />
+            <TextView
+                android:id="@+id/aula_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    <TextView
-        android:id="@+id/docente_prenotabile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Docente"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="32dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-    <Button
-        android:id="@+id/prenotazione"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prenotati" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/docente_prenotabile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <Button
+                android:id="@+id/prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prenotati" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </merge>

@@ -1,149 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:parentTag="android.widget.ScrollView">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="1200px"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Materia"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/widgets_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Materia"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/nome_esame_prenotazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textColor="#0000aa"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/nome_esame_prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textColor="#0000aa"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo prova:" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo prova:"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/tipo_esame_prenotazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Orale"
-            android:textSize="20sp"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/tipo_esame_prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orale"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data esame" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data esame"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/data_prenotazione_esame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/data_prenotazione_esame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edificio" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edificio"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/edificio_prenotazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"/>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/edificio_prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aula" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aula"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/aula_prenotazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/aula_prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Docente" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Docente"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/docente_bacheca_prenotazioni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:id="@+id/docente_bacheca_prenotazioni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/cancellazione_prenotazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disdici prenotazione" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/cancellazione_prenotazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disdici prenotazione" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </merge>

@@ -16,13 +16,7 @@ import com.example.myunibapp.R;
 public class BookableExamItem extends ConstraintLayout {
 
     private TextView titoloEsame, cfu, nEsami;
-    private ImageView iconaEsame;
-
-    private Context ctx;
     private String esame;
-
-    private final int dimensioniMassime = 200;
-
 
     public BookableExamItem(Context c) {
         super(c);
@@ -39,29 +33,14 @@ public class BookableExamItem extends ConstraintLayout {
         initializeViews(c);
     }
 
-
-    /**
-     * Inflates the views in the layout.
-     *
-     * @param context the current context for the view.
-     */
     private void initializeViews(Context context) {
-        ctx = context;
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.template_exam_basic_info, this, true);
     }
 
     public void inflate() {
 
-        // Sets the images for the previous and next buttons. Uses
-        // built-in images so you don't need to add images, but in
-        // a real application your images should be in the
-        // application package so they are always available.
         titoloEsame = findViewById(R.id.titolo_esame);
         cfu = findViewById(R.id.cfu);
-        iconaEsame = findViewById(R.id.icona_esame);
-        iconaEsame.setMaxWidth(dimensioniMassime);
-        iconaEsame.setMaxHeight(dimensioniMassime);
-
         nEsami = findViewById(R.id.n_esami_prenotabili);
     }
 
@@ -79,14 +58,6 @@ public class BookableExamItem extends ConstraintLayout {
 
     public void setCfu(int cfu) {
         this.cfu.setText("" + cfu);
-    }
-
-    public Drawable getIconaEsame() {
-        return iconaEsame.getDrawable();
-    }
-
-    public void setIconaEsame(Drawable iconaEsame) {
-        this.iconaEsame.setImageDrawable(iconaEsame);
     }
 
     public int getNEsamiPrenotabili() {

@@ -1,45 +1,71 @@
 package sms.myunibapp.unibaServices;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import sms.myunibapp.ExamsData;
+import sms.myunibapp.Login;
+import sms.myunibapp.advancedViews.BookableExamDetails;
+import sms.myunibapp.advancedViews.BookableExamItem;
 
 public class BookingsBoard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.template_booked_exam);
+        setContentView(R.layout.activity_booked_exams);
 
-        //TODO: ricevere dati dalla rete o dal bundle e modificare le view in modo da mostrare le prenotazioni
-        //come nelle classi bacheca esiti ed esami prenotabili
+        LinearLayout listaEsami=findViewById(R.id.prenotati);
 
-        String provvisorio[]=new String[]{""};
+        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername()).child("Esami prenotati");
 
-        for(int i=0;i<provvisorio.length;i++){
-            /*BookableExamItem esamePrenotato=new BookableExamItem(this);
-            esamePrenotato.inflate();
+        dr.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot s) {
+                for(int i=1;i<=s.getChildrenCount()/4;i++){
+                    BookableExamDetails esamePrenotato=new BookableExamDetails(BookingsBoard.this);//si utilizza lo stesso layout di EsamiPrenotabili perché le informazioni da mostrare sono le stesse
+                    //per poi modificare la scritta all'interno del bottone presente alla fine dell'impaginazione
+                    ExamsData.Esame esame=ExamsData.getEsame(s.child("nome"+i).getValue(String.class));
 
-            esamePrenotato.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
-            esamePrenotato.setGravity(Gravity.CENTER_HORIZONTAL);
-            esamePrenotato.setMinimumWidth(1200);
+                    esamePrenotato.inflate();
 
-            esamePrenotato.setOrientation(LinearLayout.VERTICAL);
-            esamePrenotato.setBackground(getDrawable(R.drawable.widgets_background));
+                    esamePrenotato.setTitoloEsame(esame.getNome());
+                    esamePrenotato.setTipo(esame.getTipo());
+                    esamePrenotato.setData(s.child("data"+i).getValue(String.class));
+                    esamePrenotato.setEdificio(s.child("edificio"+i).getValue(String.class));
+                    esamePrenotato.setAula(s.child("aula"+i).getValue(String.class));
+                    esamePrenotato.setDocente(esame.getDocente());
 
+                    Button b= new Button(BookingsBoard.this);
+                    b.setText("Disdici prenotazione");
+                    esamePrenotato.setBottone(b);
+                    esamePrenotato.getBottone().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //todo cancellazione prenotazione
+                        }
+                    });
 
-            esamePrenotato.setNomeEsame(nomi[i]);
-            esamePrenotato.setData(date[i]);
-            esamePrenotato.setDocente(docenti[i]);
-            esamePrenotato.setEsito(voti[i]);
-            esamePrenotato.setPadding(30, 30, 30, 30);
+                    listaEsami.addView(esamePrenotato);
+                }
+            }
 
-            ((LinearLayout.LayoutParams)esamePrenotato.getLayoutParams()).leftMargin=40;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            listaEsiti.addView(esamePrenotato);*/
-        }
-
+            }
+        });
     }
 }

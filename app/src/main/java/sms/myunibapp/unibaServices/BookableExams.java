@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.Login;
 import sms.myunibapp.advancedViews.BookableExamItem;
 import sms.myunibapp.ExamsData;
 
@@ -35,7 +36,7 @@ public class BookableExams extends AppCompatActivity {
         LinearLayout listaEsami =findViewById(R.id.lista_esami_prenotabili);
 
         db= FirebaseDatabase.getInstance();
-        DatabaseReference ref= db.getReference().child("Studente").child(FirebaseAuth.getInstance().getCurrentUser().getEmail().replace(".", "_")).child("Esami da superare");//a firebase non piace "."
+        DatabaseReference ref= db.getReference().child("Studente").child(Login.getUsername()).child("Esami da superare");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {

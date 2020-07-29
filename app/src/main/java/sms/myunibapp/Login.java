@@ -44,6 +44,8 @@ public class Login extends AppCompatActivity {
     //Ricordami
     CheckBox rememberMe;
 
+    private static String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,12 +132,17 @@ public class Login extends AppCompatActivity {
                 editor.putString("Pass", pass);
                 editor.apply();
                 Toast.makeText(Login.this, "Login avvenuto con successo", Toast.LENGTH_SHORT).show();
+                username=mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
                 startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
             } else {
                 Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public static String getUsername(){
+        return username;
     }
 
     private void initializeVariables() {

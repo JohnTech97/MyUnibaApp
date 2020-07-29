@@ -1,117 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:parentTag="android.widget.ScrollView">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Materia"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <TextView
-            android:id="@+id/nome_esame_esito"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textColor="#0000aa"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Materia"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Esito" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:id="@+id/nome_esame_esito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textColor="#0000aa"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <sms.myunibapp.advancedViews.ExamOutcomeCustomDrawing
-            android:id="@+id/esito"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esito" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data esame" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <sms.myunibapp.advancedViews.ExamOutcomeCustomDrawing
+                android:id="@+id/esito"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
 
-        <TextView
-            android:id="@+id/data_esito_esame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data esame" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Docente" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:id="@+id/data_esito_esame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/docente_bacheca_esiti"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="96dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Docente" />
 
-        <Button
-            android:id="@+id/accettazione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accetta" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            <TextView
+                android:id="@+id/docente_bacheca_esiti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/refuse_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rifiuta e torna indietro" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="96dp" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/accettazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accetta" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/refuse_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rifiuta e torna indietro" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </merge>

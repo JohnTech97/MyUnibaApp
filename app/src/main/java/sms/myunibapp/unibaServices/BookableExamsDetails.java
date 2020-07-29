@@ -5,6 +5,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
@@ -40,12 +42,15 @@ public class BookableExamsDetails extends AppCompatActivity {
             esame.setAula(aule.get(i));
             esame.setDocente(docente);
 
-            esame.setLayoutParams(new LinearLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
-            esame.setBackground(getDrawable(R.drawable.widgets_background));
-            esame.setGravity(Gravity.CENTER_HORIZONTAL);
-            esame.setMinimumWidth(1200);
-            esame.setPadding(0,0,0, 24);
-            ((LinearLayout.LayoutParams)esame.getLayoutParams()).leftMargin=40;
+            Button button=new Button(this);
+            button.setText("Prenotati");
+            esame.setBottone(button);
+            esame.getBottone().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //todo aggiunta prenotazione
+                }
+            });
 
             listaEsami.addView(esame);
 

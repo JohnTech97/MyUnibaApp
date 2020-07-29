@@ -4,6 +4,7 @@ package sms.myunibapp.advancedViews;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.example.myunibapp.R;
 public class BookableExamDetails extends LinearLayout {
 
     private TextView titoloEsame, aula, docente, edificio, tipo, data;
+    private Button prenotazione;
 
     public BookableExamDetails(Context c) {
         super(c);
@@ -30,28 +32,18 @@ public class BookableExamDetails extends LinearLayout {
         initializeViews(c);
     }
 
-
-    /**
-     * Inflates the views in the layout.
-     *
-     * @param context the current context for the view.
-     */
     private void initializeViews(Context context) {
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.template_exam_details, this, true);
     }
 
     public void inflate() {
-
-        // Sets the images for the previous and next buttons. Uses
-        // built-in images so you don't need to add images, but in
-        // a real application your images should be in the
-        // application package so they are always available.
         titoloEsame = findViewById(R.id.nome_esame_prenotabile);
         tipo = findViewById(R.id.tipo_esame_prenotabile);
         data = findViewById(R.id.data_esame_prenotabile);
         edificio = findViewById(R.id.edificio_prenotabile);
         aula = findViewById(R.id.aula_prenotabile);
         docente = findViewById(R.id.docente_prenotabile);
+        prenotazione = findViewById(R.id.prenotazione);
     }
 
     public String getTitoloEsame() {
@@ -100,5 +92,11 @@ public class BookableExamDetails extends LinearLayout {
 
     public void setData(String data) {
         this.data.setText(data);
+    }
+
+    public Button getBottone() {return prenotazione;}
+
+    public void setBottone(Button prenotazione) {
+        this.prenotazione.setText(prenotazione.getText());
     }
 }
