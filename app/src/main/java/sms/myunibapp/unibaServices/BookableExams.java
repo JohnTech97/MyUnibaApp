@@ -74,6 +74,7 @@ public class BookableExams extends AppCompatActivity {
                             i.putExtra("aule", exam.getAule());
                             i.putExtra("docente", exam.getDocente());
                             startActivity(i);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         }
                     });
                     Space space=new Space(BookableExams.this);
@@ -93,4 +94,9 @@ public class BookableExams extends AppCompatActivity {
 
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }

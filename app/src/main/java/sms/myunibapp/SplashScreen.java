@@ -15,7 +15,7 @@ import com.example.myunibapp.R;
 public class SplashScreen extends AppCompatActivity {
 
     private ImageView imageView; //logo dell'app
-    private final int SPLASH_DELAY = 2500;
+    private final int SPLASH_DELAY = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

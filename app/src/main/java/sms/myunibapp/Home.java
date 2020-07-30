@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -66,7 +68,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i<items.length;i++){
+                for (int i = 0; i < items.length; i++) {
                     items[i].setChecked(false);
                 }
                 dialog.show();
@@ -77,7 +79,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         editor = getSharedPreferences("Widgets", MODE_PRIVATE);
         initializeWidgetsCustomizationPanel();
         initializeWidgets();
+        ScrollView scrollView = findViewById(R.id.scrollview_home);
+        LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 500;
+        System.out.println(altezza.height);
+
+        scrollView.setLayoutParams(altezza);
 
     }
 
@@ -142,28 +150,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private void initializeWidgets() {
 
-        /*editor.putInt("numberOfWidgets", 4);
-        editor.putString("icon1", "home_icon");
-        editor.putString("nomeWidget1", "Torna alla home");
-        editor.putString("ClasseTarget1", getClass().getName());
-
-        editor.putString("icon2", "segretary_icon");
-        editor.putString("nomeWidget2", "Segreteria");
-        editor.putString("ClasseTarget2", Secretary.class.getName());
-
-        editor.putString("icon3", "career_icon");
-        editor.putString("nomeWidget3", "Libretto");
-        editor.putString("ClasseTarget3", Booklet.class.getName());
-
-        editor.putString("icon4", "exam_list_icon");
-        editor.putString("nomeWidget4", "Esami prenotabili");
-        editor.putString("ClasseTarget4", BookableExams.class.getName());*/
-
         int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
         Resources res = getResources();
         System.out.println(numberOfWidgets);
         for (int i = 1; i <= numberOfWidgets; i++) {
-            String value= editor.getString("icon" + i, "");
+            String value = editor.getString("icon" + i, "");
             Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
 
             String testo = editor.getString("nomeWidget" + i, "");
@@ -183,7 +174,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 public void onClick(View v) {
                     DashboardWidgets dw = (DashboardWidgets) v;
                     startActivity(new Intent(Home.this, dw.getTarget()));
-
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
             });
 
@@ -203,27 +194,29 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Class target = null;
+
         switch (item.getItemId()) {
             case R.id.home:
                 //do nothing
                 break;
             case R.id.segreteria:
-                startActivity(new Intent(Home.this, Secretary.class));
+                target = Secretary.class;
                 break;
             case R.id.lista_esami:
-                startActivity(new Intent(Home.this, BookableExams.class));
+                target = BookableExams.class;
                 break;
             case R.id.bacheca_prenotazioni:
-                //startActivity(new Intent(Home.this, BachecaEsiti.class));
+                target = BookingsBoard.class;
                 break;
             case R.id.bacheca_esiti:
-                startActivity(new Intent(Home.this, OutcomeBoard.class));
+                target = OutcomeBoard.class;
                 break;
             case R.id.carriera:
-                startActivity(new Intent(Home.this, Booklet.class));
+                target = Booklet.class;
                 break;
             case R.id.profilo_menu:
-                startActivity(new Intent(Home.this, Profile.class));
+                target = Profile.class;
                 break;
             case R.id.who_we_are:
 
@@ -235,6 +228,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 startActivity(new Intent(Home.this, Login.class));
                 finish();
                 break;
+        }
+
+        if (target != null) {
+            startActivity(new Intent(Home.this, target));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
