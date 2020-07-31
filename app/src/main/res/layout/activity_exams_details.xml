@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sms.myunibapp.advancedViews.BookableExamDetails">
+    tools:context="sms.myunibapp.advancedViews.BookableExamDetails"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/prenotabili"
+    <TextView
+        android:id="@+id/numero_appelli_disponibili"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:text="@string/zero_exams_to_book"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"/>
 
-    </LinearLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</HorizontalScrollView>
+        <LinearLayout
+            android:id="@+id/prenotabili"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="40dp">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

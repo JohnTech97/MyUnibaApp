@@ -10,12 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Hai conseguito N esami" />
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Placeholder"
+        tools:ignore="HardcodedText" />
 
     <ScrollView
         android:id="@+id/scrollview_libretto"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp">
 
         <TableLayout
             android:id="@+id/tabella_libretto"
@@ -32,12 +37,13 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Attività didattiche"
+                    android:text="@string/activities"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -46,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Anno"
+                    android:text="@string/year"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -55,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Peso in crediti"
+                    android:text="@string/credits"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -64,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Stato"
+                    android:text="@string/state"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -73,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Voto"
+                    android:text="@string/outcome_booklet"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -82,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Data esame"
+                    android:text="@string/date_booklet"
                     android:textAlignment="center"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
@@ -98,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Maggiori informazioni"
+        android:text="@string/show_details"
         android:textAllCaps="false" />
 
 </LinearLayout>

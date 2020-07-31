@@ -9,35 +9,35 @@
         android:id="@+id/option1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Segreteria" />
+        android:text="@string/segretary" />
 
     <CheckBox
         android:id="@+id/option2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Libretto" />
+        android:text="@string/booklet" />
 
     <CheckBox
         android:id="@+id/option3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Elenco esami" />
+        android:text="@string/exams_list" />
 
     <CheckBox
         android:id="@+id/option4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bacheca prenotazioni" />
+        android:text="@string/bookings_board" />
 
     <CheckBox
         android:id="@+id/option5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bacheca esiti" />
+        android:text="@string/outcome_board" />
 
     <CheckBox
         android:id="@+id/option6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Profilo" />
+        android:text="@string/visualize_profile" />
 </LinearLayout>

@@ -3,68 +3,72 @@
 
     <group android:checkableBehavior="single">
 
-        <item android:title="Funzionalità">
+        <item android:title="@string/functionality">
 
             <menu>
 
                 <item
                     android:id="@+id/home"
                     android:icon="@drawable/home_icon"
-                    android:title="Home Page" />
+                    android:title="@string/home" />
 
                 <item
                     android:id="@+id/segreteria"
                     android:icon="@drawable/segretary_icon"
-                    android:title="Segreteria online" />
+                    android:title="@string/segretary" />
 
 
                 <item
                     android:id="@+id/carriera"
                     android:icon="@drawable/career_icon"
-                    android:title="Libretto" />
+                    android:title="@string/booklet" />
 
             </menu>
         </item>
         <item
             android:icon="@drawable/exam_icon"
-            android:title="Esami">
+            android:title="@string/exams">
             <menu>
 
                 <item
                     android:id="@+id/lista_esami"
                     android:icon="@drawable/exam_list_icon"
-                    android:title="Elenco esami" />
+                    android:title="@string/exams_list" />
                 <item
                     android:id="@+id/bacheca_prenotazioni"
                     android:icon="@drawable/exam_booking_icon"
-                    android:title="Bacheca prenotazioni" />
+                    android:title="@string/bookings_board" />
                 <item
                     android:id="@+id/bacheca_esiti"
                     android:icon="@drawable/exam_results_icon"
-                    android:title="Bacheca esiti" />
+                    android:title="@string/outcome_board" />
 
             </menu>
         </item>
 
-        <item android:title="Profilo">
+        <item android:title="@string/profile">
 
             <menu>
                 <item
                     android:id="@+id/profilo_menu"
                     android:icon="@drawable/user_icon"
-                    android:title="Visualizza profilo" />
+                    android:title="@string/visualize_profile" />
                 <item
                     android:id="@+id/informazioni"
                     android:icon="@drawable/info_icon"
-                    android:title="Informazioni" />
+                    android:title="@string/information" />
                 <item
                     android:id="@+id/who_we_are"
                     android:icon="@drawable/about_us_icon"
-                    android:title="Chi siamo" />
+                    android:title="@string/who_we_are" />
+                <item
+                    android:id="@+id/impostazioni"
+                    android:icon="@drawable/settings_icon"
+                    android:title="@string/settings" />
                 <item
                     android:id="@+id/logout"
                     android:icon="@drawable/logout_icon"
-                    android:title="Esci" />
+                    android:title="@string/exit" />
 
             </menu>
 

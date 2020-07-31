@@ -1,8 +1,8 @@
 <resources>
     <!-- Stringhe di utilità-->
     <string name="app_name">MyUnibaApp</string>
-    <string name="open_drawer">Open Navigation Drawer</string>
-    <string name="close_drawer">Close Navigation Drawer</string>
+    <string name="open_drawer" translatable="false">Open Navigation Drawer</string>
+    <string name="close_drawer" translatable="false">Close Navigation Drawer</string>
 
     <!-- Stringhe per il login-->
     <string name="title_activity_login">Effettua il Login</string>

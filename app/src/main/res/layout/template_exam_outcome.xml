@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="1200px"
+        android:layout_height="match_parent"
+        android:background="@drawable/widgets_background"
+        tools:ignore="PxUsage">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,10 +21,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Materia"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="@string/course"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -34,7 +36,8 @@
                 android:text="Placeholder"
                 android:textColor="#0000aa"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <Space
                 android:layout_width="match_parent"
@@ -43,7 +46,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Esito" />
+                android:text="@string/outcome"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
@@ -61,7 +66,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data esame" />
+                android:text="@string/date"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
@@ -72,7 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
             <Space
                 android:layout_width="match_parent"
@@ -81,7 +89,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Docente" />
+                android:text="@string/professor"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"
@@ -92,7 +102,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
             <Space
                 android:layout_width="match_parent"
@@ -102,7 +113,7 @@
                 android:id="@+id/accettazione"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accetta" />
+                android:text="@string/accept" />
 
             <Space
                 android:layout_width="match_parent"
@@ -112,7 +123,7 @@
                 android:id="@+id/refuse_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rifiuta e torna indietro" />
+                android:text="@string/refuse_and_back" />
 
         </LinearLayout>
 

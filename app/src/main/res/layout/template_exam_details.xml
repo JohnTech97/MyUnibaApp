@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,18 +11,19 @@
         <LinearLayout
             android:layout_width="1200px"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/widgets_background"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:paddingBottom="20dp"
+            tools:ignore="PxUsage">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Materia"
-                android:textSize="20dp"
+                android:text="@string/course"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -33,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
+                tools:ignore="HardcodedText"
                 android:textColor="#0000aa"
                 android:textSize="20sp" />
 
@@ -43,8 +46,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tipo prova:"
-                android:textSize="20dp"
+                android:text="@string/type"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -55,7 +58,8 @@
                 android:id="@+id/tipo_esame_prenotabile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Orale"
+                android:text="Placeholder"
+                tools:ignore="HardcodedText"
                 android:textSize="20sp" />
 
             <Space
@@ -65,8 +69,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data esame"
-                android:textSize="20dp"
+                android:text="@string/date"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -78,7 +82,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="HardcodedText"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -87,8 +92,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edificio"
-                android:textSize="20dp"
+                android:text="@string/building"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -100,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
+                tools:ignore="HardcodedText"
                 android:textSize="20sp" />
 
             <Space
@@ -109,8 +115,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aula"
-                android:textSize="20dp"
+                android:text="@string/room"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -122,6 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
+                tools:ignore="HardcodedText"
                 android:textSize="20sp" />
 
             <Space
@@ -131,8 +138,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Docente"
-                android:textSize="20dp"
+                android:text="@string/professor"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <Space
@@ -144,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Placeholder"
+                tools:ignore="HardcodedText"
                 android:textSize="20sp" />
 
             <Space
@@ -154,7 +162,8 @@
                 android:id="@+id/prenotazione"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prenotati" />
+                android:text="Prenotati"
+                tools:ignore="HardcodedText"/>
 
         </LinearLayout>
 

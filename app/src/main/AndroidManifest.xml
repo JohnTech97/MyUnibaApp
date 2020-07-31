@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreenSchede">
-        <activity android:name="sms.myunibapp.advancedViews.DashboardWidgets"></activity>
+        <activity android:name="sms.myunibapp.Settings"></activity>
         <!-- SPLASH SCREEN -->
         <activity
             android:name="sms.myunibapp.SplashScreen"

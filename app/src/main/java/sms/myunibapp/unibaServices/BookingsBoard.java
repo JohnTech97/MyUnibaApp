@@ -49,13 +49,10 @@ public class BookingsBoard extends AppCompatActivity {
                     esamePrenotato.setDocente(esame.getDocente());
 
                     Button b= new Button(BookingsBoard.this);
-                    b.setText("Disdici prenotazione");
+                    b.setText(getResources().getString(R.string.dismiss_booking));
                     esamePrenotato.setBottone(b);
-                    esamePrenotato.getBottone().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //todo cancellazione prenotazione
-                        }
+                    esamePrenotato.getBottone().setOnClickListener(v -> {
+                        //todo cancellazione prenotazione
                     });
 
                     listaEsami.addView(esamePrenotato);

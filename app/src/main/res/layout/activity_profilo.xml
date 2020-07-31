@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
-            android:text="Informazioni generali"
-            android:textSize="24dp"
+            android:text="@string/general"
+            android:textSize="24sp"
             android:textStyle="bold|italic" />
 
         <androidx.cardview.widget.CardView
@@ -42,15 +42,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cognome"
-                    android:textSize="18dp"
+                    android:text="@string/surname"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/utente_cognome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder"/>
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -59,15 +60,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
-                    android:textSize="18dp"
+                    android:text="@string/name"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/utente_nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder"/>
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -76,15 +78,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Matricola"
-                    android:textSize="18dp"
+                    android:text="@string/identification"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/matricola"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder"/>
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -93,8 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Corso di laurea"
-            android:textSize="24dp"
+            android:text="@string/course_profile"
+            android:textSize="24sp"
             android:textStyle="bold|italic" />
 
         <androidx.cardview.widget.CardView
@@ -115,16 +118,17 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nome corso di laurea"
+                    android:text="@string/course_name"
                     android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/corso_di_laurea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -133,15 +137,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Percorso"
-                    android:textSize="18dp"
+                    android:text="@string/path"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/percorso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -150,15 +155,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sede"
-                    android:textSize="18dp"
+                    android:text="@string/venue"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/sede"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -167,15 +173,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Iscrizione"
-                    android:textSize="18dp"
+                    android:text="@string/subscription"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/iscrizione"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -184,15 +191,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Stato"
-                    android:textSize="18dp"
+                    android:text="@string/state_profile"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/stato"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -216,15 +224,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Classe"
-                    android:textSize="18dp"
+                    android:text="@string/clazz"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/classe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -233,15 +242,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Anno di regolamento"
-                    android:textSize="18dp"
+                    android:text="@string/regulament_year"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/ADR"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -250,15 +260,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ordinamento"
-                    android:textSize="18dp"
+                    android:text="@string/subscription_year"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/ordinamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -268,15 +279,16 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Normativa"
-                    android:textSize="18dp"
+                    android:text="@string/regulation"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/normativa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder" />
+                    android:text="Placeholder"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

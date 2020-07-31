@@ -1,9 +1,9 @@
 package sms.myunibapp;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,16 +35,18 @@ public class Login extends AppCompatActivity {
     private EditText editTextPassword;
 
     //Operazioni per l'accesso
-    FirebaseAuth firebaseAuth;
-    Button mLoginButton;
+    private FirebaseAuth firebaseAuth;
+    private Button mLoginButton;
 
     //Variabile password dimenticata
-    TextView forgotTextLink;
+    private TextView forgotTextLink;
 
     //Ricordami
-    CheckBox rememberMe;
+    private CheckBox rememberMe;
 
     private static String username;
+
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +85,10 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
             }
         });
+
     }
 
     private void checkRemember() {
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         boolean ricorda = pref.getBoolean("Remember", false);
         if (ricorda) {
             rememberMe.setChecked(true);
@@ -100,7 +102,8 @@ public class Login extends AppCompatActivity {
     private void startAuthentication(String m, String p) {
         //autenticazione con il sensore di impronte, se esiste l'hardware nello smartphone
         BiometricManager manager = BiometricManager.from(this);
-        if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) { //se c'è l'hardware dedicato ed esistono impronte registrate
+        boolean isFingerprintSensorEnabled = pref.getBoolean("fingerprintsEnabled", false);
+        if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS && isFingerprintSensorEnabled) { //se c'è l'hardware dedicato, esistono impronte registrate, e sono abilitate nelle impostazioni
             Executor ex = ContextCompat.getMainExecutor(this);
             BiometricPrompt fingerPrints = new BiometricPrompt(this, ex, new BiometricPrompt.AuthenticationCallback() {
                 @Override
@@ -110,13 +113,14 @@ public class Login extends AppCompatActivity {
                     authenticate(m, p);
                 }
             });
+            Resources res = getResources();//localizzazione
             fingerPrints.authenticate(new BiometricPrompt.PromptInfo.Builder()
-                    .setTitle("Accesso biometrico per MyUnibApp")
-                    .setSubtitle("Autenticazione con le impronte digitali")
-                    .setNegativeButtonText("Annulla")
-                    .setDescription("Puoi effettuare l'accesso all'applicazione con le dita, invece di inserire manualmente le tue credenziali").build());
+                    .setTitle(res.getString(R.string.fingerPrintDialogTitle))
+                    .setNegativeButtonText(res.getString(R.string.fingerPrintDialogNegativeButton))
+                    .setDescription(res.getString(R.string.fingerPrintDialogDescription)).build());
         } else if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED
-                || manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE) {//se non ci sono impronte registrate nel sistema, o non esiste l'hardware
+                || manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE
+                || !isFingerprintSensorEnabled) {//se non ci sono impronte registrate nel sistema, non esiste l'hardware, o non viene abilitato nelle impostazioni
             editTextUsername.setText(m);
             editTextPassword.setText(p);
         }
@@ -126,13 +130,13 @@ public class Login extends AppCompatActivity {
     private void authenticate(String mail, String pass) {
         firebaseAuth.signInWithEmailAndPassword(mail + EMAIL_UNIBA, pass).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("Remember", rememberMe.isChecked());
                 editor.putString("Email", mail);
                 editor.putString("Pass", pass);
                 editor.apply();
-                Toast.makeText(Login.this, "Login avvenuto con successo", Toast.LENGTH_SHORT).show();
-                username=mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
+                Toast.makeText(Login.this, getResources().getString(R.string.login_success) + " " + mail, Toast.LENGTH_SHORT).show();
+                username = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
                 startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
             } else {
@@ -141,22 +145,19 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public static String getUsername(){
+    public static String getUsername() {
         return username;
     }
 
     private void initializeVariables() {
         //Acquisizione credeziali per il login
-        this.editTextUsername = findViewById(R.id.username);
-        this.editTextPassword = findViewById(R.id.password);
-
-        this.mLoginButton = findViewById(R.id.button_login);  //bottone per il login
-
-        this.rememberMe = findViewById(R.id.remember);
-
-        this.forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
-
-        this.firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
+        editTextUsername = findViewById(R.id.username);
+        editTextPassword = findViewById(R.id.password);
+        mLoginButton = findViewById(R.id.button_login);  //bottone per il login
+        rememberMe = findViewById(R.id.remember);
+        forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
+        firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
+        pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
     }
 
     private Boolean validateUsername() {
@@ -166,7 +167,7 @@ public class Login extends AppCompatActivity {
         TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
         //Se il campo username è vuoto
         if (username.isEmpty()) {
-            textInputLayout.setError("Inserisci username");
+            textInputLayout.setError(getResources().getString(R.string.invalid_username));
             editTextUsername.requestFocus();
             isCorrect = false;
         }
@@ -182,7 +183,7 @@ public class Login extends AppCompatActivity {
 
         //Se la password è più corta di 6 caratteri
         if (password.length() < 6) {
-            textInputLayout.setError("La password deve contenere almeno 6 caratteri");
+            textInputLayout.setError(getResources().getString(R.string.invalid_password));
             //editTextPassword.requestFocus();
             isCorrect = false;
         }
@@ -195,22 +196,15 @@ public class Login extends AppCompatActivity {
     }
 
     private void close() {
+        Resources res = getResources();
         AlertDialog.Builder conferma = new AlertDialog.Builder(Login.this);
-        conferma.setTitle("Conferma");
-        conferma.setMessage("Sei sicuro di voler chiudere l'applicazione?");
-        conferma.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-                System.exit(0);
-            }
+        conferma.setTitle(res.getString(R.string.exitDialogTitle));
+        conferma.setMessage(res.getString(R.string.exitDialogMessage));
+        conferma.setPositiveButton(res.getString(R.string.dialogConfirm), (dialog, which) -> {
+            finish();
+            System.exit(0);
         });
-        conferma.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        conferma.setNegativeButton(res.getString(R.string.dialogDecline), (dialog, which) -> dialog.cancel());
         conferma.show();
     }
 

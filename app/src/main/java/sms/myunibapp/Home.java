@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Locale;
 
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.BookableExams;
@@ -57,7 +60,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         //inizializzazione dati esami da firebase
 
-        ExamsData.initializeData();
+        ExamsData.initializeData(this);
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
@@ -83,7 +86,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
         altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 500;
-        System.out.println(altezza.height);
 
         scrollView.setLayoutParams(altezza);
 
@@ -116,12 +118,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             widgetMessages[i] = items[i].getText().toString();
         }
 
-        builder.setView(view).setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+        builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
-        }).setPositiveButton("Conferma", new DialogInterface.OnClickListener() {
+        }).setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences.Editor edit = editor.edit();
@@ -152,7 +154,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
         Resources res = getResources();
-        System.out.println(numberOfWidgets);
         for (int i = 1; i <= numberOfWidgets; i++) {
             String value = editor.getString("icon" + i, "");
             Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
@@ -221,6 +222,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.who_we_are:
 
                 break;
+            case R.id.impostazioni:
+                target = Settings.class;
+                break;
             case R.id.logout:
                 SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
                 editor.putBoolean("Remember", false);
@@ -239,17 +243,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void close() {
+        Resources res= getResources();
         AlertDialog.Builder conferma = new AlertDialog.Builder(Home.this);
-        conferma.setTitle("Conferma");
-        conferma.setMessage("Sei sicuro di voler chiudere l'applicazione?");
-        conferma.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+        conferma.setTitle(res.getString(R.string.exitDialogTitle));
+        conferma.setMessage(res.getString(R.string.exitDialogMessage));
+        conferma.setPositiveButton(res.getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
                 System.exit(0);
             }
         });
-        conferma.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
+        conferma.setNegativeButton(res.getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

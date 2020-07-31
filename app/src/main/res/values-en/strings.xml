@@ -1,0 +1,126 @@
+<resources>
+    <!-- Stringhe di utilità-->
+    <string name="app_name">MyUnibaApp</string>
+    <string name="open_drawer" translatable="false">Open Navigation Drawer</string>
+    <string name="close_drawer" translatable="false">Close Navigation Drawer</string>
+
+    <!-- Stringhe per il login-->
+    <string name="title_activity_login">Log into the application</string>
+    <string name="welcome">Welcome to MyUnibApp</string>
+    <string name="access_to_continue">ACCESS TO CONTINUE</string>
+    <string name="remember_credentials">Remember credentials</string>
+    <string name="or">Or</string>
+    <string name="ospite_login">sign in as guest</string>
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Access</string>
+    <string name="login_success">Welcome</string>
+    <string name="invalid_username">Invalid Username or Email</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="forgot_password">FORGOT PASSWORD?</string>
+
+    <!-- Oggetti nel menu principale-->
+    <string name="functionality">Functionality</string>
+    <string name="home">Home page</string>
+    <string name="segretary">Segretary</string>
+    <string name="booklet">Booklet</string>
+    <string name="exams">Exams</string>
+    <string name="exams_list">Exam list</string>
+    <string name="bookings_board">Bookings Board</string>
+    <string name="outcome_board">Outcome Board</string>
+    <string name="profile">Profile</string>
+    <string name="visualize_profile">Show Profile</string>
+    <string name="information">Informations</string>
+    <string name="who_we_are">Who we are</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+
+    <!-- Schermata home-->
+    <string name="widgets">Personalize widgets</string>
+
+    <string name="exitDialogTitle">Application shutdown</string>
+    <string name="exitDialogMessage">Are you sure you want to terminate this app session?</string>
+    <string name="dialogConfirm">Confirm</string>
+    <string name="dialogDecline">Back</string>
+
+    <!-- Sensore di impronte-->
+    <string name="fingerPrintDialogTitle">Fingerprint Access</string>
+    <string name="fingerPrintDialogNegativeButton">Dismiss</string>
+    <string name="fingerPrintDialogDescription">You can access the app features by using fingerprints tecnology</string>
+
+
+
+    <!-- Esami prenotabili-->
+    <plurals name="exams_to_pass">
+        <item quantity="one">You only have one exam left</item>
+        <item quantity="other">You still have %d exams left to do</item>
+    </plurals>
+    <plurals name="bookable_exams">
+        <item quantity="one">Only one exam is available for booking</item>
+        <item quantity="other">%d exams are available for booking</item>
+    </plurals>
+    <string name="zero_exams_to_book">There are no appeals available for this exam</string>
+    <string name="zero_exam_outcomes">There are no outcomes to display</string>
+
+    <!-- Bacheca prenotazioni-->
+    <string name="dismiss_booking">Dismiss booking</string>
+
+    <!-- Dettagli esami-->
+    <string name="course">Subject:</string>
+    <string name="type">Trial type:</string>
+    <string name="date">Exam date:</string>
+    <string name="building">Building:</string>
+    <string name="room">Classroom:</string>
+    <string name="professor">Professor:</string>
+    <string name="outcome">Outcome:</string>
+    <string name="accept">Accept</string>
+    <string name="refuse_and_back">Refuse and come back</string>
+
+    <!-- Libretto-->
+    <string name="show_details">More details</string>
+    <string name="hide_details">Hide details</string>
+    <string name="activities">Educational activities</string>
+    <string name="year">Year</string>
+    <string name="credits">Credits weight</string>
+    <string name="state">State</string>
+    <string name="outcome_booklet">Grade</string>
+    <string name="date_booklet">Exam date</string>
+
+    <!-- Profilo-->
+    <string name="general">General information</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
+    <string name="identification">Identification Number</string>
+    <string name="course_profile">Degree course</string>
+    <string name="course_name">Degree course name</string>
+    <string name="path">Path</string>
+    <string name="venue">Venue</string>
+    <string name="subscription">Subscription</string>
+    <string name="state_profile">State</string>
+    <string name="clazz">Class</string>
+    <string name="regulament_year">Settlment year</string>
+    <string name="subscription_year">Subscription year</string>
+    <string name="regulation">Regulation</string>
+
+    <!-- Impostazioni-->
+
+    <string-array name="language_items">
+        <item>System default</item>
+        <item>Italiano</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="language_abbreviations">
+        <item>System</item>
+        <item>it</item>
+        <item>en</item>
+    </string-array>
+
+    <string name="settings_activity">Settings</string>
+    <string name="fingerprints">Fingerprint unlock:</string>
+    <string name="language">Language</string>
+    <string name="settings_dismiss">Dismiss</string>
+    <string name="settings_confirm">Save changes</string>
+    <string name="settings_message">You need to restart the app in order to the language switch to take place</string>
+
+</resources>

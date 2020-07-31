@@ -30,7 +30,7 @@
             android:layout_height="31dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Benvenuto in MyUnibApp"
+            android:text="@string/welcome"
             android:textAlignment="center"
             android:textColor="#1D2B3E"
             android:textSize="22sp" />
@@ -40,7 +40,7 @@
             android:layout_height="31dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="ACCEDI PER CONTINUARE"
+            android:text="@string/access_to_continue"
             android:textAlignment="center"
             android:textColor="#5A5B5D"
             android:textSize="12sp" />
@@ -101,7 +101,7 @@
             android:layout_marginTop="18dp"
             android:buttonTint="#FFFFFF"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Ricorda credenziali"
+            android:text="@string/remember_credentials"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -125,7 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="oppure"
+                android:text="@string/or"
                 android:textColor="#4A5360"
                 android:textSize="14sp" />
 
@@ -148,7 +148,7 @@
             android:layout_height="16dp"
             android:layout_marginTop="22dp"
             android:fontFamily="@font/poppins"
-            android:text="HAI DIMENTICATO LA PASSWORD?"
+            android:text="@string/forgot_password"
             android:textAlignment="center"
             android:textColor="#6C7480"
             android:textSize="12sp" />

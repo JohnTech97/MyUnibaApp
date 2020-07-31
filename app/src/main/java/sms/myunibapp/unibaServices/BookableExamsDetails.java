@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.myunibapp.R;
 
@@ -30,6 +31,11 @@ public class BookableExamsDetails extends AppCompatActivity {
         ArrayList<String> edifici=b.getStringArrayList("edifici");
         ArrayList<String> aule=b.getStringArrayList("aule");
         String docente =b.getString("docente");
+        int nEsami= b.getInt("nEsami");
+
+        TextView nesami= findViewById(R.id.numero_appelli_disponibili);
+
+        nesami.setText(getResources().getQuantityString(R.plurals.bookable_exams, nEsami, nEsami));
 
         for(int i=0; i<dateAppelli.size();i++){
             BookableExamDetails esame=new BookableExamDetails(this);
@@ -45,11 +51,8 @@ public class BookableExamsDetails extends AppCompatActivity {
             Button button=new Button(this);
             button.setText("Prenotati");
             esame.setBottone(button);
-            esame.getBottone().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //todo aggiunta prenotazione
-                }
+            esame.getBottone().setOnClickListener(v -> {
+                //todo aggiunta prenotazione
             });
 
             listaEsami.addView(esame);

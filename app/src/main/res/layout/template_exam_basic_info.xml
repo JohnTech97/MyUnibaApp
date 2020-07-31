@@ -21,10 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="Placeholder"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/cfu"
@@ -33,7 +34,8 @@
             android:layout_marginStart="30dp"
             android:text="12"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/titolo_esame" />
+            app:layout_constraintStart_toStartOf="@+id/titolo_esame"
+            tools:ignore="HardcodedText" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -43,7 +45,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/next_icon" />
+            app:srcCompat="@drawable/next_icon"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/n_esami_prenotabili"
@@ -52,7 +55,8 @@
             android:text="0"
             app:layout_constraintBottom_toBottomOf="@id/imageView4"
             app:layout_constraintEnd_toStartOf="@id/imageView4"
-            app:layout_constraintTop_toTopOf="@id/imageView4" />
+            app:layout_constraintTop_toTopOf="@id/imageView4"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
