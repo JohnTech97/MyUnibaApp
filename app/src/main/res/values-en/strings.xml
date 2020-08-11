@@ -122,5 +122,7 @@
     <string name="settings_dismiss">Dismiss</string>
     <string name="settings_confirm">Save changes</string>
     <string name="settings_message">You need to restart the app in order to the language switch to take place</string>
+    <string name="image_of_profile">image of profile</string>
+    <string name="matricola">Matricola:</string>
 
 </resources>

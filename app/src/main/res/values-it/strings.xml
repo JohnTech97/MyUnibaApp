@@ -122,5 +122,7 @@
     <string name="settings_dismiss">Annulla</string>
     <string name="settings_confirm">Salva modifiche</string>
     <string name="settings_message">Affinché avvenga il cambio della lingua occorre riavviare l\'applicazione</string>
+    <string name="image_of_profile">Foto del profilo</string>
+    <string name="matricola">Matricola:</string>
 
 </resources>

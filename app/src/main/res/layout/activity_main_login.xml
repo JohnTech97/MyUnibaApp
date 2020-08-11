@@ -21,6 +21,7 @@
             android:id="@+id/logoUniba"
             android:layout_width="239dp"
             android:layout_height="194dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/uniba" />
@@ -49,7 +50,7 @@
             android:id="@+id/text_input_username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
             app:errorTextColor="#F5F81111"
             android:isScrollContainer="false"
             app:hintEnabled="false">

@@ -14,10 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigation_menu"
-        app:headerLayout="@layout/header"
+        app:headerLayout="@layout/header_navigation"
         app:menu="@menu/main_menu"
         android:layout_gravity="start"
-        android:background="@color/background_lighter"
+        android:background="#FFF"
         />
 
     <LinearLayout
@@ -30,7 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/menu_icon"
-            android:background="#99ffff"/>
+            style="@style/CustomActionBarTheme"
+            app:title="Dashboard"
+            app:titleTextColor="#FFF" />
 
             <include layout="@layout/activity_home_dashboard"/>
 

@@ -9,8 +9,21 @@
         <item name="android:navigationBarColor">@color/background_lighter</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
     <style name="FullScreenSchede" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:statusBarColor">#2D3BAA</item>
+        <item name="android:statusBarColor">@color/background_lighter</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/background_lighter</item>
+        <item name="actionBarStyle">@style/CustomActionBarTheme</item>
+    </style>
+
+    <style name="CustomActionBarTheme">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/TransparentActionBar</item>
+    </style>
+
+    <style name="TransparentActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>
