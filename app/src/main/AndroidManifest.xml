@@ -35,7 +35,7 @@
 
         <activity
             android:name="sms.myunibapp.unibaServices.LuoghiDiInteresse"
-            android:label="@string/title_activity_luoghi_di_interesse"></activity>
+            android:label="@string/title_activity_luoghi_di_interesse"/>
         <activity android:name="sms.myunibapp.Settings" /> <!-- SPLASH SCREEN -->
         <activity
             android:name="sms.myunibapp.SplashScreen"

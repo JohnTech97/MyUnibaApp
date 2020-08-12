@@ -128,5 +128,6 @@
     <string name="settings_message">Affinché avvenga il cambio della lingua occorre riavviare l\'applicazione</string>
     <string name="image_of_profile">image of profile</string>
     <string name="matricola">Matricola:</string>
+    <string name="title_activity_luoghi_di_interesse">Mappa</string>
 
 </resources>
