@@ -12,23 +12,23 @@ import androidx.annotation.Nullable;
 
 import com.example.myunibapp.R;
 
-public class BookableExamDetails extends LinearLayout {
+public class BookedExamDetails extends LinearLayout {
 
     private TextView titoloEsame, aula, docente, edificio, tipo, data;
     private Button prenotazione;
     private String keyEsame;
 
-    public BookableExamDetails(Context c) {
+    public BookedExamDetails(Context c) {
         super(c);
         initializeViews(c);
     }
 
-    public BookableExamDetails(Context c, @Nullable AttributeSet attrs) {
+    public BookedExamDetails(Context c, @Nullable AttributeSet attrs) {
         super(c, attrs);
         initializeViews(c);
     }
 
-    public BookableExamDetails(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BookedExamDetails(Context c, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(c, attrs, defStyleAttr);
         initializeViews(c);
     }
@@ -96,10 +96,6 @@ public class BookableExamDetails extends LinearLayout {
     }
 
     public Button getBottone() {return prenotazione;}
-
-    public void setBottone(Button prenotazione) {
-        this.prenotazione.setText(prenotazione.getText());
-    }
 
     public String getKeyEsame(){
         return keyEsame;

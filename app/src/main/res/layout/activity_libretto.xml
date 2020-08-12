@@ -16,6 +16,24 @@
         android:text="Placeholder"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/media_aritmetica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/arithmetic_mean"/>
+
+    <TextView
+        android:id="@+id/media_ponderata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weighted_mean"/>
+
+    <TextView
+        android:id="@+id/percentuale_esami"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/percentage"/>
+
     <ScrollView
         android:id="@+id/scrollview_libretto"
         android:layout_width="match_parent"

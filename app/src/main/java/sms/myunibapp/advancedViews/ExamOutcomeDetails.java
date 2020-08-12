@@ -1,14 +1,15 @@
 package sms.myunibapp.advancedViews;
 
-import androidx.annotation.Nullable;
-
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.example.myunibapp.R;
 
@@ -51,26 +52,28 @@ public class ExamOutcomeDetails extends LinearLayout {
         data = findViewById(R.id.data_esito_esame);
         docente = findViewById(R.id.docente_bacheca_esiti);
         refuseBack = findViewById(R.id.refuse_back);
+        refuseBack.setClickable(true);
         esito = findViewById(R.id.esito);
         accetta = findViewById(R.id.accettazione);
 
     }
 
-    public void setEsito(String esito){
+    public void setEsito(String esito) {
         //se supera l'esame il bottone di accettazione rimane visibile
-        try{
-            if(Integer.parseInt(esito)<18){
+        Resources res = ctx.getResources();
+        try {
+            if (Integer.parseInt(esito) < 18) {
                 accetta.setVisibility(View.GONE);
-                refuseBack.setText("Torna indietro");
+                refuseBack.setText(res.getString(R.string.back));
             }
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             accetta.setVisibility(View.GONE);
-            refuseBack.setText("Torna indietro");
+            refuseBack.setText(res.getString(R.string.back));
         }
         this.esito.setEsito(esito);
     }
 
-    public String getEsito(){
+    public String getEsito() {
         return esito.getEsito();
     }
 
@@ -88,5 +91,13 @@ public class ExamOutcomeDetails extends LinearLayout {
 
     public void setRefuseBack(String refuseBack) {
         this.refuseBack.setText(refuseBack);
+    }
+
+    public TextView getRefuseBack(){
+        return refuseBack;
+    }
+
+    public Button getPulsanteAccetta(){
+        return accetta;
     }
 }

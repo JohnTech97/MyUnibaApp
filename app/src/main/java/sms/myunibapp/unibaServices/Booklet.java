@@ -38,6 +38,12 @@ public class Booklet extends AppCompatActivity {
 
         Button showDetails = findViewById(R.id.show_details);
 
+        TextView ma=findViewById(R.id.media_aritmetica);
+
+        TextView mp=findViewById(R.id.media_ponderata);
+
+        TextView perc=findViewById(R.id.percentuale_esami);
+
         showDetails.setOnClickListener(v -> {
             //inverto le colonne mostrate
             tabellaEsami.setColumnCollapsed(0, !isShowDetailsSelected);
@@ -59,7 +65,7 @@ public class Booklet extends AppCompatActivity {
 
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 400;
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 600;
 
         scrollView.setLayoutParams(altezza);
 
@@ -71,6 +77,8 @@ public class Booklet extends AppCompatActivity {
                 DataSnapshot daSuperare = snapshot.child("Esami da superare");
                 DataSnapshot prenotati = snapshot.child("Esami prenotati");
                 DataSnapshot superati = snapshot.child("Esami superati");
+
+                int nEsami=0;
 
                 for (DataSnapshot d : daSuperare.getChildren()) {
                     ExamsData.Esame esame = ExamsData.getEsame(d.getValue(String.class));
@@ -98,6 +106,8 @@ public class Booklet extends AppCompatActivity {
                     riga.addView(stato);
                     riga.addView(voto);
                     riga.addView(data);
+
+                    nEsami++;
 
                     tabellaEsami.addView(riga);
 
@@ -130,9 +140,17 @@ public class Booklet extends AppCompatActivity {
                     riga.addView(voto);
                     riga.addView(data);
 
+                    nEsami++;
+
                     tabellaEsami.addView(riga);
 
                 }
+
+                int sommaAritmetica=0;
+                int sommaPesata=0;
+                int sommaPesi=0;
+                int percentuale=0;
+                int nEsamiSuperati=0;
 
                 for (DataSnapshot d : superati.getChildren()) {
                     ExamsData.Esame esame = ExamsData.getEsame(d.getKey());
@@ -151,8 +169,19 @@ public class Booklet extends AppCompatActivity {
                     anno.setText("" + esame.getAnno());
                     cfu.setText("" + esame.getCfu());
                     String esito = d.child("voto").getValue(String.class);
+                    nEsami++;
                     try {//il child si chiama esami superati ma sarebbe meglio chiamarlo "esiti esami"
-                        voto.setText(""+Integer.parseInt(esito));
+                        int votazione=Integer.parseInt(esito);
+                        //calcolo media aritmetica
+                        sommaAritmetica+=votazione;
+                        nEsamiSuperati++;
+
+                        //calcolo media pesata
+                        sommaPesata+=votazione*esame.getCfu();
+                        sommaPesi+=esame.getCfu();
+
+                        percentuale++;
+                        voto.setText(""+votazione);
                         stato.setText("Superato");//perché si trova negli esami superati
                         data.setText(d.child("data").getValue(String.class));
                     } catch (NumberFormatException e) {//se l'esito non è un numero vuol dire che non è stato superato
@@ -171,6 +200,21 @@ public class Booklet extends AppCompatActivity {
                     tabellaEsami.addView(riga);
 
                 }
+
+
+                float mediaAritmetica= 0f;
+                float mediaPesata= 0f;
+                if(nEsamiSuperati!=0){
+                    mediaAritmetica=(float)sommaAritmetica/nEsamiSuperati;
+                    mediaPesata=(float)sommaPesata/sommaPesi;
+                }
+
+                float percent=((float)percentuale/nEsami)*100f;
+
+                Resources res=getResources();
+                ma.setText(res.getString(R.string.arithmetic_mean, mediaAritmetica));
+                mp.setText(res.getString(R.string.weighted_mean, mediaPesata));
+                perc.setText(res.getString(R.string.percentage, (int)percent));
 
             }
 

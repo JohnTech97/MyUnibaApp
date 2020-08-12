@@ -33,7 +33,7 @@ public class SplashScreen extends AppCompatActivity {
         IMPOSTAZIONE LINGUA PER L'APPLICAZIONE
          */
         SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String system=getResources().getStringArray(R.array.language_items)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
+        String system=getResources().getStringArray(R.array.language_abbreviations)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
         String lingua=pref.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
         Locale locale=null;
         if(lingua.equals(system)){
