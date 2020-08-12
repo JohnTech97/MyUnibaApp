@@ -49,7 +49,6 @@
     <string name="fingerPrintDialogDescription">È possibile accedere all\'app sfruttando la tecnologia del sensore di impronte</string>
 
 
-
     <!-- Esami prenotabili-->
     <plurals name="exams_to_pass">
         <item quantity="one">Ti rimane un esame da superare</item>
@@ -75,6 +74,8 @@
     <string name="outcome">Esito:</string>
     <string name="accept">Accetta</string>
     <string name="refuse_and_back">Rifiuta e torna indietro</string>
+    <string name="back">Torna indietro</string>
+    <string name="back_message">L\'esame rimarrà nella bacheca esiti fino ad una rimozione manuale da parte degli amministratori</string>
 
     <!-- Libretto-->
     <string name="show_details">Maggiori informazioni</string>
@@ -85,6 +86,9 @@
     <string name="state">Stato</string>
     <string name="outcome_booklet">Voto</string>
     <string name="date_booklet">Data esame</string>
+    <string name="arithmetic_mean">Media aritmetica: %.2f</string>
+    <string name="weighted_mean">Media ponderata: %.2f</string>
+    <string name="percentage">Percentuale esami superati: %d%%</string>
 
     <!-- Profilo-->
     <string name="general">Informazioni generali</string>

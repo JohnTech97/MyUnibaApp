@@ -23,6 +23,11 @@
                     android:icon="@drawable/career_icon"
                     android:title="@string/booklet" />
 
+                <item
+                    android:id="@+id/mappa"
+                    android:icon="@drawable/map_icon"
+                    android:title="Luoghi di interesse" />
+
             </menu>
         </item>
         <item

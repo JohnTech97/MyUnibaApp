@@ -1,5 +1,8 @@
 package sms.myunibapp.unibaServices;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
@@ -68,6 +72,7 @@ public class BookableExams extends AppCompatActivity {
                         } else {
                             Intent i = new Intent(BookableExams.this, BookableExamsDetails.class);
                             ExamsData.Esame exam1 = ExamsData.getEsame(ep.getLink());
+                            i.putExtra("key", ep.getLink());
                             i.putExtra("nomeEsame", exam1.getNome());
                             i.putExtra("tipo", exam1.getTipo());
                             i.putExtra("dateAppelli", exam1.getDate());
@@ -75,7 +80,7 @@ public class BookableExams extends AppCompatActivity {
                             i.putExtra("aule", exam1.getAule());
                             i.putExtra("docente", exam1.getDocente());
                             i.putExtra("nEsami", ep.getNEsamiPrenotabili());
-                            startActivity(i);
+                            startActivityForResult(i, 0);
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         }
                     });
@@ -94,6 +99,14 @@ public class BookableExams extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            recreate();
+        }
     }
 
     @Override

@@ -14,9 +14,9 @@ import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +27,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.Locale;
-
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.BookableExams;
 import sms.myunibapp.unibaServices.BookingsBoard;
 import sms.myunibapp.unibaServices.Booklet;
+import sms.myunibapp.unibaServices.LuoghiDiInteresse;
 import sms.myunibapp.unibaServices.OutcomeBoard;
 import sms.myunibapp.unibaServices.Profile;
 import sms.myunibapp.unibaServices.Secretary;
@@ -71,9 +70,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < items.length; i++) {
+                /*for (int i = 0; i < items.length; i++) {
                     items[i].setChecked(false);
-                }
+                }*/
                 dialog.show();
             }
         });
@@ -104,7 +103,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             "exam_list_icon",
             "exam_booking_icon",
             "exam_results_icon",
-            "user_icon",};
+            "user_icon"};
     private String widgetMessages[] = new String[classes.length];
     private CheckBox items[] = new CheckBox[classes.length];
 
@@ -115,6 +114,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Resources res = getResources();
         for (int i = 0; i < classes.length; i++) {
             items[i] = view.findViewById(res.getIdentifier("option" + (i + 1), "id", getPackageName()));
+            items[i].setChecked(editor.getBoolean("IsSelected" + (i + 1), false));
             widgetMessages[i] = items[i].getText().toString();
         }
 
@@ -133,8 +133,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 for (int i = 0; i < classes.length; i++) {
                     if (items[i].isChecked()) {
                         edit.putString("icon" + count, iconNames[i]);
-                        edit.putString("nomeWidget" + count, widgetMessages[i]);
                         edit.putString("ClasseTarget" + count, classes[i].getName());
+                        edit.putBoolean("IsSelected" + (i + 1), true);//per fare in modo di far ritrovare le stesse opzioni selezionate
+                        //la prossima volta che si accede alla schermata
                         count++;
                     }
                 }
@@ -153,12 +154,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private void initializeWidgets() {
 
         int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
+        int [] indici=new int[numberOfWidgets];
+        for(int i=0, count=0;i<items.length;i++){
+            if(items[i].isChecked()) {
+                indici[count] = i;
+                count++;
+            }
+        }
         Resources res = getResources();
         for (int i = 1; i <= numberOfWidgets; i++) {
             String value = editor.getString("icon" + i, "");
             Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
 
-            String testo = editor.getString("nomeWidget" + i, "");
+            String testo = items[indici[i-1]].getText().toString();
             Class target = null;
             try {
                 target = Class.forName(editor.getString("ClasseTarget" + i, ""));
@@ -222,6 +230,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.who_we_are:
 
                 break;
+            case R.id.mappa:
+                target = LuoghiDiInteresse.class;
+                break;
             case R.id.impostazioni:
                 target = Settings.class;
                 break;
@@ -235,15 +246,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
 
         if (target != null) {
-            startActivity(new Intent(Home.this, target));
+            startActivityForResult(new Intent(Home.this, target), 0);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==1){
+            recreate();
+        }
+    }
+
     private void close() {
-        Resources res= getResources();
+        Resources res = getResources();
         AlertDialog.Builder conferma = new AlertDialog.Builder(Home.this);
         conferma.setTitle(res.getString(R.string.exitDialogTitle));
         conferma.setMessage(res.getString(R.string.exitDialogMessage));
