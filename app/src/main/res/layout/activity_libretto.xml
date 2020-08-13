@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,32 +8,34 @@
     tools:context="sms.myunibapp.unibaServices.Booklet">
 
     <TextView
+        android:id="@+id/activity_libretto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:text="Placeholder"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Placeholder"
         tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/media_aritmetica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/arithmetic_mean"/>
+        android:text="@string/arithmetic_mean" />
 
     <TextView
         android:id="@+id/media_ponderata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/weighted_mean"/>
+        android:text="@string/weighted_mean" />
 
     <TextView
         android:id="@+id/percentuale_esami"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/percentage"/>
+        android:text="@string/percentage" />
+
 
     <ScrollView
         android:id="@+id/scrollview_libretto"
@@ -63,8 +66,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/activities"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,8 +75,8 @@
                     android:layout_weight="1"
                     android:text="@string/year"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -81,8 +84,8 @@
                     android:layout_weight="1"
                     android:text="@string/credits"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,8 +93,8 @@
                     android:layout_weight="1"
                     android:text="@string/state"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,8 +102,8 @@
                     android:layout_weight="1"
                     android:text="@string/outcome_booklet"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,14 +111,84 @@
                     android:layout_weight="1"
                     android:text="@string/date_booklet"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </TableRow>
 
         </TableLayout>
 
     </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp"
+        android:text="Legenda"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esame superato: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/superato"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="24dp"
+            android:text="Esame in programma"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/programmato"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="24dp"
+            android:text="Esame non in programma: "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/non_in_programma"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/show_details"

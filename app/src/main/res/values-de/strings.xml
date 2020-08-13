@@ -1,0 +1,137 @@
+<resources>
+    <!-- Stringhe di utilità-->
+    <string name="app_name">MyUnibaApp</string>
+    <string name="open_drawer" translatable="false">Open Navigation Drawer</string>
+    <string name="close_drawer" translatable="false">Close Navigation Drawer</string>
+
+    <!-- Stringhe per il login-->
+    <string name="title_activity_login">Login</string>
+    <string name="welcome">Willkommen in MyUnibApp</string>
+    <string name="access_to_continue">EINLOGGEN</string>
+    <string name="remember_credentials">Die Referenzen zu merken</string>
+    <string name="or">Oder</string>
+    <string name="ospite_login">melden Sie sich als Gast an</string>
+    <string name="prompt_email">Benutzername</string>
+    <string name="prompt_password">Passwort</string>
+    <string name="action_sign_in">Einloggen</string>
+    <string name="login_success">Willkommen</string>
+    <string name="invalid_username">Ungültige Benutzername oder E-Mail</string>
+    <string name="invalid_password">Ungültige Passwort</string>
+    <string name="forgot_password">PASSWORT VERGESSEN?</string>
+
+    <!-- Oggetti nel menu principale-->
+    <string name="functionality">Funktionsfähigkeit</string>
+    <string name="home">Homepage</string>
+    <string name="segretary">Sekretariat</string>
+    <string name="booklet">Studienbuch</string>
+    <string name="exams">Prüfungen</string>
+    <string name="exams_list">Prüfungsliste</string>
+    <string name="bookings_board">Reservationsliste</string>
+    <string name="outcome_board">Ergebnisliste</string>
+    <string name="profile">Profil</string>
+    <string name="visualize_profile">Das Profil anzeigen</string>
+    <string name="information">Informationen</string>
+    <string name="who_we_are">Über uns</string>
+    <string name="settings">Einstellungen</string>
+    <string name="exit">Beenden</string>
+
+    <!-- Schermata home-->
+    <string name="widgets">Widgets anpassen</string>
+
+    <string name="exitDialogTitle">Die App beenden</string>
+    <string name="exitDialogMessage">Möchten Sie die App-Sitzung beenden?</string>
+    <string name="dialogConfirm">Bestätigen</string>
+    <string name="dialogDecline">Stornieren</string>
+
+    <!-- Sensore di impronte-->
+    <string name="fingerPrintDialogTitle">Zugang via Fingerabdruck</string>
+    <string name="fingerPrintDialogNegativeButton">Stornieren</string>
+    <string name="fingerPrintDialogDescription">Sie können via Fingerabdruck zugreifen</string>
+
+
+    <!-- Esami prenotabili-->
+    <plurals name="exams_to_pass">
+        <item quantity="one">Noch eine Prüfung abzulegen</item>
+        <item quantity="other">Noch %d Prüfungen abzulegen</item>
+    </plurals>
+    <plurals name="bookable_exams">
+        <item quantity="one">Sie können nur eine Prüfungssitzung reservieren</item>
+        <item quantity="other">Sie können %d Prüfungssitzungen reservieren</item>
+    </plurals>
+    <string name="zero_exams_to_book">Keine Sitzungen verfügbare für diese Prüfung</string>
+    <string name="zero_exam_outcomes">Keine Noten</string>
+
+    <!-- Bacheca prenotazioni-->
+    <string name="dismiss_booking">Die Reservierung abbrechen</string>
+
+    <!-- Dettagli esami-->
+    <string name="course">Fach:</string>
+    <string name="type">Art der Prüfung:</string>
+    <string name="date">Prüfungsdatum:</string>
+    <string name="building">Campus:</string>
+    <string name="room">Klassenzimmer:</string>
+    <string name="professor">Lehrer:</string>
+    <string name="outcome">Ergebnis:</string>
+    <string name="accept">Akzeptieren</string>
+    <string name="refuse_and_back">Lehne ab und gehe zurück</string>
+    <string name="back">Ablehnen</string>
+    <string name="back_message">L\'esame rimarrà nella bacheca esiti fino ad una rimozione manuale da parte degli amministratori</string>
+
+    <!-- Libretto-->
+    <string name="show_details">Weitere Informationen</string>
+    <string name="hide_details">Weniger Details</string>
+    <string name="activities">Didaktischen Tätigkeiten</string>
+    <string name="year">Jahre</string>
+    <string name="credits">Credits</string>
+    <string name="state">Status</string>
+    <string name="outcome_booklet">Note</string>
+    <string name="date_booklet">Prüfungsdatum</string>
+    <string name="arithmetic_mean">Arithmetischer Durchschnitt: %.2f</string>
+    <string name="weighted_mean">Gewichteter Durchschnitt: %.2f</string>
+    <string name="percentage">Prozentsatz der bestandenen Prüfungen: %d%%</string>
+
+    <!-- Profilo-->
+    <string name="general">Allgemeine Informationen</string>
+    <string name="surname">Name</string>
+    <string name="name">Vorname</string>
+    <string name="identification">Dienstnummer</string>
+    <string name="course_profile">Hauptfach</string>
+    <string name="course_name">Hauptfachs Bezeichnung</string>
+    <string name="path">Prozess</string>
+    <string name="venue">Ort</string>
+    <string name="subscription">Eintragung</string>
+    <string name="state_profile">Status</string>
+    <string name="clazz">Kurs</string>
+    <string name="regulament_year">Abwicklungsjahr</string>
+    <string name="subscription_year">Ordnung</string>
+    <string name="regulation">Rechtsvorschrift</string>
+
+    <!-- Impostazioni-->
+
+    <string-array name="language_items">
+        <item>Systemfehler</item>
+        <item>Italiano</item>
+        <item>English</item>
+        <item>Français</item>
+        <item>Deutsche</item>
+    </string-array>
+
+    <string-array name="language_abbreviations">
+        <item>System</item>
+        <item>it</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+    </string-array>
+
+    <string name="settings_activity">Einstellungen</string>
+    <string name="fingerprints">Durch Fingerabdruck entsperren</string>
+    <string name="language">Sprache</string>
+    <string name="settings_dismiss">Abbrechen</string>
+    <string name="settings_confirm">Änderungen speichern</string>
+    <string name="settings_message">Die App neu zu starten, um die Sprache zu wechseln</string>
+    <string name="image_of_profile">Profilbild</string>
+    <string name="matricola">Matricola:</string>
+    <string name="title_activity_luoghi_di_interesse">Sehenswürdigkeiten</string>
+
+</resources>

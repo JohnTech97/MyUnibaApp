@@ -1,0 +1,137 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Stringhe di utilità-->
+    <string name="app_name">MyUnibaApp</string>
+    <string name="open_drawer" translatable="false">Open Navigation Drawer</string>
+    <string name="close_drawer" translatable="false">Close Navigation Drawer</string>
+
+    <!-- Stringhe per il login-->
+    <string name="title_activity_login">Login</string>
+    <string name="welcome">Bienvenu en MyUnibApp</string>
+    <string name="access_to_continue">ACCEDÉR POUR POURSUIVRE</string>
+    <string name="remember_credentials">Mémoriser les références</string>
+    <string name="or">Ou bien</string>
+    <string name="ospite_login">accès invité</string>
+    <string name="prompt_email">Nom d’utilisateur</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">Accéder</string>
+    <string name="login_success">Bienvenu</string>
+    <string name="invalid_username">Nom d’utilisateur ou email pas valide</string>
+    <string name="invalid_password">Mot de passe pas valide</string>
+    <string name="forgot_password">AVEZ-VOUS OUBLIÉ VOTRE MOT DE PASSE ?</string>
+
+    <!-- Oggetti nel menu principale-->
+    <string name="functionality">Caractéristiques</string>
+    <string name="home">Page d’accueil</string>
+    <string name="segretary">Bureau</string>
+    <string name="booklet">Livret universitaire</string>
+    <string name="exams">Examens</string>
+    <string name="exams_list">Liste des examens</string>
+    <string name="bookings_board">Liste des réservations</string>
+    <string name="outcome_board">"Liste des résultats "</string>
+    <string name="profile">Profil</string>
+    <string name="visualize_profile">Afficher le profil</string>
+    <string name="information">Informations</string>
+    <string name="who_we_are">Qui sommes-nous</string>
+    <string name="settings">Paramètres</string>
+    <string name="exit">Quitter</string>
+
+    <!-- Schermata home-->
+    <string name="widgets">Personnaliser les widgets</string>
+
+    <string name="exitDialogTitle">Fermeture de l’application</string>
+    <string name="exitDialogMessage">Voulez-vous terminer la session de l\'application ?</string>
+    <string name="dialogConfirm">Confirmer</string>
+    <string name="dialogDecline">Annuller</string>
+
+    <!-- Sensore di impronte-->
+    <string name="fingerPrintDialogTitle">Accès via empreinte digitale</string>
+    <string name="fingerPrintDialogNegativeButton">Annuler</string>
+    <string name="fingerPrintDialogDescription">Vous pouvez accéder via empreinte digitale</string>
+
+
+    <!-- Esami prenotabili-->
+    <plurals name="exams_to_pass">
+        <item quantity="one" tools:ignore="ImpliedQuantity">Encore un examen à passer</item>
+        <item quantity="other">Encore %d examens à passer</item>
+    </plurals>
+    <plurals name="bookable_exams">
+        <item quantity="one" tools:ignore="ImpliedQuantity">Vous pouvez réserver seulement une séance d’examen</item>
+        <item quantity="other">Vous pouvez réserver %d séances d’examen</item>
+    </plurals>
+    <string name="zero_exams_to_book">Aucune session disponible pour cet examen</string>
+    <string name="zero_exam_outcomes">Aucuns résultats à montrer</string>
+
+    <!-- Bacheca prenotazioni-->
+    <string name="dismiss_booking">Annuler réservation</string>
+
+    <!-- Dettagli esami-->
+    <string name="course">Matière:</string>
+    <string name="type">Type d\'épreuve:</string>
+    <string name="date">Date de l’examen:</string>
+    <string name="building">Campus:</string>
+    <string name="room">Salle:</string>
+    <string name="professor">Professeur:</string>
+    <string name="outcome">Rèsultat:</string>
+    <string name="accept">Accepter</string>
+    <string name="refuse_and_back">Refuser et revenir en arrière</string>
+    <string name="back">En arrière</string>
+    <string name="back_message">L\'esame rimarrà nella bacheca esiti fino ad una rimozione manuale da parte degli amministratori</string>
+
+    <!-- Libretto-->
+    <string name="show_details">Plus d’informations</string>
+    <string name="hide_details">Moins de détails</string>
+    <string name="activities">Activités didactiques</string>
+    <string name="year">Année</string>
+    <string name="credits">Crédits</string>
+    <string name="state">Statut</string>
+    <string name="outcome_booklet">Note</string>
+    <string name="date_booklet">Date de l’examen</string>
+    <string name="arithmetic_mean">Moyenne arithmétique: %.2f</string>
+    <string name="weighted_mean">Moyenne pondérée: %.2f</string>
+    <string name="percentage">Pourcentage d\'examens réussis: %d%%</string>
+
+    <!-- Profilo-->
+    <string name="general">Informations générales</string>
+    <string name="surname">Nom</string>
+    <string name="name">Prénom</string>
+    <string name="identification">Numéro d’identification</string>
+    <string name="course_profile">Cours de licence</string>
+    <string name="course_name">Nom du cours</string>
+    <string name="path">Chemin</string>
+    <string name="venue">Bureau</string>
+    <string name="subscription">Immatriculation</string>
+    <string name="state_profile">Statut</string>
+    <string name="clazz">Classe</string>
+    <string name="regulament_year">Année de règlement</string>
+    <string name="subscription_year">Ordre</string>
+    <string name="regulation">Réglementation</string>
+
+    <!-- Impostazioni-->
+
+    <string-array name="language_items">
+        <item>Défaut du système</item>
+        <item>Italiano</item>
+        <item>English</item>
+        <item>Français</item>
+        <item>Deutsche</item>
+    </string-array>
+
+    <string-array name="language_abbreviations">
+        <item>System</item>
+        <item>it</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+    </string-array>
+
+    <string name="settings_activity">Paramètres</string>
+    <string name="fingerprints">Déverrouillage via empreinte digitale</string>
+    <string name="language">Langue</string>
+    <string name="settings_dismiss">Annuler</string>
+    <string name="settings_confirm">Enregistrer les modifications</string>
+    <string name="settings_message">Redémarrer l’application pour changer la langue</string>
+    <string name="image_of_profile">Image de profil</string>
+    <string name="matricola">Matricola:</string>
+    <string name="title_activity_luoghi_di_interesse">Lieux d\'intérêt</string>
+
+</resources>

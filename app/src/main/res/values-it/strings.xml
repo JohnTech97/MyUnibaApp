@@ -108,12 +108,16 @@
         <item>Predefinito di sistema</item>
         <item>Italiano</item>
         <item>English</item>
+        <item>Français</item>
+        <item>Deutsche</item>
     </string-array>
 
     <string-array name="language_abbreviations">
         <item>System</item>
         <item>it</item>
         <item>en</item>
+        <item>fr</item>
+        <item>de</item>
     </string-array>
 
     <string name="settings_activity">Impostazioni</string>
@@ -124,5 +128,11 @@
     <string name="settings_message">Affinché avvenga il cambio della lingua occorre riavviare l\'applicazione</string>
     <string name="image_of_profile">Foto del profilo</string>
     <string name="matricola">Matricola:</string>
+    <string name="title_activity_luoghi_di_interesse">Luoghi di interesse</string>
+    <string name="back_message">L\\\'esame rimarrà in bacheca fino ad una rimozione manuale da parte degli amministratori</string>
+    <string name="back">Torna indietro</string>
+    <string name="arithmetic_mean">Media aritmetica: %.2f</string>
+    <string name="weighted_mean">Media ponderata: %.2f</string>
+    <string name="percentage">Percentuale esami superati: %d%%</string>
 
 </resources>

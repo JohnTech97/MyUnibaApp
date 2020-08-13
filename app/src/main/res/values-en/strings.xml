@@ -108,12 +108,16 @@
         <item>System default</item>
         <item>Italiano</item>
         <item>English</item>
+        <item>Français</item>
+        <item>Deutsche</item>
     </string-array>
 
     <string-array name="language_abbreviations">
         <item>System</item>
         <item>it</item>
         <item>en</item>
+        <item>fr</item>
+        <item>de</item>
     </string-array>
 
     <string name="settings_activity">Settings</string>
@@ -122,7 +126,13 @@
     <string name="settings_dismiss">Dismiss</string>
     <string name="settings_confirm">Save changes</string>
     <string name="settings_message">You need to restart the app in order to the language switch to take place</string>
-    <string name="image_of_profile">image of profile</string>
+    <string name="image_of_profile">Profile image</string>
     <string name="matricola">Matricola:</string>
+    <string name="title_activity_luoghi_di_interesse">Places of interest</string>
+    <string name="back_message">The exam will stay in this board until further notice</string>
+    <string name="back">Come back</string>
+    <string name="weighted_mean">Weighted average: %.2f</string>
+    <string name="arithmetic_mean">Arithmetic average: %.2f</string>
+    <string name="percentage">Passed exams percentage: %d%%</string>
 
 </resources>

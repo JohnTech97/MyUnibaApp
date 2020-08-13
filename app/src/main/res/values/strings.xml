@@ -1,8 +1,8 @@
 <resources>
     <!-- Stringhe di utilità-->
     <string name="app_name">MyUnibaApp</string>
-    <string name="open_drawer">Open Navigation Drawer</string>
-    <string name="close_drawer">Close Navigation Drawer</string>
+    <string name="open_drawer" translatable="false">Open Navigation Drawer</string>
+    <string name="close_drawer" translatable="false">Close Navigation Drawer</string>
 
     <!-- Stringhe per il login-->
     <string name="title_activity_login">Effettua il Login</string>
@@ -112,12 +112,16 @@
         <item>Predefinito di sistema</item>
         <item>Italiano</item>
         <item>English</item>
+        <item>Français</item>
+        <item>Deutsche</item>
     </string-array>
 
     <string-array name="language_abbreviations">
         <item>System</item>
         <item>it</item>
         <item>en</item>
+        <item>fr</item>
+        <item>de</item>
     </string-array>
 
     <string name="settings_activity">Impostazioni</string>

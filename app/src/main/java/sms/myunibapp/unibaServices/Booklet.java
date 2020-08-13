@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -27,6 +28,8 @@ public class Booklet extends AppCompatActivity {
 
     private boolean isShowDetailsSelected = false;
 
+    private int dimensioneStato=50;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,10 @@ public class Booklet extends AppCompatActivity {
         TextView mp=findViewById(R.id.media_ponderata);
 
         TextView perc=findViewById(R.id.percentuale_esami);
+
+        TextView libretto=findViewById(R.id.activity_libretto);
+
+        libretto.setText(getResources().getString(R.string.booklet));
 
         showDetails.setOnClickListener(v -> {
             //inverto le colonne mostrate
@@ -65,7 +72,7 @@ public class Booklet extends AppCompatActivity {
 
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 600;
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 1100;
 
         scrollView.setLayoutParams(altezza);
 
@@ -85,18 +92,22 @@ public class Booklet extends AppCompatActivity {
                     TableRow riga = new TableRow(Booklet.this);
                     riga.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
-                    TextView nome = null, anno = null, cfu = null, stato = null, voto = null, data = null;
+                    TextView nome = null, anno = null, cfu = null, voto = null, data = null;
+                    ImageView stato;
                     nome = initializeTextView(nome);
                     anno = initializeTextView(anno);
                     cfu = initializeTextView(cfu);
-                    stato = initializeTextView(stato);
+                    stato = new ImageView(Booklet.this);
+                    stato.setImageDrawable(getDrawable(R.drawable.non_in_programma));
+                    stato.setAdjustViewBounds(true);
+                    stato.setMaxWidth(dimensioneStato);
+                    stato.setMaxHeight(dimensioneStato);
                     voto = initializeTextView(voto);
                     data = initializeTextView(data);
 
                     nome.setText(esame.getNome());
                     anno.setText("" + esame.getAnno());
                     cfu.setText("" + esame.getCfu());
-                    stato.setText("Non in programma");//perché si trova negli esami da superare
                     voto.setText("/");
                     data.setText("/");
 
@@ -118,18 +129,22 @@ public class Booklet extends AppCompatActivity {
                     TableRow riga = new TableRow(Booklet.this);
                     riga.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
-                    TextView nome = null, anno = null, cfu = null, stato = null, voto = null, data = null;
+                    TextView nome = null, anno = null, cfu = null, voto = null, data = null;
+                    ImageView stato;
                     nome = initializeTextView(nome);
                     anno = initializeTextView(anno);
                     cfu = initializeTextView(cfu);
-                    stato = initializeTextView(stato);
+                    stato = new ImageView(Booklet.this);
+                    stato.setImageDrawable(getDrawable(R.drawable.programmato));
+                    stato.setAdjustViewBounds(true);
+                    stato.setMaxWidth(dimensioneStato);
+                    stato.setMaxHeight(dimensioneStato);
                     voto = initializeTextView(voto);
                     data = initializeTextView(data);
 
                     nome.setText(esame.getNome());
                     anno.setText("" + esame.getAnno());
                     cfu.setText("" + esame.getCfu());
-                    stato.setText("Programmato");//perché si trova negli esami prenotati
                     voto.setText("/");
                     data.setText("/");
 
@@ -157,11 +172,16 @@ public class Booklet extends AppCompatActivity {
                     TableRow riga = new TableRow(Booklet.this);
                     riga.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
 
-                    TextView nome = null, anno = null, cfu = null, stato = null, voto = null, data = null;
+                    TextView nome = null, anno = null, cfu = null, voto = null, data = null;
+                    ImageView stato;
                     nome = initializeTextView(nome);
                     anno = initializeTextView(anno);
                     cfu = initializeTextView(cfu);
-                    stato = initializeTextView(stato);
+                    stato = new ImageView(Booklet.this);
+                    stato.setImageDrawable(getDrawable(R.drawable.superato));
+                    stato.setAdjustViewBounds(true);
+                    stato.setMaxWidth(dimensioneStato);
+                    stato.setMaxHeight(dimensioneStato);
                     voto = initializeTextView(voto);
                     data = initializeTextView(data);
 
@@ -182,10 +202,9 @@ public class Booklet extends AppCompatActivity {
 
                         percentuale++;
                         voto.setText(""+votazione);
-                        stato.setText("Superato");//perché si trova negli esami superati
                         data.setText(d.child("data").getValue(String.class));
                     } catch (NumberFormatException e) {//se l'esito non è un numero vuol dire che non è stato superato
-                        stato.setText("/");
+                        stato.setImageDrawable(getDrawable(R.drawable.non_in_programma));
                         voto.setText("/");
                         data.setText("/");
                     }

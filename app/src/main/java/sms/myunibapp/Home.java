@@ -15,7 +15,6 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -37,7 +36,7 @@ import sms.myunibapp.unibaServices.Profile;
 import sms.myunibapp.unibaServices.Secretary;
 
 
-public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private NavigationView nav;
@@ -67,24 +66,70 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         mainMenu.syncState();
 
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*for (int i = 0; i < items.length; i++) {
-                    items[i].setChecked(false);
-                }*/
-                dialog.show();
-            }
+        b.setOnClickListener((View v) -> {
+            /*for (int i = 0; i < items.length; i++) {
+                items[i].setChecked(false);
+            }*/
+            dialog.show();
         });
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(this);
+        nav.setNavigationItemSelectedListener((MenuItem item) -> {
+            Class target = null;
+
+            switch (item.getItemId()) {
+                case R.id.home:
+                    //do nothing
+                    break;
+                case R.id.segreteria:
+                    target = Secretary.class;
+                    break;
+                case R.id.lista_esami:
+                    target = BookableExams.class;
+                    break;
+                case R.id.bacheca_prenotazioni:
+                    target = BookingsBoard.class;
+                    break;
+                case R.id.bacheca_esiti:
+                    target = OutcomeBoard.class;
+                    break;
+                case R.id.carriera:
+                    target = Booklet.class;
+                    break;
+                case R.id.profilo_menu:
+                    target = Profile.class;
+                    break;
+                case R.id.who_we_are:
+
+                    break;
+                case R.id.mappa:
+                    target = LuoghiDiInteresse.class;
+                    break;
+                case R.id.impostazioni:
+                    target = Settings.class;
+                    break;
+                case R.id.logout:
+                    SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+                    editor.putBoolean("Remember", false);
+                    editor.apply();
+                    startActivity(new Intent(Home.this, Login.class));
+                    finish();
+                    break;
+            }
+
+            if (target != null) {
+                startActivityForResult(new Intent(Home.this, target), 0);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        });
         editor = getSharedPreferences("Widgets", MODE_PRIVATE);
         initializeWidgetsCustomizationPanel();
         initializeWidgets();
         ScrollView scrollView = findViewById(R.id.scrollview_home);
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 500;
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
 
         scrollView.setLayoutParams(altezza);
 
@@ -152,44 +197,100 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void initializeWidgets() {
-
-        int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
-        int [] indici=new int[numberOfWidgets];
-        for(int i=0, count=0;i<items.length;i++){
-            if(items[i].isChecked()) {
-                indici[count] = i;
-                count++;
-            }
-        }
         Resources res = getResources();
-        for (int i = 1; i <= numberOfWidgets; i++) {
-            String value = editor.getString("icon" + i, "");
-            Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
+        if (!editor.contains("numberOfWidgets")) {//controllo se esistono le shared preferences, in modo da creare le 4 scorciatoie di default se non ci fossero (primo avvio)
+            DashboardWidgets profilo, libretto, calendario, esiti;
+            profilo=new DashboardWidgets(this);
+            profilo.inflate();
+            profilo.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            profilo.setNomeWidget(items[0].getText().toString());
+            profilo.setTarget(Secretary.class);
+            profilo.setClickable(true);
 
-            String testo = items[indici[i-1]].getText().toString();
-            Class target = null;
-            try {
-                target = Class.forName(editor.getString("ClasseTarget" + i, ""));
-            } catch (ClassNotFoundException e) {
-            }
-            DashboardWidgets widget = new DashboardWidgets(this);
-            widget.inflate();
-            widget.setIcona(icon);
-            widget.setNomeWidget(testo);
-            widget.setTarget(target);
-            widget.setClickable(true);
-            widget.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DashboardWidgets dw = (DashboardWidgets) v;
-                    startActivity(new Intent(Home.this, dw.getTarget()));
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            layout.addView(profilo);
+
+            libretto=new DashboardWidgets(this);
+            libretto.inflate();
+            libretto.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            libretto.setNomeWidget(items[1].getText().toString());
+            libretto.setTarget(Booklet.class);
+            libretto.setClickable(true);
+
+            layout.addView(libretto);
+
+            calendario=new DashboardWidgets(this);
+            calendario.inflate();
+            calendario.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            calendario.setNomeWidget(items[3].getText().toString());
+            calendario.setTarget(BookableExams.class);
+            calendario.setClickable(true);
+
+            layout.addView(calendario);
+
+            esiti=new DashboardWidgets(this);
+            esiti.inflate();
+            esiti.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            esiti.setNomeWidget(items[4].getText().toString());
+            esiti.setTarget(OutcomeBoard.class);
+            esiti.setClickable(true);
+
+            View.OnClickListener click= (View v) -> {
+                DashboardWidgets dw = (DashboardWidgets) v;
+                startActivity(new Intent(Home.this, dw.getTarget()));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            };
+
+            profilo.setOnClickListener(click);
+            libretto.setOnClickListener(click);
+            calendario.setOnClickListener(click);
+            esiti.setOnClickListener(click);
+
+            items[0].setChecked(true);
+            items[1].setChecked(true);
+            items[2].setChecked(false);
+            items[3].setChecked(true);
+            items[4].setChecked(true);
+            items[5].setChecked(false);
+
+            layout.addView(esiti);
+        } else {
+
+            int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
+            int[] indici = new int[numberOfWidgets];
+            for (int i = 0, count = 0; i < items.length; i++) {
+                if (items[i].isChecked()) {
+                    indici[count] = i;
+                    count++;
                 }
-            });
+            }
+            for (int i = 1; i <= numberOfWidgets; i++) {
+                String value = editor.getString("icon" + i, "");
+                Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
 
-            layout.addView(widget);
+                String testo = items[indici[i - 1]].getText().toString();
+                Class target = null;
+                try {
+                    target = Class.forName(editor.getString("ClasseTarget" + i, ""));
+                } catch (ClassNotFoundException e) {
+                }
+                DashboardWidgets widget = new DashboardWidgets(this);
+                widget.inflate();
+                widget.setIcona(icon);
+                widget.setNomeWidget(testo);
+                widget.setTarget(target);
+                widget.setClickable(true);
+                widget.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DashboardWidgets dw = (DashboardWidgets) v;
+                        startActivity(new Intent(Home.this, dw.getTarget()));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+                });
+
+                layout.addView(widget);
+            }
         }
-
     }
 
     @Override
@@ -202,61 +303,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Class target = null;
-
-        switch (item.getItemId()) {
-            case R.id.home:
-                //do nothing
-                break;
-            case R.id.segreteria:
-                target = Secretary.class;
-                break;
-            case R.id.lista_esami:
-                target = BookableExams.class;
-                break;
-            case R.id.bacheca_prenotazioni:
-                target = BookingsBoard.class;
-                break;
-            case R.id.bacheca_esiti:
-                target = OutcomeBoard.class;
-                break;
-            case R.id.carriera:
-                target = Booklet.class;
-                break;
-            case R.id.profilo_menu:
-                target = Profile.class;
-                break;
-            case R.id.who_we_are:
-
-                break;
-            case R.id.mappa:
-                target = LuoghiDiInteresse.class;
-                break;
-            case R.id.impostazioni:
-                target = Settings.class;
-                break;
-            case R.id.logout:
-                SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-                editor.putBoolean("Remember", false);
-                editor.apply();
-                startActivity(new Intent(Home.this, Login.class));
-                finish();
-                break;
-        }
-
-        if (target != null) {
-            startActivityForResult(new Intent(Home.this, target), 0);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==1){
+        if (resultCode == 1) {
             recreate();
         }
     }
