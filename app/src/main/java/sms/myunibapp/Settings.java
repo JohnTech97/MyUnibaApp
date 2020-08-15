@@ -15,16 +15,6 @@ import com.example.myunibapp.R;
 
 public class Settings extends AppCompatActivity {
 
-    private class SpinnerData {
-        public String lingua;
-        public String abbreviazione;
-
-        @Override
-        public String toString(){
-            return lingua;
-        }
-    }
-
     private boolean hasLanguageChanged = false;
     private Switch fingerprints;
     private Spinner s;
@@ -47,7 +37,7 @@ public class Settings extends AppCompatActivity {
 
         for (int i = 0; i < lingue.length; i++) {
             languages[i] = new SpinnerData();
-            languages[i].lingua = lingue[i];
+            languages[i].informazioneDaMostrare = lingue[i];
             languages[i].abbreviazione = abbreviazioni[i];
         }
 
@@ -55,15 +45,15 @@ public class Settings extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
 
-        preferences=getSharedPreferences("Settings", MODE_PRIVATE);
+        preferences = getSharedPreferences("Settings", MODE_PRIVATE);
         fingerprints.setChecked(preferences.getBoolean("fingerprintsEnabled", false));
 
         //cerco nell'array languages la posizione da usare per la selezione dello spinner
         //si potrebbe fare con adapter.getPosition(String), ma il toString definito in SpinnerData è già assegnato per ritornare
         //la lingua per esteso, e non l'abbreviazione che invece viene memorizzata nelle SharedPreferences
-        int pos=0;
-        String lingua= preferences.getString("Language", "");
-        if(!lingua.equals("")) {//se si accede alle impostazioni per la prima volta
+        int pos = 0;
+        String lingua = preferences.getString("Language", "");
+        if (!lingua.equals("")) {//se si accede alle impostazioni per la prima volta
             for (; pos < languages.length; pos++) {
                 if (languages[pos].abbreviazione.equals(lingua)) {
                     break;
@@ -74,7 +64,7 @@ public class Settings extends AppCompatActivity {
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hasLanguageChanged=true;
+                hasLanguageChanged = true;
             }
 
             @Override
@@ -90,10 +80,10 @@ public class Settings extends AppCompatActivity {
     }
 
     public void conferma(View v) {
-        if(hasLanguageChanged){
+        if (hasLanguageChanged) {
             Toast.makeText(this, getResources().getString(R.string.settings_message), Toast.LENGTH_SHORT).show();
         }
-        SharedPreferences.Editor edit=preferences.edit();
+        SharedPreferences.Editor edit = preferences.edit();
         edit.putBoolean("fingerprintsEnabled", fingerprints.isChecked());
         edit.putString("Language", languages[s.getSelectedItemPosition()].abbreviazione);
 

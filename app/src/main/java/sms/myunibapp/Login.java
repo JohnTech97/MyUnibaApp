@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
     private CheckBox rememberMe;
 
     private static String username;
+    private String password;
 
     private SharedPreferences pref;
 
@@ -61,13 +62,6 @@ public class Login extends AppCompatActivity {
         ACCESSO ALL'APPLICAZIONE
          */
         mLoginButton.setOnClickListener(v -> {
-
-            validateUsername(); //Check Username
-
-            validatePassword(); //Check Password
-
-            String username = editTextUsername.getText().toString().trim();
-            String password = editTextPassword.getText().toString().trim();
 
             if (!validateUsername() | !validatePassword()) {
                 return;
@@ -128,7 +122,11 @@ public class Login extends AppCompatActivity {
     }
 
     private void authenticate(String mail, String pass) {
-        firebaseAuth.signInWithEmailAndPassword(mail + EMAIL_UNIBA, pass).addOnCompleteListener(task -> {
+        String access=mail;
+        if(!mail.contains("@")){
+            access=mail+EMAIL_UNIBA;
+        }
+        firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("Remember", rememberMe.isChecked());
@@ -136,8 +134,18 @@ public class Login extends AppCompatActivity {
                 editor.putString("Pass", pass);
                 editor.apply();
                 Toast.makeText(Login.this, getResources().getString(R.string.login_success) + " " + mail, Toast.LENGTH_SHORT).show();
-                username = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
-                startActivity(new Intent(getApplicationContext(), Home.class));
+                Class target = null;
+                if (mail.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
+                    username = mail.replace(".", "_");
+                    target = ProfessorHome.class;
+                } else if (mail.endsWith("@studenti.uniba.it")) {
+                    username = mail.replace(".", "_");
+                    target = Home.class;
+                } else {
+                    username = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
+                    target = Home.class;
+                }
+                startActivity(new Intent(getApplicationContext(), target));
                 finish();
             } else {
                 Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -163,7 +171,7 @@ public class Login extends AppCompatActivity {
     private Boolean validateUsername() {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Username è corretto
 
-        String username = editTextUsername.getText().toString().trim();
+        username = editTextUsername.getText().toString().trim();
         TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
         //Se il campo username è vuoto
         if (username.isEmpty()) {
@@ -178,7 +186,7 @@ public class Login extends AppCompatActivity {
     private Boolean validatePassword() {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Password è corretta
 
-        String password = editTextPassword.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
         TextInputLayout textInputLayout = findViewById(R.id.text_input_password);
 
         //Se la password è più corta di 6 caratteri
