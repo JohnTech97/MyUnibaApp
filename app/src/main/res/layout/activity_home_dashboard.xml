@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
+    android:isScrollContainer="false"
     android:orientation="vertical"
     tools:context="sms.myunibapp.Home">
 
@@ -12,44 +14,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_app"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="30dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
         <TextView
-            android:id="@+id/name_student"
+            android:id="@+id/utente_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Ciao, Studente"
             android:textColor="#FFF"
             android:textSize="25sp" />
 
         <TextView
+            android:id="@+id/matricola"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name_student"
+            android:layout_below="@id/utente_nome"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/matricola"
             android:textColor="#FFF"
             android:textSize="18sp" />
 
         <ImageView
+            android:id="@+id/image_of_profile"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentEnd="true"
-
-            android:src="@drawable/ic_040_man"
-            android:contentDescription="@string/image_of_profile" />
+            android:contentDescription="@string/image_of_profile"
+            android:src="@drawable/ic_040_man" />
 
     </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scrollview_home"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_gravity="center">
+        android:layout_height="469dp"
+        android:layout_gravity="center"
+        android:paddingTop="5dp">
 
         <GridLayout
             android:id="@+id/widgets"
@@ -62,12 +62,20 @@
 
     </ScrollView>
 
-    <Button
+    <!-- Button for add widgets to dashboard -->
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/personalizzazione_widget"
+        android:isScrollContainer="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/widgets"
         android:text="@string/widgets"
-        android:textAllCaps="false" />
+        android:textColor="#FFFF"
+        app:backgroundTint="@color/colorAccent"
+        app:icon="@drawable/ic_add_24"
+        app:iconTint="#FFF" />
 
 </LinearLayout>

@@ -4,16 +4,16 @@
     android:shape="rectangle"
     android:useLevel="false">
 
-    <solid android:color="@color/widgets_background"/>
+    <solid android:color="@color/background_color_app"/>
 
     <padding
-        android:bottom="15dp"
-        android:left="15dp"
-        android:right="15dp"
-        android:top="15dp"/>
+        android:bottom="20dp"
+        android:left="20dp"
+        android:right="20dp"
+        android:top="20dp"/>
 
     <corners
-        android:bottomRightRadius="100dp"
-        android:bottomLeftRadius="100dp"/>
+        android:bottomRightRadius="25dp"
+        android:bottomLeftRadius="25dp"/>
 
 </shape>

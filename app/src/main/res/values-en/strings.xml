@@ -36,7 +36,7 @@
     <string name="exit">Exit</string>
 
     <!-- Schermata home-->
-    <string name="widgets">Personalize widgets</string>
+    <string name="widgets">Add widgets</string>
 
     <string name="exitDialogTitle">Application shutdown</string>
     <string name="exitDialogMessage">Are you sure you want to terminate this app session?</string>
@@ -134,5 +134,7 @@
     <string name="weighted_mean">Weighted average: %.2f</string>
     <string name="arithmetic_mean">Arithmetic average: %.2f</string>
     <string name="percentage">Passed exams percentage: %d%%</string>
+    <string name="aggiunta_date">Create exam</string>
+    <string name="aggiunta_date">Create exam</string>
 
 </resources>
