@@ -17,7 +17,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +54,7 @@ public class Home extends AppCompatActivity {
     private ProgressBar progress;
 
     //riguardo la fine del caricamento dei dati
-    private static boolean isFinished=false;
+    private static boolean isFinished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,6 @@ public class Home extends AppCompatActivity {
         nav = findViewById(R.id.navigation_menu);
         toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
-        Button b = findViewById(R.id.personalizzazione_widget);
         progress = findViewById(R.id.progress_home);
 
 
@@ -84,7 +82,7 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                isFinished=true;
+                isFinished = true;
                 progress.setVisibility(View.GONE);
             }
         }.start();
@@ -225,52 +223,35 @@ public class Home extends AppCompatActivity {
             widgetMessages[i] = items[i].getText().toString();
         }
 
-        builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).setPositiveButton(getResources().getString(R.string.dialogConfirm), (dialog, which) -> {
-            SharedPreferences.Editor edit = editor.edit();
-            edit.clear().apply();//ripulisco le informazioni precedenti prima di inserire i nuovi
-            layout.removeAllViews();
-            int count = 1;
-            for (int i = 0; i < classes.length; i++) {
-                if (items[i].isChecked()) {
-                    edit.putString("icon" + count, iconNames[i]);
-                    edit.putString("ClasseTarget" + count, classes[i].getName());
-                    edit.putBoolean("IsSelected" + (i + 1), true);//per fare in modo di far ritrovare le stesse opzioni selezionate
-                    //la prossima volta che si accede alla schermata
-                    count++;
-                }
-            }
         builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), null)
-        .setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor edit = editor.edit();
-                edit.clear().apply();//ripulisco le informazioni precedenti prima di inserire i nuovi
-                layout.removeAllViews();
-                int count = 1;
-                for (int i = 0; i < classes.length; i++) {
-                    if (items[i].isChecked()) {
-                        edit.putString("icon" + count, iconNames[i]);
-                        edit.putString("ClasseTarget" + count, classes[i].getName());
-                        edit.putBoolean("IsSelected" + (i + 1), true);//per fare in modo di far ritrovare le stesse opzioni selezionate
-                        //la prossima volta che si accede alla schermata
-                        count++;
+                .setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor edit = editor.edit();
+                        edit.clear().apply();//ripulisco le informazioni precedenti prima di inserire i nuovi
+                        layout.removeAllViews();
+                        int count = 1;
+                        for (int i = 0; i < classes.length; i++) {
+                            if (items[i].isChecked()) {
+                                edit.putString("icon" + count, iconNames[i]);
+                                edit.putString("ClasseTarget" + count, classes[i].getName());
+                                edit.putBoolean("IsSelected" + (i + 1), true);//per fare in modo di far ritrovare le stesse opzioni selezionate
+                                //la prossima volta che si accede alla schermata
+                                count++;
+                            }
+                        }
+
+                        count--;
+
+                        edit.putInt("numberOfWidgets", count);
+                        edit.apply();
+
+                        initializeWidgets();
                     }
-                }
-
-            count--;
-
-            edit.putInt("numberOfWidgets", count);
-            edit.apply();
-
-            initializeWidgets();
-        });
+                });
         dialog = builder.create();
     }
+
 
     private void initializeWidgets() {
         Resources res = getResources();
@@ -311,7 +292,7 @@ public class Home extends AppCompatActivity {
             esiti.setClickable(true);
 
             View.OnClickListener click = (View v) -> {
-                if(isFinished) {
+                if (isFinished) {
                     DashboardWidgets dw = (DashboardWidgets) v;
                     startActivity(new Intent(Home.this, dw.getTarget()));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
