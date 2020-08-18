@@ -1,7 +1,10 @@
 package sms.myunibapp.unibaServices;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 import sms.myunibapp.ExamsData;
+import sms.myunibapp.Home;
 import sms.myunibapp.Login;
 import sms.myunibapp.advancedViews.BookableExamDetails;
 import sms.myunibapp.advancedViews.BookableExamItem;
@@ -32,6 +37,14 @@ public class BookingsBoard extends AppCompatActivity {
         setContentView(R.layout.activity_booked_exams);
 
         LinearLayout listaEsami=findViewById(R.id.prenotati);
+        DrawerLayout drawer=findViewById(R.id.menu_navigazione_booked_exam);
+        Toolbar toolbar=findViewById(R.id.menu_starter_booked_exam);
+        NavigationView nav= findViewById(R.id.navigation_menu_booked_exam);
+        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawer.addDrawerListener(mainMenu);
+        mainMenu.syncState();
+        nav.bringToFront();
+        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
 
         DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
 
@@ -57,6 +70,7 @@ public class BookingsBoard extends AppCompatActivity {
                     esamePrenotato.getBottone().setText(getResources().getString(R.string.dismiss_booking));
                     esamePrenotato.getBottone().setId(i);
                     esamePrenotato.getBottone().setOnClickListener((View v) -> {
+                        //stessa tecnica di BookableExamsDetails, applicato però a tutti i child memorizzati in firebase
                         DataSnapshot esamiDaSuperare = sn.child("Esami da superare");
                         HashMap<String, Object> aule = new HashMap<>();
                         HashMap<String, Object> date = new HashMap<>();

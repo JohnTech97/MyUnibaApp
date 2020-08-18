@@ -8,9 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import sms.myunibapp.ExamsData;
+import sms.myunibapp.Home;
 import sms.myunibapp.Login;
 import sms.myunibapp.advancedViews.ExamOutcomeDetails;
 
@@ -28,6 +33,15 @@ public class OutcomeBoard extends AppCompatActivity {
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.activity_exam_outcome);
+        DrawerLayout drawer=findViewById(R.id.menu_navigazione_outcome);
+        Toolbar toolbar=findViewById(R.id.menu_starter_outcome);
+        NavigationView nav= findViewById(R.id.navigation_menu_outcome);
+        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawer.addDrawerListener(mainMenu);
+        mainMenu.syncState();
+        nav.bringToFront();
+        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());

@@ -65,11 +65,13 @@ public class AddExam extends AppCompatActivity {
             isSpinnerStarting1=false;
         }
 
+        //quando viene selezionato un insegnamento
         elencoInsegnamenti.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selezione = "" + parent.getItemAtPosition(position);
                 if (!isSpinnerStarting1) {
+                    //leggo i dati da firebase
                     dr.child(selezione).child("Esami").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot s) {
@@ -110,6 +112,7 @@ public class AddExam extends AppCompatActivity {
             }
         });
 
+        //quando seleziono una materia
         materie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -131,6 +134,7 @@ public class AddExam extends AppCompatActivity {
             }
         });
 
+        //quando la textview per la data viene selezionata, sia con un tocco che con il focus gain dovuto al next della tastiera
         data.setOnFocusChangeListener((View v, boolean hasFocus) -> {//quando si seleziona il campo data deve mostrare il date time picker
             if(hasFocus){
                 DateTimePicker.getDateTime(AddExam.this, data);
@@ -150,9 +154,9 @@ public class AddExam extends AppCompatActivity {
                 aulaValue = aula.getText().toString();
                 edificioValue = edificio.getText().toString();
                 dataValue = data.getText().toString();
-                //fine data
                 int numeroAppello = numeroDate[materie.getSelectedItemPosition()];
 
+                //inserisco i dati forniti dall'utente nel database, se sono validi
                 if (!aulaValue.isEmpty() && !edificioValue.isEmpty() && !dataValue.isEmpty()) {
                     DatabaseReference appello = dr.child(insegnamento).child("Esami").child(numeroCorso).child("appelli");
                     appello.child("aula" + numeroAppello).setValue(aulaValue);

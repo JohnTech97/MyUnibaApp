@@ -134,4 +134,27 @@
     <string name="matricola">Matricola:</string>
     <string name="title_activity_luoghi_di_interesse">Sehenswürdigkeiten</string>
 
+    <!-- Professori-->
+
+    <string name="aggiunta_date">Prüfung erstellen</string>
+    <string name="valutazione_studenti">Schüler bewerten</string>
+    <string name="gestione_appelli">Prüfung verwalten</string>
+    <string name="profilo_professori">Profil</string>
+
+    <string name="aula_professori">Empfangsraum</string>
+    <string name="insegnamenti_professori">Lehren</string>
+
+    <string name="aggiunta_esame">Prüfung hinzufügen</string>
+    <string name="insegnamento">Lehren:</string>
+    <string name="numero_esame">Prüfungsnummer</string>
+
+    <string name="aggiunta_esame_error">Sie müssen alle Attribute deklarieren, um ein Prüfungsdatum zu erstellen oder zu ändern</string>
+    <string name="aggiunta_esito_error">Sie müssen einen Schüler auswählen und bewerten, um fortzufahren</string>
+
+    <string name="modifica_esame">Prüfung ändern</string>
+    <string name="rimozione_esame">Prüfung entfernen</string>
+
+    <string name="modifica_esame_conferma_titolo">Sie sicher?</string>
+    <string name="modifica_esame_conferma_messaggio">Das Ändern oder Entfernen von Prüfungsdaten kann bei Unachtsamkeit zu Unannehmlichkeiten führen</string>
+
 </resources>

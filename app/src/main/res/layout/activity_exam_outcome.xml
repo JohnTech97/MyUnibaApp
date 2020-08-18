@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_navigazione_outcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sms.myunibapp.advancedViews.ExamOutcomeDetails">
+    android:layout_above="@id/menu_starter"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <LinearLayout
-        android:id="@+id/esiti"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_menu_outcome"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="40dp">
+        android:layout_gravity="start"
+        android:background="#FFF"
+        app:headerLayout="@layout/header_navigation"
+        app:menu="@menu/main_menu" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/menu_starter_outcome"
+        style="@style/CustomActionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/menu_icon"
+        app:title="Dashboard"
+        app:titleTextColor="#FFF" />
 
-        <TextView
-            android:id="@+id/esiti_da_mostrare"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="sms.myunibapp.advancedViews.ExamOutcomeDetails">
+
+        <LinearLayout
+            android:id="@+id/esiti"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="@string/zero_exam_outcomes" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="40dp">
 
-</HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/esiti_da_mostrare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/zero_exam_outcomes"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

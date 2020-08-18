@@ -1,14 +1,19 @@
 package sms.myunibapp.unibaServices;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import sms.myunibapp.Home;
 import sms.myunibapp.Login;
 import sms.myunibapp.advancedViews.BookableExamDetails;
 
@@ -28,6 +34,14 @@ public class BookableExamsDetails extends AppCompatActivity {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_exams_details);
         LinearLayout listaEsami = findViewById(R.id.prenotabili);
+        DrawerLayout drawer=findViewById(R.id.menu_navigazione_exam_details);
+        Toolbar toolbar=findViewById(R.id.menu_starter_exam_details);
+        NavigationView nav= findViewById(R.id.navigation_menu_exam_details);
+        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawer.addDrawerListener(mainMenu);
+        mainMenu.syncState();
+        nav.bringToFront();
+        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
 
         Bundle b = getIntent().getExtras();
         String key = b.getString("key");
@@ -56,6 +70,10 @@ public class BookableExamsDetails extends AppCompatActivity {
             esame.getBottone().setText("Prenotati");
             esame.getBottone().setOnClickListener(v -> {
                 DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+
+                //per scalare i dati nel database (ad esempio esame3 diventa esame2, ecc) la soluzione più semplice sembra
+                //essere recuperare tutti i dati presenti per poi scalarli da codice con un array (in questo caso map, perché viene associato un key)
+                //infine vengono aggiornati i dati immettendo in firebase i map così ottenuti
                 dr.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot s) {

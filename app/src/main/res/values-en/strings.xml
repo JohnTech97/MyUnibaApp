@@ -98,7 +98,7 @@
     <string name="subscription">Subscription</string>
     <string name="state_profile">State</string>
     <string name="clazz">Class</string>
-    <string name="regulament_year">Settlment year</string>
+    <string name="regulament_year">Settlement year</string>
     <string name="subscription_year">Subscription year</string>
     <string name="regulation">Regulation</string>
 
@@ -134,5 +134,28 @@
     <string name="weighted_mean">Weighted average: %.2f</string>
     <string name="arithmetic_mean">Arithmetic average: %.2f</string>
     <string name="percentage">Passed exams percentage: %d%%</string>
+
+    <!-- Professori-->
+
+    <string name="aggiunta_date">Create exam</string>
+    <string name="valutazione_studenti">Evaluate student</string>
+    <string name="gestione_appelli">Manage exam</string>
+    <string name="profilo_professori">Profile</string>
+
+    <string name="aula_professori">Receiving room</string>
+    <string name="insegnamenti_professori">Teaching</string>
+
+    <string name="aggiunta_esame">Add exam</string>
+    <string name="insegnamento">Teaching:</string>
+    <string name="numero_esame">Exam number:</string>
+
+    <string name="aggiunta_esame_error">You must declare all attributes in order to create or modify an exam date</string>
+    <string name="aggiunta_esito_error">You must select a student and evaluate him to continue</string>
+
+    <string name="modifica_esame">Modify exam</string>
+    <string name="rimozione_esame">Remove exam</string>
+
+    <string name="modifica_esame_conferma_titolo">You sure?</string>
+    <string name="modifica_esame_conferma_messaggio">Modifying or removing exam data can lead to inconveniences if done carelessly</string>
 
 </resources>

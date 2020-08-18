@@ -135,4 +135,27 @@
     <string name="weighted_mean">Media ponderata: %.2f</string>
     <string name="percentage">Percentuale esami superati: %d%%</string>
 
+    <!-- Professori-->
+
+    <string name="aggiunta_date">Crea appello</string>
+    <string name="valutazione_studenti">Valuta studenti</string>
+    <string name="gestione_appelli">Gestisci appelli</string>
+    <string name="profilo_professori">Profilo</string>
+
+    <string name="aula_professori">Aula per ricevimenti</string>
+    <string name="insegnamenti_professori">Insegnamenti</string>
+
+    <string name="aggiunta_esame">Aggiungi esame</string>
+    <string name="insegnamento">Insegnamento:</string>
+    <string name="numero_esame">Numero esame:</string>
+
+    <string name="aggiunta_esame_error">Devi definire tutti i dati prima di poter creare o modificare una data per l\'esame</string>
+    <string name="aggiunta_esito_error">Devi dare un esito e aver selezionato uno studente per poter continuare</string>
+
+    <string name="modifica_esame">Modifica esame</string>
+    <string name="rimozione_esame">Rimuovi esame</string>
+
+    <string name="modifica_esame_conferma_titolo">Sicuro?</string>
+    <string name="modifica_esame_conferma_messaggio">Modificare o eliminare i dati dell\'esame può creare disagi se non si compie questa azione con un motivo valido</string>
+
 </resources>

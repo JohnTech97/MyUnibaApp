@@ -12,7 +12,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class ExamsData {
@@ -109,45 +108,48 @@ public class ExamsData {
 
     public static void initializeData(Context ctx) {
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();/*.child("CorsoDiLaurea").child("L-31").child("Esami");*/
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //per prima cosa si deve ottenere la classe dello studente, per poi ottenere gli esami associati
-                String classe = dataSnapshot.child("Studente").child(Login.getUsername()).child("Classe").getValue(String.class);
+        if (esami.isEmpty()) {
 
-                DataSnapshot data = dataSnapshot.child("CorsoDiLaurea").child(classe).child("Esami");
-                String lingua = ctx.getResources().getConfiguration().locale.getLanguage();//rappresenta l'abbreviazione della lingua impostata a livello dell'app
-                for (int i = 1; i <= data.getChildrenCount(); i++) {
-                    Esame e = new Esame();
-                    DataSnapshot esameN = data.child("" + i);
-                    e.setAnno(esameN.child("anno").getValue(Integer.class));
-                    e.setCfu(esameN.child("cfu").getValue(Integer.class));
-                    e.setDocente(esameN.child("docente").getValue(String.class));
-                    e.setKey(esameN.child("key").getValue(String.class));
-                    e.setNome(esameN.child("nome"+lingua).getValue(String.class));//nome localizzato
-                    e.setTipo(esameN.child("tipo"+lingua).getValue(String.class));//tipo localizzato
-                    ArrayList<String> examsDate = new ArrayList<>();
-                    ArrayList<String> examsAule = new ArrayList<>();
-                    ArrayList<String> examsEdifici = new ArrayList<>();
-                    esameN = esameN.child("appelli");
-                    for (int j = 1; j <= esameN.getChildrenCount() / 3; j++) {//diviso 3 perché ci saranno sempre 3 informazioni diverse da ricavare: aula, data e edificio
-                        examsDate.add(esameN.child("data" + j).getValue(String.class));
-                        examsAule.add(esameN.child("aula" + j).getValue(String.class));
-                        examsEdifici.add(esameN.child("edificio" + j).getValue(String.class));
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();/*.child("CorsoDiLaurea").child("L-31").child("Esami");*/
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //per prima cosa si deve ottenere la classe dello studente, per poi ottenere gli esami associati
+                    String classe = dataSnapshot.child("Studente").child(Login.getUsername()).child("Classe").getValue(String.class);
+
+                    DataSnapshot data = dataSnapshot.child("CorsoDiLaurea").child(classe).child("Esami");
+                    String lingua = ctx.getResources().getConfiguration().locale.getLanguage();//rappresenta l'abbreviazione della lingua impostata a livello dell'app
+                    for (int i = 1; i <= data.getChildrenCount(); i++) {
+                        Esame e = new Esame();
+                        DataSnapshot esameN = data.child("" + i);
+                        e.setAnno(esameN.child("anno").getValue(Integer.class));
+                        e.setCfu(esameN.child("cfu").getValue(Integer.class));
+                        e.setDocente(esameN.child("docente").getValue(String.class));
+                        e.setKey(esameN.child("key").getValue(String.class));
+                        e.setNome(esameN.child("nome" + lingua).getValue(String.class));//nome localizzato
+                        e.setTipo(esameN.child("tipo" + lingua).getValue(String.class));//tipo localizzato
+                        ArrayList<String> examsDate = new ArrayList<>();
+                        ArrayList<String> examsAule = new ArrayList<>();
+                        ArrayList<String> examsEdifici = new ArrayList<>();
+                        esameN = esameN.child("appelli");
+                        for (int j = 1; j <= esameN.getChildrenCount() / 3; j++) {//diviso 3 perché ci saranno sempre 3 informazioni diverse da ricavare: aula, data e edificio
+                            examsDate.add(esameN.child("data" + j).getValue(String.class));
+                            examsAule.add(esameN.child("aula" + j).getValue(String.class));
+                            examsEdifici.add(esameN.child("edificio" + j).getValue(String.class));
+                        }
+                        e.setDate(examsDate);
+                        e.setAule(examsAule);
+                        e.setEdifici(examsEdifici);
+                        esami.put(e.getKey(), e);
                     }
-                    e.setDate(examsDate);
-                    e.setAule(examsAule);
-                    e.setEdifici(examsEdifici);
-                    esami.put(e.getKey(), e);
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     public static Esame getEsame(String keyEsame) {

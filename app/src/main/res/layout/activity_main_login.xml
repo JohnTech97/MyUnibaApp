@@ -39,6 +39,14 @@
             android:textColor="#5A5B5D"
             android:textSize="12sp" />
 
+    <ProgressBar
+        android:id="@+id/progress_login"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:progress="20"
+        android:visibility="gone"
+        />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_username"
             android:layout_width="300dp"

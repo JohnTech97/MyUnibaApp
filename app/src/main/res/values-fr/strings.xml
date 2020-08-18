@@ -134,4 +134,27 @@
     <string name="matricola">Matricola:</string>
     <string name="title_activity_luoghi_di_interesse">Lieux d\'intérêt</string>
 
+    <!-- Professori-->
+
+    <string name="aggiunta_date">Créer un examen</string>
+    <string name="valutazione_studenti">Évaluer les étudiants</string>
+    <string name="gestione_appelli">Gérer l\'examen</string>
+    <string name="profilo_professori">Profil</string>
+
+    <string name="aula_professori">Salle de réception</string>
+    <string name="insegnamenti_professori">Enseignements</string>
+
+    <string name="aggiunta_esame">Ajouter un examen</string>
+    <string name="insegnamento">Enseignement:</string>
+    <string name="numero_esame">Numéro d\'examen</string>
+
+    <string name="aggiunta_esame_error">Vous devez déclarer tous les attributs pour créer ou modifier une date d\'examen</string>
+    <string name="aggiunta_esito_error">Vous devez sélectionner un étudiant et l\'évaluer pour continuer</string>
+
+    <string name="modifica_esame">Modifier l\'examen</string>
+    <string name="rimozione_esame">Supprimer l\'examen</string>
+
+    <string name="modifica_esame_conferma_titolo">Vous êtes sûr?</string>
+    <string name="modifica_esame_conferma_messaggio">La modification ou la suppression des données d\'examen peut entraîner des inconvénients si elle est effectuée avec négligence</string>
+
 </resources>

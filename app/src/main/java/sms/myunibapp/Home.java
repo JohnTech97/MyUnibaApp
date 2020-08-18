@@ -6,13 +6,14 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Timer;
 
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.BookableExams;
@@ -44,6 +47,10 @@ public class Home extends AppCompatActivity {
     private GridLayout layout;
     private AlertDialog dialog;
     private SharedPreferences editor;
+    private ProgressBar progress;
+
+    //riguardo la fine del caricamento dei dati
+    private static boolean isFinished=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +62,34 @@ public class Home extends AppCompatActivity {
         toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
         Button b = findViewById(R.id.personalizzazione_widget);
+        progress = findViewById(R.id.progress_home);
 
         //inizializzazione dati esami da firebase
 
         ExamsData.initializeData(this);
+
+        //il timer per determinare se il caricamento è completo parte da ora
+
+        //se si seleziona una schermata troppo velocemente il sistema rischia di crashare
+        new CountDownTimer(3000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                isFinished=true;
+                progress.setVisibility(View.GONE);
+            }
+        }.start();
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
 
-
+        //mostra il dialog per selezionare i widget che andranno nella dashboard
         b.setOnClickListener((View v) -> {
             /*for (int i = 0; i < items.length; i++) {
                 items[i].setChecked(false);
@@ -73,12 +97,28 @@ public class Home extends AppCompatActivity {
             dialog.show();
         });
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener((MenuItem item) -> {
+        nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
+        editor = getSharedPreferences("Widgets", MODE_PRIVATE);
+
+        initializeWidgetsCustomizationPanel();
+        initializeWidgets();
+        ScrollView scrollView = findViewById(R.id.scrollview_home);
+        LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
+
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
+
+        scrollView.setLayoutParams(altezza);
+
+    }
+
+    //serve un unico listener da utilizzare in tutte le schermate
+    public static NavigationView.OnNavigationItemSelectedListener getNavigationBarListener(AppCompatActivity app) {
+        return (NavigationView.OnNavigationItemSelectedListener) item -> {
             Class target = null;
 
             switch (item.getItemId()) {
                 case R.id.home:
-                    //do nothing
+                    target = Home.class;
                     break;
                 case R.id.segreteria:
                     target = Secretary.class;
@@ -108,33 +148,23 @@ public class Home extends AppCompatActivity {
                     target = Settings.class;
                     break;
                 case R.id.logout:
-                    SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+                    //faccio in modo che al prossimo accesso le credenziali non vengano immesse automaticamente dal sistema
+                    SharedPreferences.Editor editor = app.getSharedPreferences("Settings", MODE_PRIVATE).edit();
                     editor.putBoolean("Remember", false);
                     editor.apply();
-                    startActivity(new Intent(Home.this, Login.class));
-                    finish();
+                    app.startActivity(new Intent(app, Login.class));
+                    app.finish();
                     break;
+            }//il target deve essere diverso dalla schermata corrente, per evitare di tornare inutilmente nella stessa pagina
+            if (target != null && target != app.getClass() && isFinished) {//se la progress bar è visibile vuol dire che non ha finito di caricare
+                app.startActivity(new Intent(app, target));
+                app.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
-
-            if (target != null) {
-                startActivityForResult(new Intent(Home.this, target), 0);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-            drawer.closeDrawer(GravityCompat.START);
             return true;
-        });
-        editor = getSharedPreferences("Widgets", MODE_PRIVATE);
-        initializeWidgetsCustomizationPanel();
-        initializeWidgets();
-        ScrollView scrollView = findViewById(R.id.scrollview_home);
-        LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
-
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
-
-        scrollView.setLayoutParams(altezza);
-
+        };
     }
 
+    //informazioni essenziali per automatizzare il più possibile la creazione dinamica dei widget
     private Class classes[] = new Class[]{
             Secretary.class,
             Booklet.class,
@@ -157,18 +187,15 @@ public class Home extends AppCompatActivity {
         ViewGroup view = (ViewGroup) getLayoutInflater().inflate(R.layout.widget_customization_panel, null);
 
         Resources res = getResources();
+        //prima inizializzo le checkbox
         for (int i = 0; i < classes.length; i++) {
             items[i] = view.findViewById(res.getIdentifier("option" + (i + 1), "id", getPackageName()));
             items[i].setChecked(editor.getBoolean("IsSelected" + (i + 1), false));
             widgetMessages[i] = items[i].getText().toString();
         }
 
-        builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
+        builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), null)
+        .setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences.Editor edit = editor.edit();
@@ -200,7 +227,7 @@ public class Home extends AppCompatActivity {
         Resources res = getResources();
         if (!editor.contains("numberOfWidgets")) {//controllo se esistono le shared preferences, in modo da creare le 4 scorciatoie di default se non ci fossero (primo avvio)
             DashboardWidgets profilo, libretto, calendario, esiti;
-            profilo=new DashboardWidgets(this);
+            profilo = new DashboardWidgets(this);
             profilo.inflate();
             profilo.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
             profilo.setNomeWidget(items[0].getText().toString());
@@ -209,7 +236,7 @@ public class Home extends AppCompatActivity {
 
             layout.addView(profilo);
 
-            libretto=new DashboardWidgets(this);
+            libretto = new DashboardWidgets(this);
             libretto.inflate();
             libretto.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
             libretto.setNomeWidget(items[1].getText().toString());
@@ -218,7 +245,7 @@ public class Home extends AppCompatActivity {
 
             layout.addView(libretto);
 
-            calendario=new DashboardWidgets(this);
+            calendario = new DashboardWidgets(this);
             calendario.inflate();
             calendario.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
             calendario.setNomeWidget(items[3].getText().toString());
@@ -227,17 +254,19 @@ public class Home extends AppCompatActivity {
 
             layout.addView(calendario);
 
-            esiti=new DashboardWidgets(this);
+            esiti = new DashboardWidgets(this);
             esiti.inflate();
             esiti.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
             esiti.setNomeWidget(items[4].getText().toString());
             esiti.setTarget(OutcomeBoard.class);
             esiti.setClickable(true);
 
-            View.OnClickListener click= (View v) -> {
-                DashboardWidgets dw = (DashboardWidgets) v;
-                startActivity(new Intent(Home.this, dw.getTarget()));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            View.OnClickListener click = (View v) -> {
+                if(isFinished) {
+                    DashboardWidgets dw = (DashboardWidgets) v;
+                    startActivity(new Intent(Home.this, dw.getTarget()));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
             };
 
             profilo.setOnClickListener(click);
@@ -245,7 +274,7 @@ public class Home extends AppCompatActivity {
             calendario.setOnClickListener(click);
             esiti.setOnClickListener(click);
 
-            items[0].setChecked(true);
+            items[0].setChecked(true);//seleziono i 4 item di default
             items[1].setChecked(true);
             items[2].setChecked(false);
             items[3].setChecked(true);
@@ -257,6 +286,7 @@ public class Home extends AppCompatActivity {
 
             int numberOfWidgets = editor.getInt("numberOfWidgets", 0);
             int[] indici = new int[numberOfWidgets];
+            //capisco quali checkbox sono stati selezionati, per poi inizializzare solamente i widget associati alle checkbox selezionate
             for (int i = 0, count = 0; i < items.length; i++) {
                 if (items[i].isChecked()) {
                     indici[count] = i;
@@ -270,9 +300,11 @@ public class Home extends AppCompatActivity {
                 String testo = items[indici[i - 1]].getText().toString();
                 Class target = null;
                 try {
+                    //ottengo la classe con un sistema automatico, senza quindi dover usare uno switch che comprometterebbe l'automazione, e quindi la scalabilità
                     target = Class.forName(editor.getString("ClasseTarget" + i, ""));
                 } catch (ClassNotFoundException e) {
                 }
+                //ho tutte le informazioni necessarie per inizializzare un widget
                 DashboardWidgets widget = new DashboardWidgets(this);
                 widget.inflate();
                 widget.setIcona(icon);
@@ -282,9 +314,11 @@ public class Home extends AppCompatActivity {
                 widget.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DashboardWidgets dw = (DashboardWidgets) v;
-                        startActivity(new Intent(Home.this, dw.getTarget()));
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        if (isFinished) {
+                            DashboardWidgets dw = (DashboardWidgets) v;
+                            startActivity(new Intent(Home.this, dw.getTarget()));
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        }
                     }
                 });
 
@@ -299,14 +333,6 @@ public class Home extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             close();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1) {
-            recreate();
         }
     }
 

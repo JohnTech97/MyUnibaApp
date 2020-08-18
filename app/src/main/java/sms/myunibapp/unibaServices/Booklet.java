@@ -12,9 +12,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import sms.myunibapp.ExamsData;
+import sms.myunibapp.Home;
 import sms.myunibapp.Login;
 
 public class Booklet extends AppCompatActivity {
@@ -34,19 +39,21 @@ public class Booklet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_libretto);
+        DrawerLayout drawer=findViewById(R.id.menu_navigazione_booklet);
+        Toolbar toolbar=findViewById(R.id.menu_starter_booklet);
+        NavigationView nav= findViewById(R.id.navigation_menu_booklet);
+        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+        drawer.addDrawerListener(mainMenu);
+        mainMenu.syncState();
+        nav.bringToFront();
+        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
 
         ScrollView scrollView = findViewById(R.id.scrollview_libretto);
-
         TableLayout tabellaEsami = findViewById(R.id.tabella_libretto);
-
         Button showDetails = findViewById(R.id.show_details);
-
         TextView ma=findViewById(R.id.media_aritmetica);
-
         TextView mp=findViewById(R.id.media_ponderata);
-
         TextView perc=findViewById(R.id.percentuale_esami);
-
         TextView libretto=findViewById(R.id.activity_libretto);
 
         libretto.setText(getResources().getString(R.string.booklet));
@@ -72,7 +79,7 @@ public class Booklet extends AppCompatActivity {
 
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 1100;
+        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 1100; //per fare in modo di visualizzare la parte inferiore del content view senza che la scrollview prenda il sopravvento
 
         scrollView.setLayoutParams(altezza);
 
@@ -246,7 +253,7 @@ public class Booklet extends AppCompatActivity {
 
     }
 
-    private TextView initializeTextView(TextView t) {
+    private TextView initializeTextView(TextView t) {//metodo di utilità per non dover definire ogni volta gli stessi parametri per ogni singola textview
         t = new TextView(this);
         t.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
         t.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

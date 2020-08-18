@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,8 @@ public class Login extends AppCompatActivity {
     private static String username;
     private String password;
 
+    private ProgressBar progress;
+
     private SharedPreferences pref;
 
     @Override
@@ -66,6 +69,7 @@ public class Login extends AppCompatActivity {
             if (!validateUsername() | !validatePassword()) {
                 return;
             } else {
+                progress.setVisibility(View.VISIBLE);
                 authenticate(username, password);
             }
         });
@@ -128,6 +132,7 @@ public class Login extends AppCompatActivity {
         }
         firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                progress.setVisibility(View.GONE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("Remember", rememberMe.isChecked());
                 editor.putString("Email", mail);
@@ -148,6 +153,7 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), target));
                 finish();
             } else {
+                progress.setVisibility(View.GONE);
                 Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -166,6 +172,7 @@ public class Login extends AppCompatActivity {
         forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
         firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        progress=findViewById(R.id.progress_login);
     }
 
     private Boolean validateUsername() {
