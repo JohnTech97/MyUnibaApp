@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/menu_icon"
-            style="@style/CustomActionBarTheme"
+            android:background="@color/background_color_app"
             app:title="Dashboard"
             app:titleTextColor="#FFF" >
 

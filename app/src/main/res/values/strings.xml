@@ -36,7 +36,7 @@
     <string name="exit">Esci</string>
 
     <!-- Schermata home-->
-    <string name="widgets">Personalizza widgets</string>
+    <string name="widgets">Aggiungi widgets</string>
 
     <string name="exitDialogTitle">Chiusura dell\'applicazione</string>
     <string name="exitDialogMessage">Sei sicuro di voler terminare la sessione di utilizzo dell\'app?</string>
@@ -156,5 +156,6 @@
 
     <string name="modifica_esame_conferma_titolo">Sicuro?</string>
     <string name="modifica_esame_conferma_messaggio">Modificare o eliminare i dati dell\'esame può creare disagi se non si compie questa azione con un motivo valido</string>
+    <string name="ciao_studente">Ciao, Studente</string>
 
 </resources>

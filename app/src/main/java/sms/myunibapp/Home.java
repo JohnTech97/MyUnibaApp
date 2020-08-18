@@ -9,13 +9,14 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -25,9 +26,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Timer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.BookableExams;
@@ -64,8 +69,8 @@ public class Home extends AppCompatActivity {
         Button b = findViewById(R.id.personalizzazione_widget);
         progress = findViewById(R.id.progress_home);
 
-        //inizializzazione dati esami da firebase
 
+        /* INIZIALIZZAZIONE DATI ESAMI */
         ExamsData.initializeData(this);
 
         //il timer per determinare se il caricamento è completo parte da ora
@@ -89,13 +94,36 @@ public class Home extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
 
-        //mostra il dialog per selezionare i widget che andranno nella dashboard
-        b.setOnClickListener((View v) -> {
-            /*for (int i = 0; i < items.length; i++) {
-                items[i].setChecked(false);
-            }*/
+        /**
+         * PROFILO NOME UTENTE
+         */
+
+        TextView matricola = findViewById(R.id.matricola);
+        TextView nome = findViewById(R.id.utente_nome);
+
+        /* ACCESSO AL DATABASE */
+        DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+
+        studente.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot s) {
+                nome.setText(s.child("Nome").getValue(String.class));
+                matricola.setText(s.child("Matricola").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        /**
+         * AGGIUNTA DEI WIDGETS
+         */
+        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.personalizzazione_widget);
+        extendedFloatingActionButton.setOnClickListener((View v) -> {
             dialog.show();
         });
+
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
         editor = getSharedPreferences("Widgets", MODE_PRIVATE);
@@ -171,14 +199,17 @@ public class Home extends AppCompatActivity {
             BookableExams.class,
             BookingsBoard.class,
             OutcomeBoard.class,
-            Profile.class};
+            Profile.class
+    };
+
     private String iconNames[] = new String[]{
             "segretary_icon",
             "career_icon",
             "exam_list_icon",
             "exam_booking_icon",
             "exam_results_icon",
-            "user_icon"};
+            "user_icon"
+    };
     private String widgetMessages[] = new String[classes.length];
     private CheckBox items[] = new CheckBox[classes.length];
 
@@ -194,6 +225,25 @@ public class Home extends AppCompatActivity {
             widgetMessages[i] = items[i].getText().toString();
         }
 
+        builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setPositiveButton(getResources().getString(R.string.dialogConfirm), (dialog, which) -> {
+            SharedPreferences.Editor edit = editor.edit();
+            edit.clear().apply();//ripulisco le informazioni precedenti prima di inserire i nuovi
+            layout.removeAllViews();
+            int count = 1;
+            for (int i = 0; i < classes.length; i++) {
+                if (items[i].isChecked()) {
+                    edit.putString("icon" + count, iconNames[i]);
+                    edit.putString("ClasseTarget" + count, classes[i].getName());
+                    edit.putBoolean("IsSelected" + (i + 1), true);//per fare in modo di far ritrovare le stesse opzioni selezionate
+                    //la prossima volta che si accede alla schermata
+                    count++;
+                }
+            }
         builder.setView(view).setNegativeButton(getResources().getString(R.string.dialogDecline), null)
         .setPositiveButton(getResources().getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
             @Override
@@ -212,13 +262,12 @@ public class Home extends AppCompatActivity {
                     }
                 }
 
-                count--;
+            count--;
 
-                edit.putInt("numberOfWidgets", count);
-                edit.apply();
+            edit.putInt("numberOfWidgets", count);
+            edit.apply();
 
-                initializeWidgets();
-            }
+            initializeWidgets();
         });
         dialog = builder.create();
     }
@@ -311,15 +360,10 @@ public class Home extends AppCompatActivity {
                 widget.setNomeWidget(testo);
                 widget.setTarget(target);
                 widget.setClickable(true);
-                widget.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (isFinished) {
-                            DashboardWidgets dw = (DashboardWidgets) v;
-                            startActivity(new Intent(Home.this, dw.getTarget()));
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        }
-                    }
+                widget.setOnClickListener(v -> {
+                    DashboardWidgets dw = (DashboardWidgets) v;
+                    startActivity(new Intent(Home.this, dw.getTarget()));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 });
 
                 layout.addView(widget);
@@ -341,19 +385,11 @@ public class Home extends AppCompatActivity {
         AlertDialog.Builder conferma = new AlertDialog.Builder(Home.this);
         conferma.setTitle(res.getString(R.string.exitDialogTitle));
         conferma.setMessage(res.getString(R.string.exitDialogMessage));
-        conferma.setPositiveButton(res.getString(R.string.dialogConfirm), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-                System.exit(0);
-            }
+        conferma.setPositiveButton(res.getString(R.string.dialogConfirm), (dialog, which) -> {
+            finish();
+            System.exit(0);
         });
-        conferma.setNegativeButton(res.getString(R.string.dialogDecline), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        conferma.setNegativeButton(res.getString(R.string.dialogDecline), (dialog, which) -> dialog.cancel());
         conferma.show();
     }
 }

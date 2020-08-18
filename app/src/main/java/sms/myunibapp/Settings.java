@@ -46,7 +46,7 @@ public class Settings extends AppCompatActivity {
         s.setAdapter(adapter);
 
         preferences = getSharedPreferences("Settings", MODE_PRIVATE);
-        fingerprints.setChecked(preferences.getBoolean("fingerprintsEnabled", false));
+        fingerprints.setChecked(preferences.getBoolean("fingerprintsEnabled", true));
 
         //cerco nell'array languages la posizione da usare per la selezione dello spinner
         //si potrebbe fare con adapter.getPosition(String), ma il toString definito in SpinnerData è già assegnato per ritornare

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_lighter">#F5C3D3DF</color>
-    <color name="background">#F8F8F8</color>
-    <color name="background_buttons">#5400CDD4</color>
+    <color name="colorPrimary">#D30022FF</color>
+    <color name="colorPrimaryDark">#5400CDD4</color>
+    <color name="colorAccent">#142031</color>
+
+    <color name="background_color_app">#F5C3D3DF</color>
+    <color name="background_schede_app">#FAFAFA</color>
+
     <color name="widgets_background">#d5d5d5</color>
+    <color name="color_text">#142031</color>
 </resources>
