@@ -17,7 +17,7 @@ public class Settings extends AppCompatActivity {
 
     private boolean hasLanguageChanged = false;
     private Switch fingerprints;
-    private Spinner s;
+    private Spinner spinner;
     private SpinnerData languages[];
 
     private SharedPreferences preferences;
@@ -27,7 +27,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        s = findViewById(R.id.lingua);
+        spinner = findViewById(R.id.lingua);
         fingerprints = findViewById(R.id.impronte);
 
         String[] lingue = getResources().getStringArray(R.array.language_items);
@@ -43,7 +43,7 @@ public class Settings extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
         preferences = getSharedPreferences("Settings", MODE_PRIVATE);
         fingerprints.setChecked(preferences.getBoolean("fingerprintsEnabled", true));
@@ -60,8 +60,8 @@ public class Settings extends AppCompatActivity {
                 }
             }
         }
-        s.setSelection(pos, false);
-        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setSelection(pos, false);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 hasLanguageChanged = true;
@@ -85,7 +85,7 @@ public class Settings extends AppCompatActivity {
         }
         SharedPreferences.Editor edit = preferences.edit();
         edit.putBoolean("fingerprintsEnabled", fingerprints.isChecked());
-        edit.putString("Language", languages[s.getSelectedItemPosition()].abbreviazione);
+        edit.putString("Language", languages[spinner.getSelectedItemPosition()].abbreviazione);
 
         edit.apply();
         finish();

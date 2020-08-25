@@ -19,7 +19,7 @@ import com.example.myunibapp.R;
 
 public class DashboardWidgets extends CardView {
 
-    private ImageView icona;
+    private ImageView icon;
     private TextView nomeWidget;
     private Class target;
 
@@ -44,16 +44,16 @@ public class DashboardWidgets extends CardView {
 
     public void inflate() {
 
-        icona = findViewById(R.id.logo_widget);
+        icon = findViewById(R.id.logo_widget);
         nomeWidget = findViewById(R.id.nome_widget);
     }
 
-    public Drawable getIcona() {
-        return icona.getDrawable();
+    public Drawable getIcon() {
+        return icon.getDrawable();
     }
 
-    public void setIcona(Drawable icona) {
-        this.icona.setImageDrawable(icona);
+    public void setIcon(Drawable icon) {
+        this.icon.setImageDrawable(icon);
     }
 
     public String getNomeWidget() {

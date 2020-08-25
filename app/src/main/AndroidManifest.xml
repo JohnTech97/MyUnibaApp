@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreenSchede">
-        <activity android:name="sms.myunibapp.ProfessorProfile"></activity>
+        <activity android:name="sms.myunibapp.Fingerprints"></activity>
+        <activity android:name="sms.myunibapp.ProfessorProfile" />
         <activity android:name="sms.myunibapp.unibaServices.ManageExam" />
         <activity android:name="sms.myunibapp.unibaServices.StudentEvalutation" />
         <activity android:name="sms.myunibapp.unibaServices.AddExam" />

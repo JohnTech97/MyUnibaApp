@@ -21,7 +21,7 @@ import java.util.Locale;
 public class SplashScreen extends AppCompatActivity {
 
     private ImageView imageView; //logo dell'app
-    private final int SPLASH_DELAY = 1000;
+    private final int SPLASH_DELAY = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +33,19 @@ public class SplashScreen extends AppCompatActivity {
         IMPOSTAZIONE LINGUA PER L'APPLICAZIONE
          */
         SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String system=getResources().getStringArray(R.array.language_abbreviations)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
-        String lingua=pref.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
-        Locale locale=null;
-        if(lingua.equals(system)){
-            locale= Resources.getSystem().getConfiguration().locale;//lingua impostata dal sistema, non la lingua scelta nell'app
-        }else{
-            locale=new Locale(lingua);
+        String system = getResources().getStringArray(R.array.language_abbreviations)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
+        String lingua = pref.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
+        Locale locale = null;
+        if (lingua.equals(system)) {
+            locale = Resources.getSystem().getConfiguration().locale;//lingua impostata dal sistema, non la lingua scelta nell'app
+        } else {
+            locale = new Locale(lingua);
         }
-        Configuration c=new Configuration();
-        c.locale=locale;
-        Resources res= getBaseContext().getResources();
-        res.updateConfiguration(c,res.getDisplayMetrics());
+
+        Configuration c = new Configuration();
+        c.locale = locale;
+        Resources res = getBaseContext().getResources();
+        res.updateConfiguration(c, res.getDisplayMetrics());
 
         /*
             PER NASCONDERE LA BARRA DI NAVIGAZIONE
@@ -62,10 +63,15 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, Login.class));
+
+                if (pref.getBoolean("fingerprintsEnabled", true)) {
+                    startActivity(new Intent(SplashScreen.this, Fingerprints.class));
+                } else {
+                    startActivity(new Intent(SplashScreen.this, Login.class));
+                }
                 finish();
             }
-        },SPLASH_DELAY);
+        }, SPLASH_DELAY);
     }
 
     private void animateLogo() {

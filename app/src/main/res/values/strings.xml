@@ -44,9 +44,9 @@
     <string name="dialogDecline">Annulla</string>
 
     <!-- Sensore di impronte-->
-    <string name="fingerPrintDialogTitle">Accesso con impronte</string>
+    <string name="fingerPrintDialogTitle">Login biometrico per "MyUnibApp"</string>
     <string name="fingerPrintDialogNegativeButton">Annulla</string>
-    <string name="fingerPrintDialogDescription">È possibile accedere all\'app sfruttando la tecnologia del sensore di impronte</string>
+    <string name="fingerPrintDialogDescription">Accedi usando le tue credenziali biometriche</string>
 
 
     <!-- Esami prenotabili-->
@@ -140,7 +140,7 @@
     <string name="valutazione_studenti">Valuta studenti</string>
     <string name="gestione_appelli">Gestisci appelli</string>
     <string name="profilo_professori">Profilo</string>
-    
+
     <string name="aula_professori">Aula per ricevimenti</string>
     <string name="insegnamenti_professori">Insegnamenti</string>
 
@@ -156,6 +156,8 @@
 
     <string name="modifica_esame_conferma_titolo">Sicuro?</string>
     <string name="modifica_esame_conferma_messaggio">Modificare o eliminare i dati dell\'esame può creare disagi se non si compie questa azione con un motivo valido</string>
-    <string name="ciao_studente">Ciao, Studente</string>
-
+    <string name="ciao_studente">"Benvenuto "</string>
+    <string name="inserisci_le_credenziali">Inserisci le credenziali</string>
+    <string name="text_fingerprint">Puoi disattivare in qualsiasi momento il riconoscimento biometrico nella sezione <strong> Sicurezza </strong></string>
+    <string name="text_noFingerprint">Il dispositivo non ha il sensore per il riconoscimento dell\'impronta</string>
 </resources>

@@ -157,5 +157,6 @@
 
     <string name="modifica_esame_conferma_titolo">Sicuro?</string>
     <string name="modifica_esame_conferma_messaggio">Modificare o eliminare i dati dell\'esame può creare disagi se non si compie questa azione con un motivo valido</string>
+    <string name="ciao_studente">Benvenuto</string>
 
 </resources>

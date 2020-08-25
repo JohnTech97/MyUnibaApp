@@ -59,7 +59,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_nav_drawer);
 
         drawer = findViewById(R.id.menu_navigazione);
         nav = findViewById(R.id.navigation_menu);
@@ -259,7 +259,7 @@ public class Home extends AppCompatActivity {
             DashboardWidgets profilo, libretto, calendario, esiti;
             profilo = new DashboardWidgets(this);
             profilo.inflate();
-            profilo.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            profilo.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             profilo.setNomeWidget(items[0].getText().toString());
             profilo.setTarget(Secretary.class);
             profilo.setClickable(true);
@@ -268,7 +268,7 @@ public class Home extends AppCompatActivity {
 
             libretto = new DashboardWidgets(this);
             libretto.inflate();
-            libretto.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            libretto.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             libretto.setNomeWidget(items[1].getText().toString());
             libretto.setTarget(Booklet.class);
             libretto.setClickable(true);
@@ -277,7 +277,7 @@ public class Home extends AppCompatActivity {
 
             calendario = new DashboardWidgets(this);
             calendario.inflate();
-            calendario.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            calendario.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             calendario.setNomeWidget(items[3].getText().toString());
             calendario.setTarget(BookableExams.class);
             calendario.setClickable(true);
@@ -286,7 +286,7 @@ public class Home extends AppCompatActivity {
 
             esiti = new DashboardWidgets(this);
             esiti.inflate();
-            esiti.setIcona(getDrawable(R.drawable.missing_icon));//placeholder
+            esiti.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             esiti.setNomeWidget(items[4].getText().toString());
             esiti.setTarget(OutcomeBoard.class);
             esiti.setClickable(true);
@@ -337,7 +337,7 @@ public class Home extends AppCompatActivity {
                 //ho tutte le informazioni necessarie per inizializzare un widget
                 DashboardWidgets widget = new DashboardWidgets(this);
                 widget.inflate();
-                widget.setIcona(icon);
+                widget.setIcon(icon);
                 widget.setNomeWidget(testo);
                 widget.setTarget(target);
                 widget.setClickable(true);

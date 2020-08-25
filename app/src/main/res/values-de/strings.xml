@@ -156,5 +156,6 @@
 
     <string name="modifica_esame_conferma_titolo">Sie sicher?</string>
     <string name="modifica_esame_conferma_messaggio">Das Ändern oder Entfernen von Prüfungsdaten kann bei Unachtsamkeit zu Unannehmlichkeiten führen</string>
+    <string name="ciao_studente">Hi, Student</string>
 
 </resources>

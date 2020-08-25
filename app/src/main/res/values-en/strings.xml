@@ -134,8 +134,6 @@
     <string name="weighted_mean">Weighted average: %.2f</string>
     <string name="arithmetic_mean">Arithmetic average: %.2f</string>
     <string name="percentage">Passed exams percentage: %d%%</string>
-    <string name="aggiunta_date">Create exam</string>
-    <string name="aggiunta_date">Create exam</string>
 
     <!-- Professori-->
 
@@ -159,5 +157,7 @@
 
     <string name="modifica_esame_conferma_titolo">You sure?</string>
     <string name="modifica_esame_conferma_messaggio">Modifying or removing exam data can lead to inconveniences if done carelessly</string>
+    <string name="ciao_studente">Welcome</string>
+
 
 </resources>

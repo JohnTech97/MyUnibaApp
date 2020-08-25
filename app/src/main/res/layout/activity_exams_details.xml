@@ -20,7 +20,6 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/menu_starter_exam_details"
-        style="@style/CustomActionBarTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/menu_icon"

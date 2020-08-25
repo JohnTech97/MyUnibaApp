@@ -8,5 +8,6 @@
     <color name="background_schede_app">#FAFAFA</color>
 
     <color name="widgets_background">#d5d5d5</color>
+    <color name="color_white">#FFFFFF</color>
     <color name="color_text">#142031</color>
 </resources>

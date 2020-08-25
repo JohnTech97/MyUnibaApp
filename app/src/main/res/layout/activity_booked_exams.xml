@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/menu_icon"
-        style="@style/CustomActionBarTheme"
         app:title="Dashboard"
         app:titleTextColor="#FFF" />
 

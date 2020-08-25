@@ -156,5 +156,6 @@
 
     <string name="modifica_esame_conferma_titolo">Vous êtes sûr?</string>
     <string name="modifica_esame_conferma_messaggio">La modification ou la suppression des données d\'examen peut entraîner des inconvénients si elle est effectuée avec négligence</string>
+    <string name="ciao_studente">Benvenue</string>
 
 </resources>

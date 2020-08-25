@@ -51,7 +51,7 @@
             android:id="@+id/text_input_username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             app:errorTextColor="#F5F81111"
             android:isScrollContainer="false"
             app:hintEnabled="false">
@@ -112,7 +112,7 @@
             android:id="@+id/button_login"
             android:layout_width="280dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_login"
             android:hint="@string/action_sign_in"
             android:textColorHint="#fff" />

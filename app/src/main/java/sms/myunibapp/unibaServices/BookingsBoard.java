@@ -36,17 +36,17 @@ public class BookingsBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booked_exams);
 
-        LinearLayout listaEsami=findViewById(R.id.prenotati);
-        DrawerLayout drawer=findViewById(R.id.menu_navigazione_booked_exam);
-        Toolbar toolbar=findViewById(R.id.menu_starter_booked_exam);
-        NavigationView nav= findViewById(R.id.navigation_menu_booked_exam);
+        LinearLayout listaEsami = findViewById(R.id.prenotati);
+        DrawerLayout drawer = findViewById(R.id.menu_navigazione_booked_exam);
+        Toolbar toolbar = findViewById(R.id.menu_starter_booked_exam);
+        NavigationView nav = findViewById(R.id.navigation_menu_booked_exam);
         ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
 
-        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("ResourceType")
@@ -56,7 +56,7 @@ public class BookingsBoard extends AppCompatActivity {
                 for(int i=1;i<=s.getChildrenCount()/4;i++){
                     BookedExamDetails esamePrenotato=new BookedExamDetails(BookingsBoard.this);//si utilizza lo stesso layout di EsamiPrenotabili perché le informazioni da mostrare sono le stesse
                     //per poi modificare la scritta all'interno del bottone presente alla fine dell'impaginazione
-                    ExamsData.Esame esame=ExamsData.getEsame(s.child("nome"+i).getValue(String.class));
+                    ExamsData.Esame esame = ExamsData.getEsame(s.child("nome"+i).getValue(String.class));
 
                     esamePrenotato.inflate();
 
