@@ -10,7 +10,7 @@ import android.os.Bundle;
 import com.example.myunibapp.R;
 import com.google.android.material.navigation.NavigationView;
 
-import sms.myunibapp.Home;
+import sms.myunibapp.principale.HomeActivity;
 
 public class Secretary extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class Secretary extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         
     }

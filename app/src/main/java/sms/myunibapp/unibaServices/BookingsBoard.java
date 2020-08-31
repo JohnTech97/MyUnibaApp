@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myunibapp.R;
@@ -22,11 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-import sms.myunibapp.ExamsData;
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
-import sms.myunibapp.advancedViews.BookableExamDetails;
-import sms.myunibapp.advancedViews.BookableExamItem;
+import sms.myunibapp.principale.ExamsData;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookedExamDetails;
 
 public class BookingsBoard extends AppCompatActivity {
@@ -44,9 +41,9 @@ public class BookingsBoard extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("ResourceType")

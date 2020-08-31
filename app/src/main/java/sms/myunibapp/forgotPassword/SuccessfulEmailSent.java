@@ -12,7 +12,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.example.myunibapp.R;
 
-import sms.myunibapp.Login;
+import sms.myunibapp.accessApp.LoginActivity;
 
 public class SuccessfulEmailSent extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class SuccessfulEmailSent extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SuccessfulEmailSent.this, Login.class));
+                startActivity(new Intent(SuccessfulEmailSent.this, LoginActivity.class));
                 finish();
             }
         }, 10000);

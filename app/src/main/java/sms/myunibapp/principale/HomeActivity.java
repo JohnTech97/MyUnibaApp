@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.principale;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,21 +33,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.SessionManager;
 import sms.myunibapp.advancedViews.DashboardWidgets;
+import sms.myunibapp.profileUser.Profile;
 import sms.myunibapp.unibaServices.BookableExams;
 import sms.myunibapp.unibaServices.BookingsBoard;
 import sms.myunibapp.unibaServices.Booklet;
 import sms.myunibapp.unibaServices.LuoghiDiInteresse;
 import sms.myunibapp.unibaServices.OutcomeBoard;
-import sms.myunibapp.unibaServices.Profile;
 import sms.myunibapp.unibaServices.Secretary;
 
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends DrawerActivity {
 
     private DrawerLayout drawer;
-    private NavigationView nav;
-    private Toolbar toolbar;
+
     private GridLayout layout;
     private AlertDialog dialog;
     private SharedPreferences editor;
@@ -62,11 +62,14 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_nav_drawer);
 
         drawer = findViewById(R.id.menu_navigazione);
-        nav = findViewById(R.id.navigation_menu);
-        toolbar = findViewById(R.id.menu_starter);
+        NavigationView nav = findViewById(R.id.navigation_menu);
+        Toolbar toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
         progress = findViewById(R.id.progress_home);
 
+
+        // Creazione del nuovo manager di sessione
+        sessionManager = new SessionManager(getApplicationContext());
 
         /* INIZIALIZZAZIONE DATI ESAMI */
         ExamsData.initializeData(this);
@@ -100,7 +103,7 @@ public class Home extends AppCompatActivity {
         TextView nome = findViewById(R.id.utente_nome);
 
         /* ACCESSO AL DATABASE */
-        DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente").child(sessionManager.getNomeCompleto());
 
         studente.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -118,9 +121,7 @@ public class Home extends AppCompatActivity {
          * AGGIUNTA DEI WIDGETS
          */
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.personalizzazione_widget);
-        extendedFloatingActionButton.setOnClickListener((View v) -> {
-            dialog.show();
-        });
+        extendedFloatingActionButton.setOnClickListener((View v) -> dialog.show());
 
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
@@ -131,20 +132,20 @@ public class Home extends AppCompatActivity {
         ScrollView scrollView = findViewById(R.id.scrollview_home);
         LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
 
-        altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
+       // altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
 
-        scrollView.setLayoutParams(altezza);
+       //scrollView.setLayoutParams(altezza);
 
     }
 
     //serve un unico listener da utilizzare in tutte le schermate
     public static NavigationView.OnNavigationItemSelectedListener getNavigationBarListener(AppCompatActivity app) {
-        return (NavigationView.OnNavigationItemSelectedListener) item -> {
+        return item -> {
             Class target = null;
 
             switch (item.getItemId()) {
                 case R.id.home:
-                    target = Home.class;
+                    target = HomeActivity.class;
                     break;
                 case R.id.segreteria:
                     target = Secretary.class;
@@ -174,12 +175,6 @@ public class Home extends AppCompatActivity {
                     target = Settings.class;
                     break;
                 case R.id.logout:
-                    //faccio in modo che al prossimo accesso le credenziali non vengano immesse automaticamente dal sistema
-                    SharedPreferences.Editor editor = app.getSharedPreferences("Settings", MODE_PRIVATE).edit();
-                    editor.putBoolean("Remember", false);
-                    editor.apply();
-                    app.startActivity(new Intent(app, Login.class));
-                    app.finish();
                     break;
             }//il target deve essere diverso dalla schermata corrente, per evitare di tornare inutilmente nella stessa pagina
             if (target != null && target != app.getClass() && isFinished) {//se la progress bar è visibile vuol dire che non ha finito di caricare
@@ -294,7 +289,7 @@ public class Home extends AppCompatActivity {
             View.OnClickListener click = (View v) -> {
                 if (isFinished) {
                     DashboardWidgets dw = (DashboardWidgets) v;
-                    startActivity(new Intent(Home.this, dw.getTarget()));
+                    startActivity(new Intent(HomeActivity.this, dw.getTarget()));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
             };
@@ -343,7 +338,7 @@ public class Home extends AppCompatActivity {
                 widget.setClickable(true);
                 widget.setOnClickListener(v -> {
                     DashboardWidgets dw = (DashboardWidgets) v;
-                    startActivity(new Intent(Home.this, dw.getTarget()));
+                    startActivity(new Intent(HomeActivity.this, dw.getTarget()));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 });
 
@@ -363,7 +358,7 @@ public class Home extends AppCompatActivity {
 
     private void close() {
         Resources res = getResources();
-        AlertDialog.Builder conferma = new AlertDialog.Builder(Home.this);
+        AlertDialog.Builder conferma = new AlertDialog.Builder(HomeActivity.this);
         conferma.setTitle(res.getString(R.string.exitDialogTitle));
         conferma.setMessage(res.getString(R.string.exitDialogMessage));
         conferma.setPositiveButton(res.getString(R.string.dialogConfirm), (dialog, which) -> {

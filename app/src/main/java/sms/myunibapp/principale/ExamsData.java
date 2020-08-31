@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.principale;
 
 import android.content.Context;
 
@@ -14,7 +14,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import sms.myunibapp.SessionManager;
+import sms.myunibapp.accessApp.LoginActivity;
+
 public class ExamsData {
+
 
     public static class Esame {
         //firebase
@@ -23,6 +27,7 @@ public class ExamsData {
         private ArrayList<String> date = new ArrayList<>();
         private ArrayList<String> aule = new ArrayList<>();
         private ArrayList<String> edifici = new ArrayList<>();
+
 
         public Esame() {
 
@@ -115,7 +120,7 @@ public class ExamsData {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //per prima cosa si deve ottenere la classe dello studente, per poi ottenere gli esami associati
-                    String classe = dataSnapshot.child("Studente").child(Login.getUsername()).child("Classe").getValue(String.class);
+                    String classe = dataSnapshot.child("Studente").child(LoginActivity.getUsername()).child("Classe").getValue(String.class);
 
                     DataSnapshot data = dataSnapshot.child("CorsoDiLaurea").child(classe).child("Esami");
                     String lingua = ctx.getResources().getConfiguration().locale.getLanguage();//rappresenta l'abbreviazione della lingua impostata a livello dell'app

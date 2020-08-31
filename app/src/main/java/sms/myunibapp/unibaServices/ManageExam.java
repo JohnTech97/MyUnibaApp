@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import sms.myunibapp.DateTimePicker;
-import sms.myunibapp.ProfessorHome;
+import sms.myunibapp.principale.ProfessorHome;
 import sms.myunibapp.SpinnerData;
 
 public class ManageExam extends AppCompatActivity {

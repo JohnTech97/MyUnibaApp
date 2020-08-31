@@ -1,8 +1,6 @@
 package sms.myunibapp.unibaServices;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,8 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookableExamDetails;
 
 public class BookableExamsDetails extends AppCompatActivity {
@@ -41,7 +39,7 @@ public class BookableExamsDetails extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         Bundle b = getIntent().getExtras();
         String key = b.getString("key");
@@ -69,7 +67,7 @@ public class BookableExamsDetails extends AppCompatActivity {
             esame.setDocente(docente);
             esame.getBottone().setText("Prenotati");
             esame.getBottone().setOnClickListener(v -> {
-                DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+                DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
                 //per scalare i dati nel database (ad esempio esame3 diventa esame2, ecc) la soluzione più semplice sembra
                 //essere recuperare tutti i dati presenti per poi scalarli da codice con un array (in questo caso map, perché viene associato un key)

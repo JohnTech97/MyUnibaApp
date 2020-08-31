@@ -5,157 +5,128 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5C3D3DF"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
     android:isScrollContainer="false"
-    tools:context="sms.myunibapp.Login">
+    android:orientation="vertical"
+    tools:context="sms.myunibapp.accessApp.LoginActivity">
 
-        <ImageView
-            android:id="@+id/logoUniba"
-            android:layout_width="239dp"
-            android:layout_height="194dp"
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/uniba" />
+    <ImageView
+        android:id="@+id/logoUniba"
+        android:layout_width="239dp"
+        android:layout_height="194dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/uniba" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="31dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/welcome"
-            android:textAlignment="center"
-            android:textColor="#1D2B3E"
-            android:textSize="22sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/welcome"
+        android:textAlignment="center"
+        android:textColor="#1D2B3E"
+        android:textSize="22sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="31dp"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/access_to_continue"
-            android:textAlignment="center"
-            android:textColor="#5A5B5D"
-            android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/access_to_continue"
+        android:textAlignment="center"
+        android:textColor="#5A5B5D"
+        android:textSize="12sp" />
 
     <ProgressBar
         android:id="@+id/progress_login"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:progress="20"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_username"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_username"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:isScrollContainer="false"
+        app:errorTextColor="#F5F81111"
+        app:hintEnabled="false">
+
+        <EditText
+            android:id="@+id/username"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            app:errorTextColor="#F5F81111"
-            android:isScrollContainer="false"
-            app:hintEnabled="false">
+            android:autofillHints=""
+            android:backgroundTint="#FFF"
+            android:drawableStart="@drawable/ic_user"
+            android:drawablePadding="5dp"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFF" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FFF"
-                android:drawableStart="@drawable/ic_user"
-                android:drawablePadding="5dp"
-                android:hint="@string/prompt_email"
-                android:paddingBottom="15dp"
-                android:inputType="textEmailAddress"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFF"
-                android:autofillHints="" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:isScrollContainer="false"
+        app:errorTextColor="#F5F81111"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/background_schede_app">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_password"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            app:errorTextColor="#F5F81111"
-            android:isScrollContainer="false"
-            app:hintEnabled="false"
-            android:layout_marginTop="10dp"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/background_schede_app">
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:backgroundTint="#FFF"
-                android:drawableStart="@drawable/ic_password"
-                android:drawablePadding="5dp"
-                android:paddingBottom="15dp"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFF"
-                android:autofillHints="" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <CheckBox
-            android:id="@+id/remember"
+        <EditText
+            android:id="@+id/password"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:buttonTint="#FFFFFF"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/remember_credentials"
-            android:textColor="#FFFFFF" />
+            android:autofillHints=""
+            android:backgroundTint="#FFF"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="5dp"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:paddingBottom="15dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFF" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/button_login"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_login"
-            android:hint="@string/action_sign_in"
-            android:textColorHint="#fff" />
+    <CheckBox
+        android:id="@+id/remember"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:buttonTint="#FFFFFF"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/remember_credentials"
+        android:textColor="#FFFFFF" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_login"
+        android:hint="@string/action_sign_in"
+        android:textColorHint="#fff" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="6dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/or"
-                android:textColor="#4A5360"
-                android:textSize="14sp" />
+    <TextView
+        android:id="@+id/lost_password"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/poppins"
+        android:isScrollContainer="false"
+        android:text="@string/forgot_password"
+        android:textAlignment="center"
+        android:textColor="#6C7480"
+        android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/ospite"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/ospite_login"
-                android:textAlignment="center"
-                android:textColor="#2D3BAA"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <TextView
-            android:isScrollContainer="false"
-            android:id="@+id/lost_password"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginTop="22dp"
-            android:fontFamily="@font/poppins"
-            android:text="@string/forgot_password"
-            android:textAlignment="center"
-            android:textColor="#6C7480"
-            android:textSize="12sp" />
-
-    </LinearLayout>
+</LinearLayout>
 

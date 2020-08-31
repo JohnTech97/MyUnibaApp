@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.principale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.GridLayout;
 
 import com.example.myunibapp.R;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,10 +20,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import sms.myunibapp.profileUser.ProfessorProfile;
+import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.AddExam;
 import sms.myunibapp.unibaServices.ManageExam;
-import sms.myunibapp.unibaServices.Secretary;
 import sms.myunibapp.unibaServices.StudentEvalutation;
 
 public class ProfessorHome extends AppCompatActivity {
@@ -108,7 +108,7 @@ public class ProfessorHome extends AppCompatActivity {
 
         prof=new ProfessorData();
 
-        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(Login.getUsername());
+        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(LoginActivity.getUsername());
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot s) {

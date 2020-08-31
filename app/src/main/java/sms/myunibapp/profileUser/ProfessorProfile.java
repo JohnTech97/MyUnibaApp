@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.profileUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myunibapp.R;
+
+import sms.myunibapp.principale.ProfessorHome;
 
 public class ProfessorProfile extends AppCompatActivity {
 

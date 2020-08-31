@@ -1,6 +1,5 @@
-package sms.myunibapp.unibaServices;
+package sms.myunibapp.profileUser;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -18,8 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 
 public class Profile extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class Profile extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         TextView matricola = findViewById(R.id.matricola);
         TextView nome = findViewById(R.id.utente_nome);
@@ -49,7 +48,7 @@ public class Profile extends AppCompatActivity {
         TextView ordinamento = findViewById(R.id.ordinamento);
         TextView normativa = findViewById(R.id.normativa);
 
-        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

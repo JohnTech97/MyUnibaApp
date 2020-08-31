@@ -2,7 +2,6 @@ package sms.myunibapp.unibaServices;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -21,9 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.ExamsData;
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
+import sms.myunibapp.principale.ExamsData;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.ExamOutcomeDetails;
 
 public class OutcomeBoard extends AppCompatActivity {
@@ -40,11 +39,11 @@ public class OutcomeBoard extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

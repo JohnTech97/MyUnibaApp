@@ -1,13 +1,9 @@
 package sms.myunibapp.unibaServices;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
@@ -28,9 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.ExamsData;
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
+import sms.myunibapp.principale.ExamsData;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookableExamItem;
 
 public class BookableExams extends AppCompatActivity {
@@ -50,10 +46,10 @@ public class BookableExams extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference().child("Studente").child(Login.getUsername()).child("Esami da superare");
+        DatabaseReference ref = db.getReference().child("Studente").child(LoginActivity.getUsername()).child("Esami da superare");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {

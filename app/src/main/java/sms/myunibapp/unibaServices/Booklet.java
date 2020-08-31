@@ -25,9 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.ExamsData;
-import sms.myunibapp.Home;
-import sms.myunibapp.Login;
+import sms.myunibapp.principale.ExamsData;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.accessApp.LoginActivity;
 
 public class Booklet extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class Booklet extends AppCompatActivity {
         drawer.addDrawerListener(mainMenu);
         mainMenu.syncState();
         nav.bringToFront();
-        nav.setNavigationItemSelectedListener(Home.getNavigationBarListener(this));
+        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         ScrollView scrollView = findViewById(R.id.scrollview_libretto);
         TableLayout tabellaEsami = findViewById(R.id.tabella_libretto);
@@ -83,7 +83,7 @@ public class Booklet extends AppCompatActivity {
 
         scrollView.setLayoutParams(altezza);
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(Login.getUsername());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

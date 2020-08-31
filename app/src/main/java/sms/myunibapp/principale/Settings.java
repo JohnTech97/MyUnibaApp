@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.principale;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
+
+import sms.myunibapp.SpinnerData;
 
 public class Settings extends AppCompatActivity {
 
@@ -86,7 +88,6 @@ public class Settings extends AppCompatActivity {
         SharedPreferences.Editor edit = preferences.edit();
         edit.putBoolean("fingerprintsEnabled", fingerprints.isChecked());
         edit.putString("Language", languages[spinner.getSelectedItemPosition()].abbreviazione);
-
         edit.apply();
         finish();
     }

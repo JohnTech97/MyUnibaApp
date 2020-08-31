@@ -14,17 +14,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo_uniba"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_uniba_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreenSchede">
-        <activity android:name="sms.myunibapp.Fingerprints"></activity>
-        <activity android:name="sms.myunibapp.ProfessorProfile" />
+        <activity
+            android:name="sms.myunibapp.accessApp.Fingerprints"
+            android:theme="@style/FullScreen" />
+        <activity android:name="sms.myunibapp.profileUser.ProfessorProfile" />
         <activity android:name="sms.myunibapp.unibaServices.ManageExam" />
         <activity android:name="sms.myunibapp.unibaServices.StudentEvalutation" />
         <activity android:name="sms.myunibapp.unibaServices.AddExam" />
-        <activity android:name="sms.myunibapp.ProfessorHome" />
+        <activity android:name="sms.myunibapp.principale.ProfessorHome" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,18 +42,20 @@
         <activity
             android:name="sms.myunibapp.unibaServices.LuoghiDiInteresse"
             android:label="@string/title_activity_luoghi_di_interesse" />
-        <activity android:name="sms.myunibapp.Settings" /> <!-- SPLASH SCREEN -->
+        <activity android:name="sms.myunibapp.principale.Settings" /> <!-- SPLASH SCREEN -->
         <activity
-            android:name="sms.myunibapp.SplashScreen"
+            android:name="sms.myunibapp.principale.SplashScreen"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- ACTVITY PER IL LOGIN -->
+        </activity>
+
+        <!-- ACTVITY PER IL LOGIN -->
         <activity
-            android:name="sms.myunibapp.Login"
+            android:name="sms.myunibapp.accessApp.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/FullScreen" />
         <activity
@@ -62,15 +66,17 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name="sms.myunibapp.forgotPassword.SuccessfulEmailSent"
-            android:theme="@style/FullScreen" /> <!-- ACTVITY APP -->
+            android:theme="@style/FullScreen" />
+
+        <!-- ACTVITY APP -->
         <activity android:name="sms.myunibapp.unibaServices.BookingsBoard" />
         <activity android:name="sms.myunibapp.unibaServices.BookableExamsDetails" />
         <activity android:name="sms.myunibapp.unibaServices.BookableExams" />
         <activity android:name="sms.myunibapp.unibaServices.Secretary" />
-        <activity android:name="sms.myunibapp.unibaServices.Profile" />
+        <activity android:name="sms.myunibapp.profileUser.Profile" />
         <activity android:name="sms.myunibapp.unibaServices.OutcomeBoard" />
         <activity android:name="sms.myunibapp.unibaServices.Booklet" />
-        <activity android:name="sms.myunibapp.Home" />
+        <activity android:name="sms.myunibapp.principale.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.principale;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,17 +10,15 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import com.example.myunibapp.R;
 
 import java.util.Locale;
 
+import sms.myunibapp.accessApp.LoginActivity;
+
 public class SplashScreen extends AppCompatActivity {
 
-    private ImageView imageView; //logo dell'app
     private final int SPLASH_DELAY = 5000;
 
     @Override
@@ -32,10 +30,12 @@ public class SplashScreen extends AppCompatActivity {
         /*
         IMPOSTAZIONE LINGUA PER L'APPLICAZIONE
          */
-        SharedPreferences pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE); //Acquisizione dei settaggi di sistema
+
         String system = getResources().getStringArray(R.array.language_abbreviations)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
-        String lingua = pref.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
+        String lingua = settings.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
         Locale locale = null;
+
         if (lingua.equals(system)) {
             locale = Resources.getSystem().getConfiguration().locale;//lingua impostata dal sistema, non la lingua scelta nell'app
         } else {
@@ -55,29 +55,19 @@ public class SplashScreen extends AppCompatActivity {
                 // Hide the nav bar and status bar
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        /*
-            PER ANIMARE IL LOGO
-         */
-        animateLogo();
+        new Handler().postDelayed(() -> {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                if (pref.getBoolean("fingerprintsEnabled", true)) {
-                    startActivity(new Intent(SplashScreen.this, Fingerprints.class));
-                } else {
-                    startActivity(new Intent(SplashScreen.this, Login.class));
-                }
-                finish();
+            if (!settings.contains("Email")){
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+            } else if (settings.getBoolean("fingerprintsEnabled",true) && settings.getBoolean("Remember", false)) {
+                startActivity(new Intent(SplashScreen.this, sms.myunibapp.accessApp.Fingerprints.class));
+            }else{
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
             }
+            finish();
+
         }, SPLASH_DELAY);
+
     }
 
-    private void animateLogo() {
-        imageView = findViewById(R.id.logoUniba);
-        Animation fadingInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        fadingInAnimation.setDuration(SPLASH_DELAY);
-        imageView.startAnimation(fadingInAnimation);
-    }
 }

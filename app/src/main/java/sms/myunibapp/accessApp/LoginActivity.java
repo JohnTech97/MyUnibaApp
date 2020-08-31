@@ -1,4 +1,4 @@
-package sms.myunibapp;
+package sms.myunibapp.accessApp;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,21 +15,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 
 import com.example.myunibapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.concurrent.Executor;
+import sms.myunibapp.FirebaseDb;
+import sms.myunibapp.SessionManager;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.principale.ProfessorHome;
 
 import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    static final String EMAIL_UNIBA = "@studenti.uniba.it";
+    public static final String EMAIL_UNIBA = "@studenti.uniba.it";
 
     //Credenziali di accesso
     private EditText editTextUsername;
@@ -37,6 +37,7 @@ public class Login extends AppCompatActivity {
 
     //Operazioni per l'accesso
     private FirebaseAuth firebaseAuth;
+    SessionManager session;
     private Button mLoginButton;
 
     //Variabile password dimenticata
@@ -59,6 +60,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main_login);
 
         initializeVariables(); //Inizializzazione delle variabili
+        progress.setVisibility(View.GONE);
+
+        // Creazione del nuovo manager di sessione
+        session = new SessionManager(getApplicationContext());
 
         checkRemember();
         /*
@@ -68,6 +73,16 @@ public class Login extends AppCompatActivity {
 
             if (!validateUsername() | !validatePassword()) {
                 return;
+
+            }else if (checkRemember()){
+                progress.setVisibility(View.VISIBLE);
+                TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
+                textInputLayout.setVisibility(View.INVISIBLE);
+                String mail, pass;
+                mail = pref.getString("Email", "");
+                pass = pref.getString("Pass", "");
+                authenticate(mail, pass);
+
             } else {
                 progress.setVisibility(View.VISIBLE);
                 authenticate(username, password);
@@ -77,90 +92,63 @@ public class Login extends AppCompatActivity {
         /*
         RECUPERO PASSWORD
          */
-        forgotTextLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class));
-            }
-        });
+        forgotTextLink.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class)));
 
     }
 
-    private void checkRemember() {
+    private boolean checkRemember() {
         boolean ricorda = pref.getBoolean("Remember", false);
         if (ricorda) {
             rememberMe.setChecked(true);
-            String mail, pass;
-            mail = pref.getString("Email", "");
-            pass = pref.getString("Pass", "");
-            startAuthentication(mail, pass);
+            editTextUsername.setText(pref.getString("Email", ""));
+            editTextPassword.setText(pref.getString("Pass", ""));
+            ricorda = true;
         }
+        return ricorda;
     }
 
-    private void startAuthentication(String m, String p) {
-        //autenticazione con il sensore di impronte, se esiste l'hardware nello smartphone
-        BiometricManager manager = BiometricManager.from(this);
-        boolean isFingerprintSensorEnabled = pref.getBoolean("fingerprintsEnabled", false);
-        if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS && isFingerprintSensorEnabled) { //se c'è l'hardware dedicato, esistono impronte registrate, e sono abilitate nelle impostazioni
-            Executor ex = ContextCompat.getMainExecutor(this);
-            BiometricPrompt fingerPrints = new BiometricPrompt(this, ex, new BiometricPrompt.AuthenticationCallback() {
-                @Override
-                public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
-                    super.onAuthenticationSucceeded(result);
-                    //se l'autenticazione ha successo si procede al login su firebase
-                    authenticate(m, p);
-                }
-            });
-            Resources res = getResources();//localizzazione
-            fingerPrints.authenticate(new BiometricPrompt.PromptInfo.Builder()
-                    .setTitle(res.getString(R.string.fingerPrintDialogTitle))
-                    .setNegativeButtonText(res.getString(R.string.fingerPrintDialogNegativeButton))
-                    .setDescription(res.getString(R.string.fingerPrintDialogDescription)).build());
-        } else if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED
-                || manager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE
-                || !isFingerprintSensorEnabled) {//se non ci sono impronte registrate nel sistema, non esiste l'hardware, o non viene abilitato nelle impostazioni
-            editTextUsername.setText(m);
-            editTextPassword.setText(p);
-        }
-
-    }
 
     private void authenticate(String mail, String pass) {
-        String access=mail;
-        if(!mail.contains("@")){
-            access=mail+EMAIL_UNIBA;
+        String access = mail;
+
+
+        if (!mail.contains("@")) {
+            access = mail + EMAIL_UNIBA;
         }
+
         firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(task -> {
+
             if (task.isSuccessful()) {
                 progress.setVisibility(View.GONE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean("Remember", rememberMe.isChecked());
-                editor.putString("Email", mail);
-                editor.putString("Pass", pass);
-                editor.apply();
-                Toast.makeText(Login.this, getResources().getString(R.string.login_success) + " " + mail, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success) + " " + mail, Toast.LENGTH_SHORT).show();
                 Class target = null;
                 if (mail.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
                     username = mail.replace(".", "_");
                     target = ProfessorHome.class;
                 } else if (mail.endsWith("@studenti.uniba.it")) {
                     username = mail.replace(".", "_");
-                    target = Home.class;
+                    target = HomeActivity.class;
                 } else {
                     username = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
-                    target = Home.class;
+                    target = HomeActivity.class;
                 }
+                session.createLoginSession(rememberMe.isChecked(), mail, pass, username);
                 startActivity(new Intent(getApplicationContext(), target));
                 finish();
             } else {
                 progress.setVisibility(View.GONE);
-                Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    public static String getUsername() {
+    public static String getUsername (){
         return username;
+    }
+
+    public static void setUsername(String username) {
+        LoginActivity.username = username;
     }
 
     private void initializeVariables() {
@@ -172,7 +160,7 @@ public class Login extends AppCompatActivity {
         forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
         firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        progress=findViewById(R.id.progress_login);
+        progress = findViewById(R.id.progress_login);
     }
 
     private Boolean validateUsername() {
@@ -212,7 +200,7 @@ public class Login extends AppCompatActivity {
 
     private void close() {
         Resources res = getResources();
-        AlertDialog.Builder conferma = new AlertDialog.Builder(Login.this);
+        AlertDialog.Builder conferma = new AlertDialog.Builder(LoginActivity.this);
         conferma.setTitle(res.getString(R.string.exitDialogTitle));
         conferma.setMessage(res.getString(R.string.exitDialogMessage));
         conferma.setPositiveButton(res.getString(R.string.dialogConfirm), (dialog, which) -> {
