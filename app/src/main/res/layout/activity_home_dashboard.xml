@@ -34,15 +34,19 @@
             android:textColor="#FFF"
             android:textSize="18sp" />
 
-        <ImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_of_profile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/image_of_profile"
             android:src="@drawable/ic_040_man" />
 
     </RelativeLayout>
+
+    <!-- Button for add widgets to dashboard -->
 
     <ScrollView
         android:id="@+id/scrollview_home"
@@ -61,8 +65,6 @@
         </GridLayout>
 
     </ScrollView>
-
-    <!-- Button for add widgets to dashboard -->
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/personalizzazione_widget"

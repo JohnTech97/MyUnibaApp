@@ -30,7 +30,6 @@
             android:id="@+id/menu_starter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/menu_icon"
             android:background="@color/background_color_app"
             app:title="Dashboard"
             app:titleTextColor="#FFF" >

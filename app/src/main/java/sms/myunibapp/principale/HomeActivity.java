@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,11 +45,10 @@ import sms.myunibapp.unibaServices.Secretary;
 public class HomeActivity extends DrawerActivity {
 
     private DrawerLayout drawer;
-
     private GridLayout layout;
     private AlertDialog dialog;
     private SharedPreferences editor;
-    private ProgressBar progress;
+    private ImageView profilePic;
 
     //riguardo la fine del caricamento dei dati
     private static boolean isFinished = false;
@@ -59,14 +56,12 @@ public class HomeActivity extends DrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav_drawer);
+        setContentView(R.layout.activity_home_dashboard);
 
         drawer = findViewById(R.id.menu_navigazione);
         NavigationView nav = findViewById(R.id.navigation_menu);
         Toolbar toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
-        progress = findViewById(R.id.progress_home);
-
 
         // Creazione del nuovo manager di sessione
         sessionManager = new SessionManager(getApplicationContext());
@@ -86,7 +81,6 @@ public class HomeActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 isFinished = true;
-                progress.setVisibility(View.GONE);
             }
         }.start();
         setSupportActionBar(toolbar);
@@ -129,12 +123,6 @@ public class HomeActivity extends DrawerActivity {
 
         initializeWidgetsCustomizationPanel();
         initializeWidgets();
-        ScrollView scrollView = findViewById(R.id.scrollview_home);
-        LinearLayout.LayoutParams altezza = (LinearLayout.LayoutParams) scrollView.getLayoutParams();
-
-       // altezza.height = Resources.getSystem().getDisplayMetrics().heightPixels - 900;
-
-       //scrollView.setLayoutParams(altezza);
 
     }
 
@@ -248,6 +236,9 @@ public class HomeActivity extends DrawerActivity {
     }
 
 
+    /**
+     * Questo metodo serve a inizializzare gli oggetti
+     */
     private void initializeWidgets() {
         Resources res = getResources();
         if (!editor.contains("numberOfWidgets")) {//controllo se esistono le shared preferences, in modo da creare le 4 scorciatoie di default se non ci fossero (primo avvio)

@@ -78,6 +78,7 @@ public class Fingerprints extends AppCompatActivity {
                 @Override
                 public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                     super.onAuthenticationError(errorCode, errString);
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 }
 
                 @Override
@@ -114,11 +115,11 @@ public class Fingerprints extends AppCompatActivity {
         buttonCredentials.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
     }
 
-    private void authentication(String username, String pass) {
-        String access = username;
+    private void authentication(String mail, String pass) {
+        String access = mail;
 
-        if (!username.contains("@")) {
-            access = username + EMAIL_UNIBA;
+        if (!mail.contains("@")) {
+            access = mail + EMAIL_UNIBA;
         }
 
         firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -126,20 +127,20 @@ public class Fingerprints extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    Toast.makeText(sms.myunibapp.accessApp.Fingerprints.this, getResources().getString(R.string.login_success) + " " + username, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(sms.myunibapp.accessApp.Fingerprints.this, getResources().getString(R.string.login_success) + " " + session.getSessionEmail(), Toast.LENGTH_SHORT).show();
 
                     Class target = null;
-                    if (username.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
-                        userName = username.replace(".", "_");
+                    if (mail.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
+                        userName = mail.replace(".", "_");
                         target = ProfessorHome.class;
-                    } else if (username.endsWith("@studenti.uniba.it")) {
-                        userName = username.replace(".", "_");
+                    } else if (mail.endsWith("@studenti.uniba.it")) {
+                        userName = mail.replace(".", "_");
                         target = HomeActivity.class;
                     } else {
-                        userName = username.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
+                        userName = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
                         target = HomeActivity.class;
                     }
-                    session.createLoginSession(username, pass, userName);
+                    session.createLoginSession(mail, pass, userName);
                     LoginActivity.setUsername(userName);
                     startActivity(new Intent(getApplicationContext(), target));
                     finish();

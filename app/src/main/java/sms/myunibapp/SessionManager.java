@@ -37,7 +37,8 @@ public class SessionManager {
     public static final String NOMECOMPLETO = "Username";
     public static final String FINGERPRINTS = "fingerprintsEnabled";
     public static final String LANGUAGE = "Language";
-    public static final String TYPE = "type";
+
+    public static final String WIDGETS = "Widgets";
     public static final String PATHFOTO = "pathfoto";
 
 
@@ -87,6 +88,10 @@ public class SessionManager {
         editor.commit();
     }
 
+    public static String getWIDGETS() {
+        return WIDGETS;
+    }
+
     /**
      * Funzione che restituisce l'username di sessione
      *
@@ -111,7 +116,7 @@ public class SessionManager {
      * @return tipo utente
      */
     public int getSessionType() {
-        return preferences.getInt(TYPE, -1);
+        return preferences.getInt(WIDGETS, -1);
     }
 
     /**
