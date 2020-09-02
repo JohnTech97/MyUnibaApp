@@ -21,6 +21,7 @@ public class ExamsData {
 
 
     public static class Esame {
+
         //firebase
         private int anno, cfu;
         private String docente, nome, tipo, key;

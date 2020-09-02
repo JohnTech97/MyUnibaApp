@@ -157,5 +157,11 @@
     <string name="modifica_esame_conferma_titolo">Sie sicher?</string>
     <string name="modifica_esame_conferma_messaggio">Das Ändern oder Entfernen von Prüfungsdaten kann bei Unachtsamkeit zu Unannehmlichkeiten führen</string>
     <string name="ciao_studente">Hi, Student</string>
+    <string name="pagamenti">Pagamenti</string>
+    <string name="test_concorsi">Test/Concorsi</string>
+    <string name="immatricolazione">Immatricolazione</string>
+    <string name="borsa_di_studio">Borsa di studio</string>
+    <string name="documenti_identit">Documenti identità</string>
+    <string name="contatti">Contatti</string>
 
 </resources>

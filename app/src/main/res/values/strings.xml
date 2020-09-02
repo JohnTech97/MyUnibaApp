@@ -160,4 +160,12 @@
     <string name="inserisci_le_credenziali">Inserisci le credenziali</string>
     <string name="text_fingerprint">Puoi disattivare in qualsiasi momento il riconoscimento biometrico nella sezione <strong> Sicurezza </strong></string>
     <string name="text_noFingerprint">Il dispositivo non ha il sensore per il riconoscimento dell\'impronta</string>
+    <string name="pagamenti">Pagamenti</string>
+    <string name="test_concorsi">Test/Concorsi</string>
+    <string name="immatricolazione">Immatricolazione</string>
+    <string name="borsa_di_studio">Borsa di studio</string>
+    <string name="documenti_identit">Documenti identità</string>
+    <string name="contatti">Contatti</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -10,4 +10,13 @@
     <color name="widgets_background">#d5d5d5</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_text">#142031</color>
+
+    <color name="colorItemStart">#4D79FF</color>
+    <color name="colorItemEnd">#0039E6</color>
+
+    <color name="colorItemStart1">#FF5722</color>
+    <color name="colorItemEnd1">#FF9800</color>
+
+    <color name="colorEndBackground">#50FFFFFF</color>
+    <color name="colorLightText">#ECECEC</color>
 </resources>

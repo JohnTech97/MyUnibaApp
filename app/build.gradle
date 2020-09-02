@@ -31,7 +31,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
     //FINGERPRINT
     implementation 'androidx.biometric:biometric:1.0.1'
@@ -48,8 +48,8 @@ dependencies {
 
     //FIREBASE
     implementation 'com.google.firebase:firebase-auth:19.3.2'
-    implementation 'com.google.firebase:firebase-database:19.3.1'
-    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-database:19.4.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
 
     //LAYOUT
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
@@ -62,5 +62,5 @@ dependencies {
 
     //per l'immagine circolare
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation "com.github.siyamed:android-shape-imageview:0.9.3"
+    implementation "com.github.castorflex.smoothprogressbar:library-circular:1.3.0"
 }

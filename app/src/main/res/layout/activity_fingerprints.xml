@@ -15,7 +15,7 @@
         android:layout_marginTop="200dp"
         android:layout_marginEnd="191dp"
         android:layout_marginBottom="216dp"
-        android:src="@drawable/ic_fingerprint"
+        android:src="@drawable/icon_fingerprint"
         android:contentDescription="@string/fingerprints"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,16 +58,7 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_login"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.456" />
+    <include layout="@layout/progress_view"/>
 
     <Button
         android:id="@+id/button_insertCredentials"

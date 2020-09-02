@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,6 @@ import com.example.myunibapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-import sms.myunibapp.FirebaseDb;
 import sms.myunibapp.SessionManager;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.principale.ProfessorHome;
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private static String username;
     private String password;
 
-    private ProgressBar progress;
+    private FrameLayout progress;
 
     private SharedPreferences pref;
 
@@ -66,15 +66,14 @@ public class LoginActivity extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
 
         checkRemember();
-        /*
-        ACCESSO ALL'APPLICAZIONE
-         */
+
+        /* ACCESSO ALL'APPLICAZIONE */
         mLoginButton.setOnClickListener(v -> {
 
             if (!validateUsername() | !validatePassword()) {
                 return;
 
-            }else if (checkRemember()){
+            } else if (checkRemember()) {
                 progress.setVisibility(View.VISIBLE);
                 TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
                 textInputLayout.setVisibility(View.INVISIBLE);
@@ -111,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
     private void authenticate(String mail, String pass) {
         String access = mail;
 
-
         if (!mail.contains("@")) {
             access = mail + EMAIL_UNIBA;
         }
@@ -143,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public static String getUsername (){
+    public static String getUsername() {
         return username;
     }
 
@@ -160,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
         firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
         pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        progress = findViewById(R.id.progress_login);
+        progress = findViewById(R.id.progress_view);
     }
 
     private Boolean validateUsername() {

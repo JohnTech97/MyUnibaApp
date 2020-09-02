@@ -85,9 +85,9 @@ public class HomeActivity extends DrawerActivity {
         }.start();
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
+       // ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
+       // drawer.addDrawerListener(mainMenu);
+       // mainMenu.syncState();
 
         /**
          * PROFILO NOME UTENTE
@@ -117,8 +117,8 @@ public class HomeActivity extends DrawerActivity {
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.personalizzazione_widget);
         extendedFloatingActionButton.setOnClickListener((View v) -> dialog.show());
 
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
+        //nav.bringToFront();
+        //nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
         editor = getSharedPreferences("Widgets", MODE_PRIVATE);
 
         initializeWidgetsCustomizationPanel();
@@ -256,7 +256,7 @@ public class HomeActivity extends DrawerActivity {
             libretto.inflate();
             libretto.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             libretto.setNomeWidget(items[1].getText().toString());
-            libretto.setTarget(Booklet.class);
+            libretto.setTarget(Secretary.class);
             libretto.setClickable(true);
 
             layout.addView(libretto);

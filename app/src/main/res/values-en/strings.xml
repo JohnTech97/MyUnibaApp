@@ -158,6 +158,13 @@
     <string name="modifica_esame_conferma_titolo">You sure?</string>
     <string name="modifica_esame_conferma_messaggio">Modifying or removing exam data can lead to inconveniences if done carelessly</string>
     <string name="ciao_studente">Welcome</string>
+    <string name="pagamenti">Payment</string>
+    <string name="inserisci_le_credenziali">Insert credentials</string>
+    <string name="test_concorsi">Test/Concorsi</string>
+    <string name="immatricolazione">Immatricolazione</string>
+    <string name="borsa_di_studio">Borsa di studio</string>
+    <string name="documenti_identit">Documenti identità</string>
+    <string name="contatti">Contatti</string>
 
 
 </resources>

@@ -60,7 +60,7 @@
                     android:title="@string/visualize_profile" />
                 <item
                     android:id="@+id/informazioni"
-                    android:icon="@drawable/info_icon"
+                    android:icon="@drawable/icon_info"
                     android:title="@string/information" />
                 <item
                     android:id="@+id/who_we_are"
