@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context="sms.myunibapp.principale.HomeActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_header_dash"
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:layout_width="68dp"
             android:layout_height="73dp"
             android:contentDescription="@string/image_of_profile"
-            android:src="@drawable/ic_040_man"
+            android:src="@drawable/icon_man"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,18 +78,6 @@
 
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/personalizzazione_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/widgets"
-        android:isScrollContainer="false"
-        android:text="@string/widgets"
-        android:textColor="#FFFF"
-        app:backgroundTint="@color/colorAccent"
-        app:icon="@drawable/ic_add_24"
-        app:iconTint="#FFF" />
+
 
 </LinearLayout>

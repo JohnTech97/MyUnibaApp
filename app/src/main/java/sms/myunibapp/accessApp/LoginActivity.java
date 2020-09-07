@@ -10,24 +10,22 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import sms.myunibapp.SessionManager;
+import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
+import sms.myunibapp.principale.DrawerActivity;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.principale.ProfessorHome;
 
-import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends DrawerActivity {
 
     public static final String EMAIL_UNIBA = "@studenti.uniba.it";
 

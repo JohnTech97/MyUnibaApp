@@ -4,7 +4,7 @@
     android:shape="rectangle"
     android:useLevel="false">
 
-    <solid android:color="@color/background_color_app"/>
+    <solid android:color="#5A7AA6"/>
 
     <padding
         android:bottom="20dp"

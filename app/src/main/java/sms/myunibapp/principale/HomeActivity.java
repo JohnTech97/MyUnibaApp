@@ -23,7 +23,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,6 +52,7 @@ public class HomeActivity extends DrawerActivity {
     private SharedPreferences editor;
     private ImageView profilePic;
 
+    BottomAppBar bottomAppBar;
     //riguardo la fine del caricamento dei dati
     private static boolean isFinished = false;
 
@@ -92,9 +95,9 @@ public class HomeActivity extends DrawerActivity {
         /**
          * PROFILO NOME UTENTE
          */
-
         TextView matricola = findViewById(R.id.matricola);
         TextView nome = findViewById(R.id.utente_nome);
+
 
         /* ACCESSO AL DATABASE */
         DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente").child(sessionManager.getNomeCompleto());
@@ -114,8 +117,8 @@ public class HomeActivity extends DrawerActivity {
         /**
          * AGGIUNTA DEI WIDGETS
          */
-        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.personalizzazione_widget);
-        extendedFloatingActionButton.setOnClickListener((View v) -> dialog.show());
+        //FloatingActionButton FloatingActionButton = findViewById(R.id.add_widget);
+        //FloatingActionButton.setOnClickListener((View v) -> dialog.show());
 
         //nav.bringToFront();
         //nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
