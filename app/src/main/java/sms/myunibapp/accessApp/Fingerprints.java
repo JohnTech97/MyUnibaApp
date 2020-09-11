@@ -40,8 +40,6 @@ public class Fingerprints extends DrawerActivity {
 
     private Button buttonCredentials;
 
-    private FrameLayout progressBar;
-
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +69,12 @@ public class Fingerprints extends DrawerActivity {
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
 
+                    progressBar.setVisibility(View.VISIBLE);
+                    buttonCredentials.setVisibility(View.INVISIBLE);
+
                     String username = sessionManager.getSessionUsername();
                     String password = sessionManager.getSessionPassword();
 
-                    animationButton();
                     authenticate(username,password);
                 }
 
@@ -100,20 +100,4 @@ public class Fingerprints extends DrawerActivity {
         buttonCredentials.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
     }
 
-
-    /**
-     * Animazione del bottone del login
-     */
-    private void animationButton() {
-
-        buttonCredentials = findViewById(R.id.button_insertCredentials);
-        Animation fadingInAnimation = AnimationUtils.loadAnimation(this, R.anim.fragment_close_exit);
-        fadingInAnimation.setDuration(2000);
-        buttonCredentials.startAnimation(fadingInAnimation);
-        buttonCredentials.setVisibility(View.INVISIBLE);
-
-        new Handler().postDelayed(() -> {
-            progressBar.setVisibility(View.VISIBLE);
-        }, DELAY);
-    }
 }

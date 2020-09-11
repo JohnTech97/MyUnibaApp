@@ -1,21 +1,23 @@
 package sms.myunibapp.principale;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,18 +25,25 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import sms.myunibapp.Constants.FirebaseDb;
-import sms.myunibapp.SessionManager;
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.profileUser.Profile;
 import sms.myunibapp.unibaServices.BookableExams;
@@ -51,9 +60,22 @@ public class HomeActivity extends DrawerActivity {
     private GridLayout layout;
     private AlertDialog dialog;
     private SharedPreferences editor;
-    private ImageView profilePic;
 
     BottomAppBar bottomAppBar;
+
+    /**
+     * TITOLO NOME UTENTE
+     */
+    private TextView nome, matricola;
+    private CircleImageView profilePic;
+    public Uri imageUri;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
+
+    /* ACCESSO AL DATABASE */
+    private DatabaseReference userReference;
+
     //riguardo la fine del caricamento dei dati
     private static boolean isFinished = false;
 
@@ -67,8 +89,10 @@ public class HomeActivity extends DrawerActivity {
         Toolbar toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
 
-        // Creazione del nuovo manager di sessione
-        sessionManager = new SessionManager(getApplicationContext());
+        //Creazione della parte superiore della pagina
+        initializeView();
+        createHeaderDash();
+
 
         /* INIZIALIZZAZIONE DATI ESAMI */
         //ExamsData.initializeData(this);
@@ -93,27 +117,14 @@ public class HomeActivity extends DrawerActivity {
        // drawer.addDrawerListener(mainMenu);
        // mainMenu.syncState();
 
-        /**
-         * PROFILO NOME UTENTE
-         */
-        TextView matricola = findViewById(R.id.matricola);
-        TextView nome = findViewById(R.id.utente_nome);
-
-
-        /* ACCESSO AL DATABASE */
-        userReference.child("Studente").child(sessionManager.getSessionEmail());
-
-        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        //Immagine cliccabile e si può modificare
+        profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot s) {
-                nome.setText(s.child(FirebaseDb.USER_NOME).getValue(String.class));
-                matricola.setText(s.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onClick(View v) {
+                choosePicture();
             }
         });
+
 
         /**
          * AGGIUNTA DEI WIDGETS
@@ -128,6 +139,91 @@ public class HomeActivity extends DrawerActivity {
         initializeWidgetsCustomizationPanel();
         initializeWidgets();
 
+    }
+
+    /**
+     * Inizializzazione dei valori dell'header della dash
+     */
+    private void initializeView() {
+        matricola = findViewById(R.id.matricola);
+        nome = findViewById(R.id.utente_nome);
+
+        //DATI PER IL CARICAMENTO DELL'IMMAGINE
+        profilePic = findViewById(R.id.image_of_profile);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+    }
+
+    private void createHeaderDash(){
+
+        /* ACCESSO AL DATABASE */
+        userReference = FirebaseDatabase.getInstance().getReference().child("Studente").child(sessionManager.getSessionEmail());
+
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot s) {
+                nome.setText(s.child(FirebaseDb.USER_NOME).getValue(String.class));
+                matricola.setText(s.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    /**
+     * Funzione per scegliere l'immagine
+     */
+    private void choosePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK && data!=null && data.getData()!= null){
+            imageUri = data.getData();
+            profilePic.setImageURI(imageUri);
+            uploadPicture();
+        }
+    }
+
+    private void uploadPicture() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading image...");
+        progressDialog.show();
+
+        final String randomKey = UUID.randomUUID().toString();
+        StorageReference riversRef = storageReference.child("images/");
+
+        riversRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.dismiss();
+
+                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                progressDialog.setMessage("Progress: " + (int) progressPercent + "%");
+            }
+        });
     }
 
     //serve un unico listener da utilizzare in tutte le schermate
@@ -351,6 +447,9 @@ public class HomeActivity extends DrawerActivity {
         }
     }
 
+    /**
+     * Funzione di chiusura dell'applicazione
+     */
     private void close() {
         Resources res = getResources();
         AlertDialog.Builder conferma = new AlertDialog.Builder(HomeActivity.this);

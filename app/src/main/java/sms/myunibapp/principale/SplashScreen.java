@@ -22,7 +22,7 @@ import sms.myunibapp.accessApp.LoginActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private final int SPLASH_DELAY = 5000;
+    private final int SPLASH_DELAY = 1000;
     private SessionManager sessionManager;
 
     @Override

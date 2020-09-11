@@ -1,21 +1,29 @@
 package sms.myunibapp.principale;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import sms.myunibapp.SessionManager;
 
@@ -26,21 +34,19 @@ import sms.myunibapp.SessionManager;
 public class DrawerActivity extends AppCompatActivity  {
 
     public static final String EMAIL_UNIBA = "@studenti.uniba.it";
+    private static final int DELAY = 4000;
 
     public SessionManager sessionManager;
 
     //Collegamento al database
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    protected FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     private static String userEmailFB;
-    private static String password;
-
-    /* ACCESSO AL DATABASE */
-    static DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
 
     BottomAppBar bottomAppBar; //Barra di navigazione
     FloatingActionButton floatingActionButton;
 
+    protected FrameLayout progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,9 @@ public class DrawerActivity extends AppCompatActivity  {
 
         // Valorizzo il session manager
         sessionManager = new SessionManager(getApplicationContext());
+
+        //Progress Bar
+        progressBar = findViewById(R.id.progress_view);
 
         //BOTTOM APP BAR
         bottomAppBar = findViewById(R.id.bottomAppBar);
@@ -79,6 +88,11 @@ public class DrawerActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Funzione che serve per verificare i dati su Firebase realtime
+     * @param username
+     * @param pass
+     */
     protected void authenticate(String username, String pass) {
 
         String access = username;
@@ -106,6 +120,7 @@ public class DrawerActivity extends AppCompatActivity  {
                 }
                 sessionManager.createLoginSession(username, userEmailFB, pass);
                 startActivity(new Intent(getApplicationContext(), target));
+
                 finish();
 
             } else {
@@ -113,5 +128,6 @@ public class DrawerActivity extends AppCompatActivity  {
             }
         });
     }
+
 
 }

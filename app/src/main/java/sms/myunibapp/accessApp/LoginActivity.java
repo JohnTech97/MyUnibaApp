@@ -37,8 +37,6 @@ public class LoginActivity extends DrawerActivity {
     private static String username;
     private String password;
 
-    private FrameLayout progress;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,7 @@ public class LoginActivity extends DrawerActivity {
         setContentView(R.layout.activity_main_login);
 
         initializeVariables(); //Inizializzazione delle variabili
-        progress.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
 
         boolean isChecked = checkRemember();
 
@@ -60,14 +58,14 @@ public class LoginActivity extends DrawerActivity {
                 return;
 
             } else if (isChecked) {
-                progress.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 String mail, pass;
                 mail = sessionManager.getSessionUsername();
                 pass = sessionManager.getSessionPassword();
                 authenticate(mail, pass);
 
             } else {
-                progress.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 authenticate(username, password);
             }
         });
@@ -123,7 +121,7 @@ public class LoginActivity extends DrawerActivity {
         forgotTextLink = findViewById(R.id.lost_password);
 
         //ProgressBar
-        progress = findViewById(R.id.progress_view);
+        progressBar = findViewById(R.id.progress_view);
     }
 
     /**

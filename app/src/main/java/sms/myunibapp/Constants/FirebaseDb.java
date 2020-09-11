@@ -13,14 +13,13 @@ public class FirebaseDb {
     public static final String USER_CLASSE = "Classe";
     public static final String USER_CORSODILAUREA = "CorsoDiLaurea";
     public static final String USER_ISCRIZIONE = "Iscrizione";
+    public static final String USER_ORDINAMENTO = "Ordinamento";
     public static final String USER_NORMATIVA = "Normativa";
     public static final String USER_PERCORSO = "Percorso";
     public static final String USER_SEDE = "Sede";
     public static final String USER_STATO = "Stato";
 
     //dati di accesso dell'utente
-    public static final String USER_EMAIL = "Email";
-    public static final String USER_PASSWORD = "Password";
 
     public static final String USER_ESAMI = "Esami";
 
