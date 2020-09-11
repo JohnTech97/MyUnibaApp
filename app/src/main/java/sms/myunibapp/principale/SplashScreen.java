@@ -15,11 +15,15 @@ import com.example.myunibapp.R;
 
 import java.util.Locale;
 
+import sms.myunibapp.Constants.FirebaseDb;
+import sms.myunibapp.SessionManager;
+import sms.myunibapp.accessApp.Fingerprints;
 import sms.myunibapp.accessApp.LoginActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
     private final int SPLASH_DELAY = 5000;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +34,12 @@ public class SplashScreen extends AppCompatActivity {
         /*
         IMPOSTAZIONE LINGUA PER L'APPLICAZIONE
          */
-        SharedPreferences settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE); //Acquisizione dei settaggi di sistema
+
+        // Valorizzo il session manager
+        sessionManager = new SessionManager(getApplicationContext());
 
         String system = getResources().getStringArray(R.array.language_abbreviations)[0];//conterrà una stringa che rappresenta una parola di default per la lingua di sistema
-        String lingua = settings.getString("Language", system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
+        String lingua = sessionManager.getLanguage(system); //in caso in cui non venga trovato nulla, cioè tipicamente al primo accesso
         Locale locale = null;
 
         if (lingua.equals(system)) {
@@ -56,11 +62,8 @@ public class SplashScreen extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         new Handler().postDelayed(() -> {
-
-            if (!settings.contains("Email")){
-                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-            } else if (settings.getBoolean("fingerprintsEnabled",true) && settings.getBoolean("Remember", false)) {
-                startActivity(new Intent(SplashScreen.this, sms.myunibapp.accessApp.Fingerprints.class));
+            if (sessionManager.getFingerprintsEnable() && sessionManager.checkLogin()) {
+                startActivity(new Intent(SplashScreen.this, Fingerprints.class));
             }else{
                 startActivity(new Intent(SplashScreen.this, LoginActivity.class));
             }

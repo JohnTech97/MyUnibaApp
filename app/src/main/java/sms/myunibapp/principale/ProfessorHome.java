@@ -108,7 +108,7 @@ public class ProfessorHome extends AppCompatActivity {
 
         prof=new ProfessorData();
 
-        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(LoginActivity.getUsername());
+        /*DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(LoginActivity.getUsername());
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot s) {
@@ -132,7 +132,7 @@ public class ProfessorHome extends AppCompatActivity {
             }
         });
 
-
+*/
     }
 
     public static ProfessorData getProfessor() {

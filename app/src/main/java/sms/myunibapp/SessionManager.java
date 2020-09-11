@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.example.myunibapp.R;
+
 import sms.myunibapp.accessApp.LoginActivity;
 
 public class SessionManager {
+
 
     /**
      * Oggetto che conterrà tutte le preferenze salvate
@@ -31,14 +34,13 @@ public class SessionManager {
     /**
      * Valori chiave
      */
+
     public static final String REMEMBER = "Remember";
-    public static final String USERNAME = "Email";
+    public static final String USERNAME = "Username";
+    private static final String MAIL = "Mail";
     public static final String PASSWORD = "Pass";
-    public static final String NOMECOMPLETO = "Username";
     public static final String FINGERPRINTS = "fingerprintsEnabled";
     public static final String LANGUAGE = "Language";
-
-    public static final String WIDGETS = "Widgets";
     public static final String PATHFOTO = "pathfoto";
 
 
@@ -55,6 +57,7 @@ public class SessionManager {
 
         // Associo alle preferenze legate al contesto corrente
         preferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+
         // Associo l'editor delle preferenze alla variabile di classe
         editor = preferences.edit();
     }
@@ -62,34 +65,21 @@ public class SessionManager {
     /**
      * Funzione che salva i dati nel file di sessione
      */
-    public void createLoginSession(Boolean rememberMe, String email, String pass, String nomeCompleto) {
-        editor.putBoolean(REMEMBER, rememberMe);
-        editor.putString(USERNAME, email);
+    public void createLoginSession(String username, String email, String pass) {
+        editor.putString(MAIL, email);
+        editor.putString(USERNAME, username);
         editor.putString(PASSWORD, pass);
         editor.putBoolean(FINGERPRINTS, true);
-        editor.putString(NOMECOMPLETO, nomeCompleto);
         editor.commit();
     }
 
     /**
-     * Funzione che salva i dati nel file di sessione
+     *
+     * @param pathfoto
      */
-    public void createLoginSession(String email, String pass, String nomeCompleto) {
-        editor.putBoolean(REMEMBER, true);
-        editor.putString(USERNAME, email);
-        editor.putString(PASSWORD, pass);
-        editor.putBoolean(FINGERPRINTS, true);
-        editor.putString(NOMECOMPLETO, nomeCompleto);
-        editor.commit();
-    }
-
     public void setProfilePic(String pathfoto) {
         editor.putString(PATHFOTO, pathfoto);
         editor.commit();
-    }
-
-    public static String getWIDGETS() {
-        return WIDGETS;
     }
 
     /**
@@ -98,26 +88,26 @@ public class SessionManager {
      * @return username
      */
     public String getSessionEmail() {
-        return preferences.getString(USERNAME, null);
+        return preferences.getString(MAIL, "");
     }
 
     /**
-     * Funzione che restituisce il nome completo dell'utente
+     * Funzione che restituisce l'username di sessione
      *
-     * @return uid
+     * @return username
      */
-    public String getNomeCompleto(){
-        return preferences.getString(NOMECOMPLETO, null);
+    public String getSessionUsername() {
+        return preferences.getString(USERNAME, "");
+    }
+    /**
+     * Funzione che restituisce l'username di sessione
+     *
+     * @return username
+     */
+    public String getSessionPassword() {
+        return preferences.getString(PASSWORD, "");
     }
 
-    /**
-     * Funzione che resituisce il tipo di sessione
-     *
-     * @return tipo utente
-     */
-    public int getSessionType() {
-        return preferences.getInt(WIDGETS, -1);
-    }
 
     /**
      * Funzione che restituisce l'url della foto profilo
@@ -129,10 +119,34 @@ public class SessionManager {
     }
 
     /**
+     * Funzione che restituisce la lingua del sistema impostata
+     *
+     * @return lingua del sistema
+     */
+    public String getLanguage(String system) {
+        return preferences.getString(LANGUAGE, system);
+    }
+
+    /**
+     * Funzione che restituisce la lingua del sistema impostata
+     *
+     * @return lingua del sistema
+     */
+    public boolean getFingerprintsEnable() {
+        return preferences.getBoolean(FINGERPRINTS, true);
+    }
+
+    /**
+     * Controlla se l'utente è loggato o no.
+     */
+    public void setRememberMe(boolean rememberMe) {
+        editor.putBoolean(REMEMBER, rememberMe);
+        editor.commit();
+    }
+    /**
      * Controlla se l'utente è loggato o no.
      */
     public boolean checkLogin() {
-
         return preferences.getBoolean(REMEMBER, false);
     }
 
@@ -140,7 +154,6 @@ public class SessionManager {
      * Funzione di logout. Pulisce tutti i dati di sessione e reindirizza l'utente al login.
      */
     public void logout() {
-
         editor.clear();
         editor.commit();
         Intent login = new Intent(myContext, LoginActivity.class);

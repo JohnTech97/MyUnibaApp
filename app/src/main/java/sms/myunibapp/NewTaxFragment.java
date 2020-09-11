@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sms.myunibapp.adapter.TaxAdapter;
-import sms.myunibapp.oggetti.ModelTax;
+import sms.myunibapp.oggetti.Tax;
 
 /**
  * Questa classe consente la creazione di una lista di tasse.
@@ -26,7 +26,7 @@ import sms.myunibapp.oggetti.ModelTax;
 public class NewTaxFragment extends Fragment {
 
     RecyclerView recyclerViewTax;
-    List<ModelTax> itemList;
+    List<Tax> itemList;
 
 
 
@@ -53,14 +53,14 @@ public class NewTaxFragment extends Fragment {
     /* ACCESSO AL DATABASE */
     DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente");
 
-    private List<ModelTax> initData() {
+    private List<Tax> initData() {
 
         itemList = new ArrayList<>();
-        itemList.add(new ModelTax("2019","Tassa 3° Anno (2° Anno Fuori corso)","Da pagare €500 | Pagato €2.500","22/10/2020"));
-        itemList.add(new ModelTax("2018","Tassa 3° Anno (1° Anno Fuori corso)","Da pagare €0 | Pagato €2.517","22/10/2019"));
-        itemList.add(new ModelTax("2017","Tassa 3° Anno ","Da pagare €0 | Pagato €2.000","22/10/2018"));
-        itemList.add(new ModelTax("2016","Tassa 2° Anno ","Da pagare €0 | Pagato €1000","22/10/2017"));
-        itemList.add(new ModelTax("2015","Tassa 1° Anno ","Da pagare €0 | Pagato €500","22/10/2016"));
+        itemList.add(new Tax("2019","Tassa 3° Anno (2° Anno Fuori corso)","Da pagare €500 | Pagato €2.500","22/10/2020"));
+        itemList.add(new Tax("2018","Tassa 3° Anno (1° Anno Fuori corso)","Da pagare €0 | Pagato €2.517","22/10/2019"));
+        itemList.add(new Tax("2017","Tassa 3° Anno ","Da pagare €0 | Pagato €2.000","22/10/2018"));
+        itemList.add(new Tax("2016","Tassa 2° Anno ","Da pagare €0 | Pagato €1000","22/10/2017"));
+        itemList.add(new Tax("2015","Tassa 1° Anno ","Da pagare €0 | Pagato €500","22/10/2016"));
 
         return  itemList;
     }

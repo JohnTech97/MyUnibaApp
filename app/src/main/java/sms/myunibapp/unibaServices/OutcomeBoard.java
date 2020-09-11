@@ -43,7 +43,7 @@ public class OutcomeBoard extends AppCompatActivity {
 
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
+        /*DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -86,7 +86,7 @@ public class OutcomeBoard extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     @Override

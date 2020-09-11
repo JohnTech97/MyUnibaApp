@@ -83,7 +83,7 @@ public class Booklet extends AppCompatActivity {
 
         scrollView.setLayoutParams(altezza);
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
+       /* DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -250,7 +250,7 @@ public class Booklet extends AppCompatActivity {
             }
         });
 
-
+*/
     }
 
     private TextView initializeTextView(TextView t) {//metodo di utilità per non dover definire ogni volta gli stessi parametri per ogni singola textview

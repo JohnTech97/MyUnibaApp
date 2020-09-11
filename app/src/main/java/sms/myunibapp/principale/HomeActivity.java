@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.SessionManager;
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.profileUser.Profile;
@@ -70,7 +71,7 @@ public class HomeActivity extends DrawerActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
         /* INIZIALIZZAZIONE DATI ESAMI */
-        ExamsData.initializeData(this);
+        //ExamsData.initializeData(this);
 
         //il timer per determinare se il caricamento è completo parte da ora
 
@@ -100,13 +101,13 @@ public class HomeActivity extends DrawerActivity {
 
 
         /* ACCESSO AL DATABASE */
-        DatabaseReference studente = FirebaseDatabase.getInstance().getReference().child("Studente").child(sessionManager.getNomeCompleto());
+        userReference.child("Studente").child(sessionManager.getSessionEmail());
 
-        studente.addListenerForSingleValueEvent(new ValueEventListener() {
+        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot s) {
-                nome.setText(s.child("Nome").getValue(String.class));
-                matricola.setText(s.child("Matricola").getValue(String.class));
+                nome.setText(s.child(FirebaseDb.USER_NOME).getValue(String.class));
+                matricola.setText(s.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
             }
 
             @Override

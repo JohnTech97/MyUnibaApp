@@ -19,8 +19,8 @@ import sms.myunibapp.accessApp.LoginActivity;
 
 public class ExamsData {
 
-
-    public static class Esame {
+/*
+    public static class Esame extends DrawerActivity {
 
         //firebase
         private int anno, cfu;
@@ -112,16 +112,17 @@ public class ExamsData {
     private ExamsData() {
     }
 
+
     public static void initializeData(Context ctx) {
 
         if (esami.isEmpty()) {
 
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();/*.child("CorsoDiLaurea").child("L-31").child("Esami");*/
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();/*.child("CorsoDiLaurea").child("L-31").child("Esami");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //per prima cosa si deve ottenere la classe dello studente, per poi ottenere gli esami associati
-                    String classe = dataSnapshot.child("Studente").child(LoginActivity.getUsername()).child("Classe").getValue(String.class);
+                    String classe = dataSnapshot.child("Studente").child().child("Classe").getValue(String.class);
 
                     DataSnapshot data = dataSnapshot.child("CorsoDiLaurea").child(classe).child("Esami");
                     String lingua = ctx.getResources().getConfiguration().locale.getLanguage();//rappresenta l'abbreviazione della lingua impostata a livello dell'app
@@ -168,5 +169,5 @@ public class ExamsData {
 
     public static int getSize() {
         return esami.size();
-    }
+    }*/
 }

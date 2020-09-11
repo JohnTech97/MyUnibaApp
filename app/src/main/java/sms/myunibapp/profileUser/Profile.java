@@ -48,7 +48,7 @@ public class Profile extends AppCompatActivity {
         TextView ordinamento = findViewById(R.id.ordinamento);
         TextView normativa = findViewById(R.id.normativa);
 
-        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
+        /*DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -72,7 +72,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 

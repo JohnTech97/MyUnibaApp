@@ -12,13 +12,13 @@ import com.example.myunibapp.R;
 
 import java.util.List;
 
-import sms.myunibapp.oggetti.ModelTax;
+import sms.myunibapp.oggetti.Tax;
 
 public class TaxAdapter extends RecyclerView.Adapter<TaxAdapter.ViewHolder> {
 
-    List<ModelTax> itemModelTaxList;
+    List<Tax> itemModelTaxList;
 
-    public TaxAdapter(List<ModelTax> itemModelTaxList) {
+    public TaxAdapter(List<Tax> itemModelTaxList) {
             this.itemModelTaxList = itemModelTaxList;
     }
 

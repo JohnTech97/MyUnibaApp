@@ -1,8 +1,6 @@
 package sms.myunibapp.accessApp;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -11,19 +9,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.myunibapp.R;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
-import sms.myunibapp.SessionManager;
 import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
 import sms.myunibapp.principale.DrawerActivity;
-import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.principale.ProfessorHome;
 
 public class LoginActivity extends DrawerActivity {
 
@@ -33,9 +26,6 @@ public class LoginActivity extends DrawerActivity {
     private EditText editTextUsername;
     private EditText editTextPassword;
 
-    //Operazioni per l'accesso
-    private FirebaseAuth firebaseAuth;
-    SessionManager session;
     private Button mLoginButton;
 
     //Variabile password dimenticata
@@ -49,8 +39,6 @@ public class LoginActivity extends DrawerActivity {
 
     private FrameLayout progress;
 
-    private SharedPreferences pref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,24 +48,22 @@ public class LoginActivity extends DrawerActivity {
         initializeVariables(); //Inizializzazione delle variabili
         progress.setVisibility(View.GONE);
 
-        // Creazione del nuovo manager di sessione
-        session = new SessionManager(getApplicationContext());
+        boolean isChecked = checkRemember();
 
-        checkRemember();
 
         /* ACCESSO ALL'APPLICAZIONE */
         mLoginButton.setOnClickListener(v -> {
 
+            setCheckRemeberMe();
+
             if (!validateUsername() | !validatePassword()) {
                 return;
 
-            } else if (checkRemember()) {
+            } else if (isChecked) {
                 progress.setVisibility(View.VISIBLE);
-                TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
-                textInputLayout.setVisibility(View.INVISIBLE);
                 String mail, pass;
-                mail = pref.getString("Email", "");
-                pass = pref.getString("Pass", "");
+                mail = sessionManager.getSessionUsername();
+                pass = sessionManager.getSessionPassword();
                 authenticate(mail, pass);
 
             } else {
@@ -93,77 +79,63 @@ public class LoginActivity extends DrawerActivity {
 
     }
 
+    private void setCheckRemeberMe() {
+
+        if(rememberMe.isChecked()){
+            sessionManager.setRememberMe(true);
+        }else{
+            sessionManager.setRememberMe(false);
+        }
+    }
+
+    /**
+     * Controllo se l'utente ha deciso di salvare le credenziali
+     * @return true se le ha salvate, altrimenti false
+     */
     private boolean checkRemember() {
-        boolean ricorda = pref.getBoolean("Remember", false);
+        boolean ricorda = sessionManager.checkLogin();
+
         if (ricorda) {
             rememberMe.setChecked(true);
-            editTextUsername.setText(pref.getString("Email", ""));
-            editTextPassword.setText(pref.getString("Pass", ""));
+            editTextUsername.setText(sessionManager.getSessionUsername());
+            editTextPassword.setText(sessionManager.getSessionPassword());
             ricorda = true;
         }
         return ricorda;
     }
 
-
-    private void authenticate(String mail, String pass) {
-        String access = mail;
-
-        if (!mail.contains("@")) {
-            access = mail + EMAIL_UNIBA;
-        }
-
-        firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(task -> {
-
-            if (task.isSuccessful()) {
-                progress.setVisibility(View.GONE);
-
-                Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success) + " " + mail, Toast.LENGTH_SHORT).show();
-                Class target = null;
-                if (mail.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
-                    username = mail.replace(".", "_");
-                    target = ProfessorHome.class;
-                } else if (mail.endsWith("@studenti.uniba.it")) {
-                    username = mail.replace(".", "_");
-                    target = HomeActivity.class;
-                } else {
-                    username = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
-                    target = HomeActivity.class;
-                }
-                session.createLoginSession(rememberMe.isChecked(), mail, pass, username);
-                startActivity(new Intent(getApplicationContext(), target));
-                finish();
-            } else {
-                progress.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public static void setUsername(String username) {
-        LoginActivity.username = username;
-    }
-
+    /**
+     * Inizializzazione dei campi presenti nel layout
+     */
     private void initializeVariables() {
+
         //Acquisizione credeziali per il login
         editTextUsername = findViewById(R.id.username);
         editTextPassword = findViewById(R.id.password);
-        mLoginButton = findViewById(R.id.button_login);  //bottone per il login
+
+        //bottone per il login
+        mLoginButton = findViewById(R.id.button_login);
+
+        //Checkbox per ricordare le credenziali
         rememberMe = findViewById(R.id.remember);
-        forgotTextLink = findViewById(R.id.lost_password);  //variabile per il reimposta password
-        firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase
-        pref = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+
+        //Variabile per reimpostare la password
+        forgotTextLink = findViewById(R.id.lost_password);
+
+        //ProgressBar
         progress = findViewById(R.id.progress_view);
     }
 
-    private Boolean validateUsername() {
+    /**
+     * Controllo effettuato sullo username.
+     * @return true se lo username è correttamente stata inserito, altrimenti false
+     */
+    private boolean validateUsername() {
         boolean isCorrect = true; //variabile di controllo per stabilire se lo Username è corretto
 
         username = editTextUsername.getText().toString().trim();
         TextInputLayout textInputLayout = findViewById(R.id.text_input_username);
+
         //Se il campo username è vuoto
         if (username.isEmpty()) {
             textInputLayout.setError(getResources().getString(R.string.invalid_username));
@@ -174,16 +146,23 @@ public class LoginActivity extends DrawerActivity {
         return isCorrect;
     }
 
-    private Boolean validatePassword() {
-        boolean isCorrect = true; //variabile di controllo per stabilire se lo Password è corretta
+    /**
+     * Controllo effettuato sulla password.
+     * La password deve avere almeno 6 caratteri altrimenti è errata
+     *
+     * @return true se la password è correttamente stata inserita, altrimenti false
+     */
+    private boolean validatePassword() {
+
+        boolean isCorrect = true; //variabile di controllo per stabilire se la Password è corretta
 
         password = editTextPassword.getText().toString().trim();
+
         TextInputLayout textInputLayout = findViewById(R.id.text_input_password);
 
         //Se la password è più corta di 6 caratteri
         if (password.length() < 6) {
             textInputLayout.setError(getResources().getString(R.string.invalid_password));
-            //editTextPassword.requestFocus();
             isCorrect = false;
         }
         return isCorrect;

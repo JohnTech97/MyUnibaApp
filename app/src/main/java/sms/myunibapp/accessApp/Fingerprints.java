@@ -30,22 +30,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.concurrent.Executor;
 
 import sms.myunibapp.SessionManager;
+import sms.myunibapp.principale.DrawerActivity;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.principale.ProfessorHome;
 
-public class Fingerprints extends AppCompatActivity {
+public class Fingerprints extends DrawerActivity {
 
-    public static final String EMAIL_UNIBA = "@studenti.uniba.it";
-    //riguardo la fine del caricamento dei dati
-    private static boolean isFinished = false;
+    private final int DELAY = 4000;
 
-    private final int DELAY = 2000;
-
-    private SessionManager session;
     private Button buttonCredentials;
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance(); //collegamento a firebase;
-    private static String userName;
-    //Operazioni per l'accesso
 
     private FrameLayout progressBar;
 
@@ -59,35 +52,30 @@ public class Fingerprints extends AppCompatActivity {
         buttonCredentials = findViewById(R.id.button_insertCredentials);
         progressBar = findViewById(R.id.progress_view);
 
-        // Creazione del nuovo manager di sessione
-        session = new SessionManager(getApplicationContext());
-
         //Creo il BiometricManager e controllo che l'utente possa usare il sensore oppure no
         BiometricManager biometricManager = BiometricManager.from(this);
 
         //se c'è l'hardware dedicato, esistono impronte registrate, e sono abilitate nelle impostazioni
         if (biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
             msg_txt.setText(R.string.text_fingerprint);
-
+            progressBar.setVisibility(View.GONE);
             //Ora dobbiamo controllare se siamo autorizzati ad usare il sensore biometrico, creiamo il DialogBoxBiometric
             Executor executor = ContextCompat.getMainExecutor(this);
             BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
                 @Override
                 public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                     super.onAuthenticationError(errorCode, errString);
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 }
 
                 @Override
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
-                    SharedPreferences settings = getSharedPreferences("Settings", Activity.MODE_PRIVATE); //Acquisizione dei settaggi di sistema
 
-                    String username = settings.getString("Email", "");
-                    String password = settings.getString("Pass", "");
+                    String username = sessionManager.getSessionUsername();
+                    String password = sessionManager.getSessionPassword();
 
                     animationButton();
-                    authentication(username, password);
+                    authenticate(username,password);
                 }
 
                 @Override
@@ -112,39 +100,10 @@ public class Fingerprints extends AppCompatActivity {
         buttonCredentials.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
     }
 
-    private void authentication(String mail, String pass) {
-        String access = mail;
 
-        if (!mail.contains("@")) {
-            access = mail + EMAIL_UNIBA;
-        }
-
-        firebaseAuth.signInWithEmailAndPassword(access, pass).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-
-                Toast.makeText(Fingerprints.this, getResources().getString(R.string.login_success) + " " + session.getSessionEmail(), Toast.LENGTH_SHORT).show();
-
-                Class target = null;
-                if (mail.endsWith("@uniba.it")) {//verifico se l'utente sia uno studente o un professore
-                    userName = mail.replace(".", "_");
-                    target = ProfessorHome.class;
-                } else if (mail.endsWith("@studenti.uniba.it")) {
-                    userName = mail.replace(".", "_");
-                    target = HomeActivity.class;
-                } else {
-                    userName = mail.concat(EMAIL_UNIBA).replace(".", "_");//perché a firebase da problemi il simbolo "."
-                    target = HomeActivity.class;
-                }
-                session.createLoginSession(mail, pass, userName);
-                LoginActivity.setUsername(userName);
-                startActivity(new Intent(getApplicationContext(), target));
-                finish();
-            } else {
-                Toast.makeText(Fingerprints.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
+    /**
+     * Animazione del bottone del login
+     */
     private void animationButton() {
 
         buttonCredentials = findViewById(R.id.button_insertCredentials);

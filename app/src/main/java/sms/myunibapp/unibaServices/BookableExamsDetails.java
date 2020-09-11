@@ -66,7 +66,7 @@ public class BookableExamsDetails extends AppCompatActivity {
             esame.setAula(aule.get(i));
             esame.setDocente(docente);
             esame.getBottone().setText("Prenotati");
-            esame.getBottone().setOnClickListener(v -> {
+            esame.getBottone().setOnClickListener(v -> {/*
                 DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
                 //per scalare i dati nel database (ad esempio esame3 diventa esame2, ecc) la soluzione più semplice sembra
@@ -111,9 +111,9 @@ public class BookableExamsDetails extends AppCompatActivity {
 
                     }
                 });
-            });
+            */});
 
-            listaEsami.addView(esame);
+            //listaEsami.addView(esame);
 
         }
 

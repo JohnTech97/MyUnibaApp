@@ -49,7 +49,7 @@ public class BookableExams extends AppCompatActivity {
         nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference().child("Studente").child(LoginActivity.getUsername()).child("Esami da superare");
+       /* DatabaseReference ref = db.getReference().child("Studente").child(LoginActivity.getUsername()).child("Esami da superare");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
@@ -109,7 +109,7 @@ public class BookableExams extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     @Override

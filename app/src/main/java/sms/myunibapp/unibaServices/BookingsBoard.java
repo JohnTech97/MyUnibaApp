@@ -43,7 +43,7 @@ public class BookingsBoard extends AppCompatActivity {
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
-        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
+   /*    DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("ResourceType")
@@ -117,7 +117,7 @@ public class BookingsBoard extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
     }
 
     @Override

@@ -3,14 +3,14 @@ package sms.myunibapp.oggetti;
 import android.view.View;
 import android.widget.TextView;
 
-public class ModelTax {
+public class Tax {
 
     private String dateTax;
     private String titleTax;
     private String toPayAndPayed;
     private String scadenzaTax;
 
-    public ModelTax(String dateTax, String titleTax, String toPayAndPayed, String scadenzaTax) {
+    public Tax(String dateTax, String titleTax, String toPayAndPayed, String scadenzaTax) {
         this.dateTax = dateTax;
         this.titleTax = titleTax;
         this.toPayAndPayed = toPayAndPayed;

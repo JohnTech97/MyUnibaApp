@@ -4,16 +4,17 @@
     android:id="@+id/progress_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B0606060"
+    android:background="#000000"
+    android:alpha="0.8"
     android:clickable="true"
     android:focusable="true"
-    android:visibility="gone"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ProgressBar
         android:id="@+id/progress_login"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:indeterminate="true"/>
 
 </FrameLayout>
