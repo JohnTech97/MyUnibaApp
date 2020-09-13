@@ -1,30 +1,24 @@
 package sms.myunibapp.principale;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
+import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.SessionManager;
 
 /**
@@ -40,6 +34,9 @@ public class DrawerActivity extends AppCompatActivity  {
 
     //Collegamento al database
     protected FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+    /* ACCESSO AL DATABASE */
+    protected DatabaseReference userReference = FirebaseDatabase.getInstance().getReference().child(FirebaseDb.TABLE_STUDENTE);
 
     private static String userEmailFB;
 

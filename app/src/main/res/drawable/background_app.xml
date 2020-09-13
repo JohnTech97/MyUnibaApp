@@ -4,7 +4,10 @@
     android:shape="rectangle"
     android:useLevel="false">
 
-    <solid android:color="#5A7AA6"/>
+    <gradient
+        android:startColor="#5A7AA6"
+        android:endColor="#F5C3D3DF"
+        android:angle="-90"/>
 
     <padding
         android:bottom="20dp"

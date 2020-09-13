@@ -4,52 +4,33 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.File;
-import java.util.UUID;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.principale.DrawerActivity;
-import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 
 public class Profile extends DrawerActivity {
-
-    /* ACCESSO AL DATABASE */
-    private DatabaseReference userReference = FirebaseDatabase.getInstance().getReference();
 
     private TextView matricola, nome, cognome, corsoDiLaurea, percorso, sede, iscrizione, stato, classe, annoDiRegolamento, ordinamento, normativa;
     private CircleImageView profilePic;
     public Uri imageUri;
-    private FirebaseStorage storage;
     private StorageReference storageReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,31 +48,36 @@ public class Profile extends DrawerActivity {
         nav.bringToFront();
         nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));*/
 
-        //Immagine cliccabile e si può modificare
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choosePicture();
-            }
-        });
+        /*
+         * Immagine cliccabile e si può modificare
+         */
+        profilePic.setOnClickListener(v -> choosePicture());
 
-        userReference.child("Studente").child(sessionManager.getSessionEmail());
+        /*
+         * Acquisizione dal database delle informazioni dell'utente
+         */
+        DatabaseReference data = userReference.child(sessionManager.getSessionEmail());
 
-        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        /*
+         * Settaggio dei valori acquisiti dal database
+         */
+        data.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot s) {
-                nome.setText(s.child(FirebaseDb.USER_NOME).getValue(String.class));
-                cognome.setText(s.child(FirebaseDb.USER_COGNOME).getValue(String.class));
-                matricola.setText(s.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
-                corsoDiLaurea.setText(s.child(FirebaseDb.USER_CORSODILAUREA).getValue(String.class));
-                percorso.setText(s.child(FirebaseDb.USER_PERCORSO).getValue(String.class));
-                sede.setText(s.child(FirebaseDb.USER_SEDE).getValue(String.class));
-                iscrizione.setText(s.child(FirebaseDb.USER_ISCRIZIONE).getValue(String.class));
-                stato.setText(s.child(FirebaseDb.USER_STATO).getValue(String.class));
-                classe.setText(s.child(FirebaseDb.USER_CLASSE).getValue(String.class));
-                annoDiRegolamento.setText(s.child(FirebaseDb.USER_ANNOREGOLAMENTO).getValue(String.class));
-                ordinamento.setText(s.child(FirebaseDb.USER_ORDINAMENTO).getValue(String.class));
-                normativa.setText(s.child(FirebaseDb.USER_NORMATIVA).getValue(String.class));
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                nome.setText(dataSnapshot.child(FirebaseDb.USER_NOME).getValue(String.class));
+                cognome.setText(dataSnapshot.child(FirebaseDb.USER_COGNOME).getValue(String.class));
+                matricola.setText(dataSnapshot.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
+                corsoDiLaurea.setText(dataSnapshot.child(FirebaseDb.USER_CORSODILAUREA).getValue(String.class));
+                percorso.setText(dataSnapshot.child(FirebaseDb.USER_PERCORSO).getValue(String.class));
+                sede.setText(dataSnapshot.child(FirebaseDb.USER_SEDE).getValue(String.class));
+                iscrizione.setText(dataSnapshot.child(FirebaseDb.USER_ISCRIZIONE).getValue(String.class));
+                stato.setText(dataSnapshot.child(FirebaseDb.USER_STATO).getValue(String.class));
+                classe.setText(dataSnapshot.child(FirebaseDb.USER_CLASSE).getValue(String.class));
+                annoDiRegolamento.setText(dataSnapshot.child(FirebaseDb.USER_ANNOREGOLAMENTO).getValue(String.class));
+                ordinamento.setText(dataSnapshot.child(FirebaseDb.USER_ORDINAMENTO).getValue(String.class));
+                normativa.setText(dataSnapshot.child(FirebaseDb.USER_NORMATIVA).getValue(String.class));
+                String link = dataSnapshot.child(FirebaseDb.USER_AVATAR).getValue(String.class);
+                Picasso.get().load(link).into(profilePic);
             }
 
             @Override
@@ -99,7 +85,6 @@ public class Profile extends DrawerActivity {
 
             }
         });
-
 
     }
 
@@ -124,36 +109,66 @@ public class Profile extends DrawerActivity {
         }
     }
 
+    /**
+     * Aggiornamento dell'immagine del profilo
+     */
     private void uploadPicture() {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading image...");
         progressDialog.show();
 
-        final String randomKey = UUID.randomUUID().toString();
-        StorageReference riversRef = storageReference.child("images/");
+        final String keyUser = sessionManager.getSessionUsername();
+        StorageReference riversRef = storageReference.child(keyUser);
 
         riversRef.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        progressDialog.dismiss();
-                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
-                    }
+                .addOnSuccessListener(taskSnapshot -> {
+                    //Nel caso in cui il carimento sia avvenuto con successo
+                    progressDialog.dismiss();
+                    //https://firebasestorage.googleapis.com/v0/b/myunibaapp.appspot.com/o/images%2Fd.foule?alt=media&token=a26aa0bf-7288-4dd0-8de4-0a88f7b61ae1
+                    updatePicturePath(keyUser);
+                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                .addOnFailureListener(exception -> {
+                    //Nel caso in cui il carimento non sia avvenuto con successo
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
+                }).addOnProgressListener(snapshot -> {
+                    //Barra di caricamento
+                    double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                    progressDialog.setMessage("Progress: " + (int) progressPercent + "%");
+                });
+    }
+
+    /**
+     * Aggiornamento dell'immagine del profilo
+     * @param keyUser
+     */
+    private void updatePicturePath(String keyUser) {
+
+        DatabaseReference updateData = userReference.child(sessionManager.getSessionEmail()).child(FirebaseDb.USER_AVATAR);
+
+        final String[] path = new String[1];
+
+        storageReference.child(keyUser).getDownloadUrl().addOnSuccessListener(uri -> {
+            path[0] = uri.toString();// The string(file link) that you need
+        });
+
+
+        updateData.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                progressDialog.setMessage("Progress: " + (int) progressPercent + "%");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    updateData.setValue(path[0]);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+
+
     }
 
     /**
@@ -174,8 +189,8 @@ public class Profile extends DrawerActivity {
         normativa = findViewById(R.id.normativa);
 
         //DATI PER IL CARICAMENTO DELL'IMMAGINE
-        profilePic = findViewById(R.id.image_of_profile);
-        storage = FirebaseStorage.getInstance();
+        profilePic = findViewById(R.id.pictureProfile);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
     }
 

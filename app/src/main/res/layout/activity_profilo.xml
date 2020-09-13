@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_navigazione_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/menu_starter"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_menu_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#FFF"
-        app:headerLayout="@layout/header_navigation"
-        app:menu="@menu/main_menu" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/menu_starter_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/menu_icon"
-        app:title="Dashboard"
-        app:titleTextColor="#FFF" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="sms.myunibapp.profileUser.Profile">
+    tools:context="sms.myunibapp.profileUser.Profile">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@drawable/custom_layout_view"
+                android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/profile"
+                android:textSize="30sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pictureProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_man"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="18dp"
                 android:text="@string/general"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
+                android:textSize="22sp"
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/gruppo_informazioni1"
@@ -53,7 +56,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:orientation="vertical"
-                app:cardBackgroundColor="@color/widgets_background"
+                app:cardBackgroundColor="@color/background_color_app"
                 app:cardCornerRadius="13dp"
                 app:cardElevation="13dp">
 
@@ -63,13 +66,13 @@
                     android:orientation="vertical"
                     android:padding="8dp">
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/surname"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/utente_cognome"
@@ -87,7 +90,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/name"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/utente_nome"
@@ -105,7 +109,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/identification"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/matricola"
@@ -121,16 +126,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="18sp"
                 android:text="@string/course_profile"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
+                android:textSize="22sp"
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="vertical"
-                app:cardBackgroundColor="@color/widgets_background"
+                app:cardBackgroundColor="@color/background_color_app"
                 app:cardCornerRadius="13dp"
                 app:cardElevation="13dp">
 
@@ -144,9 +151,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/course_name"
-                        android:textColor="@android:color/holo_blue_dark"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/corso_di_laurea"
@@ -164,7 +171,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/path"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/percorso"
@@ -182,7 +190,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/venue"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/sede"
@@ -200,7 +209,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/subscription"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/iscrizione"
@@ -218,7 +228,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/state_profile"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/stato"
@@ -226,32 +237,18 @@
                         android:layout_height="wrap_content"
                         android:text="Placeholder"
                         tools:ignore="HardcodedText" />
-                </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="@color/widgets_background"
-                app:cardCornerRadius="13dp"
-                app:cardElevation="13dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/clazz"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/classe"
@@ -269,7 +266,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/regulament_year"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold"/>
 
                     <TextView
                         android:id="@+id/ADR"
@@ -287,7 +285,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/subscription_year"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold"/>
 
                     <TextView
                         android:id="@+id/ordinamento"
@@ -306,7 +305,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/regulation"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/color_text"
+                        android:fontFamily="@font/poppins_semibold" />
 
                     <TextView
                         android:id="@+id/normativa"
@@ -320,6 +320,4 @@
 
         </LinearLayout>
 
-    </ScrollView>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</ScrollView>

@@ -39,6 +39,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
 
@@ -121,7 +122,7 @@ public class HomeActivity extends DrawerActivity {
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choosePicture();
+                startActivity(new Intent(HomeActivity.this, Profile.class));
             }
         });
 
@@ -161,67 +162,15 @@ public class HomeActivity extends DrawerActivity {
 
         userReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot s) {
-                nome.setText(s.child(FirebaseDb.USER_NOME).getValue(String.class));
-                matricola.setText(s.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                nome.setText(snapshot.child(FirebaseDb.USER_NOME).getValue(String.class));
+                matricola.setText(snapshot.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
+                String link = snapshot.child(FirebaseDb.USER_AVATAR).getValue(String.class);
+                Picasso.get().load(link).into(profilePic);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-
-    /**
-     * Funzione per scegliere l'immagine
-     */
-    private void choosePicture() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 1 && resultCode == RESULT_OK && data!=null && data.getData()!= null){
-            imageUri = data.getData();
-            profilePic.setImageURI(imageUri);
-            uploadPicture();
-        }
-    }
-
-    private void uploadPicture() {
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading image...");
-        progressDialog.show();
-
-        final String randomKey = UUID.randomUUID().toString();
-        StorageReference riversRef = storageReference.child("images/");
-
-        riversRef.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        progressDialog.dismiss();
-
-                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Failed to Upload", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                progressDialog.setMessage("Progress: " + (int) progressPercent + "%");
             }
         });
     }
@@ -275,12 +224,12 @@ public class HomeActivity extends DrawerActivity {
 
     //informazioni essenziali per automatizzare il più possibile la creazione dinamica dei widget
     private Class classes[] = new Class[]{
+            Profile.class,
             Secretary.class,
             Booklet.class,
             BookableExams.class,
             BookingsBoard.class,
-            OutcomeBoard.class,
-            Profile.class
+            OutcomeBoard.class
     };
 
     private String iconNames[] = new String[]{
@@ -289,7 +238,7 @@ public class HomeActivity extends DrawerActivity {
             "exam_list_icon",
             "exam_booking_icon",
             "exam_results_icon",
-            "user_icon"
+            "icon_user"
     };
     private String widgetMessages[] = new String[classes.length];
     private CheckBox items[] = new CheckBox[classes.length];
@@ -345,9 +294,9 @@ public class HomeActivity extends DrawerActivity {
             DashboardWidgets profilo, libretto, calendario, esiti;
             profilo = new DashboardWidgets(this);
             profilo.inflate();
-            profilo.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+            profilo.setIcon(getDrawable(R.drawable.icon_fingerprint));//placeholder
             profilo.setNomeWidget(items[0].getText().toString());
-            profilo.setTarget(Secretary.class);
+            profilo.setTarget(Profile.class);
             profilo.setClickable(true);
 
             layout.addView(profilo);
