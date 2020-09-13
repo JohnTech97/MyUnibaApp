@@ -9,13 +9,13 @@
         android:id="@+id/option1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/visualize_profile" />
+        android:text="@string/segretary" />
 
     <CheckBox
         android:id="@+id/option2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/segretary" />
+        android:text="@string/chat" />
 
     <CheckBox
         android:id="@+id/option3"
@@ -25,7 +25,7 @@
 
     <CheckBox
         android:id="@+id/option4"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/exams_list" />
 
@@ -43,6 +43,12 @@
 
     <CheckBox
         android:id="@+id/option7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/visualize_profile" />
+
+    <CheckBox
+        android:id="@+id/option8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Agenda" />

@@ -73,9 +73,11 @@
     <ScrollView
         android:id="@+id/scrollview_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom|center"
         android:paddingTop="5dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="80dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/add_widget"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +87,8 @@
         <GridLayout
             android:id="@+id/widgets"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2">
+            android:layout_height="match_parent"
+            android:columnCount="1">
 
         </GridLayout>
 

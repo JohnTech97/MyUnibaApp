@@ -30,7 +30,7 @@ public class DrawerActivity extends AppCompatActivity  {
     public static final String EMAIL_UNIBA = "@studenti.uniba.it";
     private static final int DELAY = 4000;
 
-    public SessionManager sessionManager;
+    public static SessionManager sessionManager;
 
     //Collegamento al database
     protected FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

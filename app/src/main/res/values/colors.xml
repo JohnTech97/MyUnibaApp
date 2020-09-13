@@ -19,6 +19,9 @@
     <color name="colorItemStart1">#FF5722</color>
     <color name="colorItemEnd1">#FF9800</color>
 
+    <color name="colorItemStart2">#FF46EBFF</color>
+    <color name="colorItemEnd2">#02A9BD</color>
+
     <color name="colorEndBackground">#50FFFFFF</color>
     <color name="colorLightText">#ECECEC</color>
 </resources>

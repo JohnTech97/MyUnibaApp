@@ -56,7 +56,7 @@
             <menu>
                 <item
                     android:id="@+id/profilo_menu"
-                    android:icon="@drawable/icon_user"
+                    android:icon="@drawable/user_icon"
                     android:title="@string/visualize_profile" />
                 <item
                     android:id="@+id/informazioni"

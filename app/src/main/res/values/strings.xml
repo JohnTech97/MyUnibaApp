@@ -23,6 +23,7 @@
     <string name="functionality">Funzionalità</string>
     <string name="home">Pagina iniziale</string>
     <string name="segretary">Segreteria</string>
+    <string name="chat">Conversazioni</string>
     <string name="booklet">Libretto</string>
     <string name="exams">Esami</string>
     <string name="exams_list">Elenco esami</string>
@@ -42,6 +43,16 @@
     <string name="exitDialogMessage">Sei sicuro di voler terminare la sessione di utilizzo dell\'app?</string>
     <string name="dialogConfirm">Conferma</string>
     <string name="dialogDecline">Annulla</string>
+
+    <string-array name="home_widgets_descriptions">
+        <item>La segreteria ti permette di svolgere le pratiche di carattere burocratico</item><!--Segreteria-->
+        <item>Comunica con i tuoi colleghi o con i professori, anche scambiando documenti</item><!--Chat-->
+        <item>Con il libretto puoi ricevere informazioni utili sulla tua carriera universitaria</item><!--Libretto-->
+        <item>Puoi prenotare gli esami che hai ancora in programma da svolgere</item><!--Elenco esami-->
+        <item>Gestisci le prenotazioni</item><!--Bacheca prenotazioni-->
+        <item>Visualizza l\'andamento degli esami che hai affrontato</item><!--Bacheca esiti-->
+        <item>Ricevi le informazioni associate al tuo account universitario</item><!--Profilo-->
+    </string-array>
 
     <!-- Sensore di impronte-->
     <string name="fingerPrintDialogTitle">Login biometrico per "MyUnibApp"</string>
@@ -63,6 +74,9 @@
 
     <!-- Bacheca prenotazioni-->
     <string name="dismiss_booking">Cancella prenotazione</string>
+
+    <!-- Chat-->
+    <string name="type_something">Scrivi qualcosa</string>
 
     <!-- Dettagli esami-->
     <string name="course">Materia:</string>

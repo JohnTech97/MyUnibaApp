@@ -10,7 +10,9 @@
     android:orientation="vertical"
     tools:context="sms.myunibapp.accessApp.LoginActivity">
 
-    <include layout="@layout/progress_view"/>
+    <include
+        layout="@layout/progress_view"
+        tools:visibility="gone" />
 
     <ImageView
         android:id="@+id/logoUniba"

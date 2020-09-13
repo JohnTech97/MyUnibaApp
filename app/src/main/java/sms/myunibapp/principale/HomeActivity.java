@@ -28,6 +28,7 @@ import com.example.myunibapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -50,6 +51,7 @@ import sms.myunibapp.profileUser.Profile;
 import sms.myunibapp.unibaServices.BookableExams;
 import sms.myunibapp.unibaServices.BookingsBoard;
 import sms.myunibapp.unibaServices.Booklet;
+import sms.myunibapp.unibaServices.ChatActivity;
 import sms.myunibapp.unibaServices.LuoghiDiInteresse;
 import sms.myunibapp.unibaServices.OutcomeBoard;
 import sms.myunibapp.unibaServices.Secretary;
@@ -130,8 +132,8 @@ public class HomeActivity extends DrawerActivity {
         /**
          * AGGIUNTA DEI WIDGETS
          */
-        //FloatingActionButton FloatingActionButton = findViewById(R.id.add_widget);
-        //FloatingActionButton.setOnClickListener((View v) -> dialog.show());
+        FloatingActionButton fb = findViewById(R.id.add_widget);
+        fb.setOnClickListener((View v) -> dialog.show());
 
         //nav.bringToFront();
         //nav.setNavigationItemSelectedListener(getNavigationBarListener(this));
@@ -224,21 +226,23 @@ public class HomeActivity extends DrawerActivity {
 
     //informazioni essenziali per automatizzare il più possibile la creazione dinamica dei widget
     private Class classes[] = new Class[]{
-            Profile.class,
             Secretary.class,
+            ChatActivity.class,
             Booklet.class,
             BookableExams.class,
             BookingsBoard.class,
-            OutcomeBoard.class
+            OutcomeBoard.class,
+            Profile.class,
     };
 
     private String iconNames[] = new String[]{
             "segretary_icon",
+            "chat_icon",
             "career_icon",
             "exam_list_icon",
             "exam_booking_icon",
             "exam_results_icon",
-            "icon_user"
+            "user_icon"
     };
     private String widgetMessages[] = new String[classes.length];
     private CheckBox items[] = new CheckBox[classes.length];
@@ -358,22 +362,25 @@ public class HomeActivity extends DrawerActivity {
                     count++;
                 }
             }
-            for (int i = 1; i <= numberOfWidgets; i++) {
-                String value = editor.getString("icon" + i, "");
+            String descr[]=res.getStringArray(R.array.home_widgets_descriptions);
+            for (int i = 0; i < numberOfWidgets; i++) {
+                String value = editor.getString("icon" + (i+1), "");
                 Drawable icon = getDrawable(res.getIdentifier(value, "drawable", getPackageName()));
 
-                String testo = items[indici[i - 1]].getText().toString();
+                String titolo = items[indici[i]].getText().toString();
+                String des = descr[indici[i]];
                 Class target = null;
                 try {
                     //ottengo la classe con un sistema automatico, senza quindi dover usare uno switch che comprometterebbe l'automazione, e quindi la scalabilità
-                    target = Class.forName(editor.getString("ClasseTarget" + i, ""));
+                    target = Class.forName(editor.getString("ClasseTarget" + (i+1), ""));
                 } catch (ClassNotFoundException e) {
                 }
                 //ho tutte le informazioni necessarie per inizializzare un widget
                 DashboardWidgets widget = new DashboardWidgets(this);
                 widget.inflate();
                 widget.setIcon(icon);
-                widget.setNomeWidget(testo);
+                widget.setNomeWidget(titolo);
+                widget.setDescrizione(des);
                 widget.setTarget(target);
                 widget.setClickable(true);
                 widget.setOnClickListener(v -> {
