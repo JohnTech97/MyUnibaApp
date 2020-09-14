@@ -77,7 +77,8 @@ public class Profile extends DrawerActivity {
                 ordinamento.setText(dataSnapshot.child(FirebaseDb.USER_ORDINAMENTO).getValue(String.class));
                 normativa.setText(dataSnapshot.child(FirebaseDb.USER_NORMATIVA).getValue(String.class));
                 String link = dataSnapshot.child(FirebaseDb.USER_AVATAR).getValue(String.class);
-                Picasso.get().load(link).into(profilePic);
+                int size=profilePic.getWidth();
+                Picasso.get().load(link).resize(size, size).into(profilePic);
             }
 
             @Override

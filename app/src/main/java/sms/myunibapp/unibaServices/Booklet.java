@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.principale.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.accessApp.LoginActivity;
@@ -83,7 +84,7 @@ public class Booklet extends AppCompatActivity {
 
         scrollView.setLayoutParams(altezza);
 
-       /* DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(LoginActivity.getUsername());
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail());
 
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -249,8 +250,6 @@ public class Booklet extends AppCompatActivity {
 
             }
         });
-
-*/
     }
 
     private TextView initializeTextView(TextView t) {//metodo di utilità per non dover definire ogni volta gli stessi parametri per ogni singola textview

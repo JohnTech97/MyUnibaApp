@@ -93,6 +93,7 @@ public class DrawerActivity extends AppCompatActivity  {
     protected void authenticate(String username, String pass) {
 
         String access = username;
+        System.out.println(access);
 
         if (!username.contains("@")) {
             access = username + EMAIL_UNIBA;

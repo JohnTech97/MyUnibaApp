@@ -15,6 +15,7 @@ public class SessionManager {
      * Oggetto che conterrà tutte le preferenze salvate
      */
     SharedPreferences preferences;
+    SharedPreferences settings;
 
     /**
      * Editor delle preferenze
@@ -30,6 +31,7 @@ public class SessionManager {
      * File che conterrà le preferenze
      */
     private static final String PREF_NAME = "SettingsAppPref";
+    private static final String SETTINGS = "Settings";
 
     /**
      * Valori chiave
@@ -57,6 +59,7 @@ public class SessionManager {
 
         // Associo alle preferenze legate al contesto corrente
         preferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        settings = context.getSharedPreferences(SETTINGS, PRIVATE_MODE);
 
         // Associo l'editor delle preferenze alla variabile di classe
         editor = preferences.edit();
@@ -124,7 +127,7 @@ public class SessionManager {
      * @return lingua del sistema
      */
     public String getLanguage(String system) {
-        return preferences.getString(LANGUAGE, system);
+        return settings.getString(LANGUAGE, system);
     }
 
     /**

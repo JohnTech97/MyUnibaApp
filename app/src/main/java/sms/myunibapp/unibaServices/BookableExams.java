@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.principale.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.accessApp.LoginActivity;
@@ -49,7 +50,7 @@ public class BookableExams extends AppCompatActivity {
         nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         db = FirebaseDatabase.getInstance();
-       /* DatabaseReference ref = db.getReference().child("Studente").child(LoginActivity.getUsername()).child("Esami da superare");
+        DatabaseReference ref = db.getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail()).child("Esami da superare");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
@@ -109,7 +110,7 @@ public class BookableExams extends AppCompatActivity {
 
             }
         });
-*/
+
     }
 
     @Override

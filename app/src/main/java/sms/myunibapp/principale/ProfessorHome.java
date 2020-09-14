@@ -47,12 +47,13 @@ public class ProfessorHome extends AppCompatActivity {
         GridLayout widgets=findViewById(R.id.widgets_professor);
 
         Resources res=getResources();
-
+        String descr[]=res.getStringArray(R.array.professor_home_widgets_descriptions);
         DashboardWidgets aggiuntaEsami, valutazioneStudenti, gestione, profilo, impostazioni;
         aggiuntaEsami=new DashboardWidgets(this);
         aggiuntaEsami.inflate();
-        aggiuntaEsami.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+        aggiuntaEsami.setIcon(getDrawable(R.drawable.icon_add));
         aggiuntaEsami.setNomeWidget(res.getString(R.string.aggiunta_date));
+        aggiuntaEsami.setDescrizione(descr[0]);
         aggiuntaEsami.setTarget(AddExam.class);
         aggiuntaEsami.setClickable(true);
 
@@ -60,8 +61,9 @@ public class ProfessorHome extends AppCompatActivity {
 
         valutazioneStudenti=new DashboardWidgets(this);
         valutazioneStudenti.inflate();
-        valutazioneStudenti.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+        valutazioneStudenti.setIcon(getDrawable(R.drawable.evaluate_icon));//placeholder
         valutazioneStudenti.setNomeWidget(res.getString(R.string.valutazione_studenti));
+        valutazioneStudenti.setDescrizione(descr[1]);
         valutazioneStudenti.setTarget(StudentEvalutation.class);
         valutazioneStudenti.setClickable(true);
 
@@ -69,8 +71,9 @@ public class ProfessorHome extends AppCompatActivity {
 
         gestione=new DashboardWidgets(this);
         gestione.inflate();
-        gestione.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+        gestione.setIcon(getDrawable(R.drawable.manage_icon));//placeholder
         gestione.setNomeWidget(res.getString(R.string.gestione_appelli));
+        gestione.setDescrizione(descr[2]);
         gestione.setTarget(ManageExam.class);
         gestione.setClickable(true);
 
@@ -78,8 +81,9 @@ public class ProfessorHome extends AppCompatActivity {
 
         profilo=new DashboardWidgets(this);
         profilo.inflate();
-        profilo.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+        profilo.setIcon(getDrawable(R.drawable.user_icon));//placeholder
         profilo.setNomeWidget(res.getString(R.string.profilo_professori));
+        profilo.setDescrizione(descr[3]);
         profilo.setTarget(ProfessorProfile.class);
         profilo.setClickable(true);
 
@@ -87,8 +91,9 @@ public class ProfessorHome extends AppCompatActivity {
 
         impostazioni=new DashboardWidgets(this);
         impostazioni.inflate();
-        impostazioni.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
+        impostazioni.setIcon(getDrawable(R.drawable.settings_icon));//placeholder
         impostazioni.setNomeWidget(res.getString(R.string.settings));
+        impostazioni.setDescrizione(descr[4]);
         impostazioni.setTarget(Settings.class);
         impostazioni.setClickable(true);
 
@@ -108,7 +113,7 @@ public class ProfessorHome extends AppCompatActivity {
 
         prof=new ProfessorData();
 
-        /*DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(LoginActivity.getUsername());
+        DatabaseReference dr= FirebaseDatabase.getInstance().getReference().child("Docenti").child(DrawerActivity.sessionManager.getSessionEmail());
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot s) {
@@ -131,8 +136,6 @@ public class ProfessorHome extends AppCompatActivity {
 
             }
         });
-
-*/
     }
 
     public static ProfessorData getProfessor() {

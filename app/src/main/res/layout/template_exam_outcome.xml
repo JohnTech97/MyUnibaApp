@@ -6,9 +6,10 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="1200px"
+        android:layout_width="1000px"
         android:layout_height="match_parent"
         android:background="@drawable/widgets_background"
+        android:layout_marginStart="30dp"
         tools:ignore="PxUsage">
 
         <LinearLayout

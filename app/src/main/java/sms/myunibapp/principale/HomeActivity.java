@@ -98,7 +98,7 @@ public class HomeActivity extends DrawerActivity {
 
 
         /* INIZIALIZZAZIONE DATI ESAMI */
-        //ExamsData.initializeData(this);
+        ExamsData.initializeData(this);
 
         //il timer per determinare se il caricamento è completo parte da ora
 
@@ -168,7 +168,8 @@ public class HomeActivity extends DrawerActivity {
                 nome.setText(snapshot.child(FirebaseDb.USER_NOME).getValue(String.class));
                 matricola.setText(snapshot.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
                 String link = snapshot.child(FirebaseDb.USER_AVATAR).getValue(String.class);
-                Picasso.get().load(link).into(profilePic);
+                int size=profilePic.getWidth();
+                Picasso.get().load(link).resize(size, size).into(profilePic);
             }
 
             @Override

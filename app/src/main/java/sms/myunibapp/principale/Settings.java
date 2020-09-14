@@ -10,6 +10,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.myunibapp.R;
 
@@ -18,7 +19,7 @@ import sms.myunibapp.SpinnerData;
 public class Settings extends AppCompatActivity {
 
     private boolean hasLanguageChanged = false;
-    private Switch fingerprints;
+    private SwitchCompat fingerprints;
     private Spinner spinner;
     private SpinnerData languages[];
 

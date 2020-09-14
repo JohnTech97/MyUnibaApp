@@ -54,6 +54,14 @@
         <item>Ricevi le informazioni associate al tuo account universitario</item><!--Profilo-->
     </string-array>
 
+    <string-array name="professor_home_widgets_descriptions">
+        <item>Definisci un nuovo appello associato ai tuoi insegnamenti</item><!--Aggiunta esame-->
+        <item>Inserisci l\'andamento dei tuoi studenti che hanno affrontato un esame</item><!--Valutazione studenti-->
+        <item>Modifica i dettagli degli esami da te creati in precedenza</item><!--Modifica esame-->
+        <item>Ricevi le informazioni associate al tuo account</item><!--Profilo-->
+        <item>Impostazioni</item><!--Impostazioni-->
+    </string-array>
+
     <!-- Sensore di impronte-->
     <string name="fingerPrintDialogTitle">Login biometrico per "MyUnibApp"</string>
     <string name="fingerPrintDialogNegativeButton">Annulla</string>

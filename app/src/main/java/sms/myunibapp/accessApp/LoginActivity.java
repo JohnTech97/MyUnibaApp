@@ -56,14 +56,6 @@ public class LoginActivity extends DrawerActivity {
 
             if (!validateUsername() | !validatePassword()) {
                 return;
-
-            } else if (isChecked) {
-                progressBar.setVisibility(View.VISIBLE);
-                String mail, pass;
-                mail = sessionManager.getSessionUsername();
-                pass = sessionManager.getSessionPassword();
-                authenticate(mail, pass);
-
             } else {
                 progressBar.setVisibility(View.VISIBLE);
                 authenticate(username, password);
