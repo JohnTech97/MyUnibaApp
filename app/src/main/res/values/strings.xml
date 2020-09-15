@@ -59,6 +59,7 @@
         <item>Inserisci l\'andamento dei tuoi studenti che hanno affrontato un esame</item><!--Valutazione studenti-->
         <item>Modifica i dettagli degli esami da te creati in precedenza</item><!--Modifica esame-->
         <item>Ricevi le informazioni associate al tuo account</item><!--Profilo-->
+        <item>Comunica con i tuoi studenti</item><!--Chat-->
         <item>Impostazioni</item><!--Impostazioni-->
     </string-array>
 
@@ -189,5 +190,5 @@
     <string name="documenti_identit">Documenti identità</string>
     <string name="contatti">Contatti</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 </resources>

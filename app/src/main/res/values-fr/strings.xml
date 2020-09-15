@@ -163,5 +163,28 @@
     <string name="borsa_di_studio">Borsa di studio</string>
     <string name="documenti_identit">Documenti identità</string>
     <string name="contatti">Contatti</string>
+    <string name="text_noFingerprint">Cet appareil ne prend pas en charge la reconnaissance des empreintes digitales</string>
+    <string name="text_fingerprint">"Vous pouvez désactiver la reconnaissance biométrique à tout moment dans la section <strong> Sécurité </strong> "</string>
+    <string name="inserisci_le_credenziali">Insérer les informations d\'identification</string>
+    <string name="type_something">"Tapez quelque chose "</string>
 
+    <string-array name="home_widgets_descriptions">
+        <item>La secrétaire vous laisse faire des choses bureaucratiques</item><!--Segreteria-->
+        <item>Communiquez avec vos collègues et professeurs, même en partageant des documents</item><!--Chat-->
+        <item>Le livret vous permet de voir les informations sur votre carrière universitaire</item><!--Libretto-->
+        <item>Vous pouvez réserver les examens que vous devez encore passer</item><!--Elenco esami-->
+        <item>Gérer les réservations</item><!--Bacheca prenotazioni-->
+        <item>Voyez comment se déroulent les examens que vous avez passés</item><!--Bacheca esiti-->
+        <item>Recevez des informations sur votre profil académique</item><!--Profilo-->
+    </string-array>
+
+    <string-array name="professor_home_widgets_descriptions">
+        <item>Définissez une nouvelle date d\'examen pour vos examens</item><!--Aggiunta esame-->
+        <item>Notez vos élèves</item><!--Valutazione studenti-->
+        <item>Modifier les données des examens pour les dates que vous avez précédemment créées</item><!--Modifica esame-->
+        <item>Recevoir les informations de votre compte</item><!--Profilo-->
+        <item>Communiquer avec vos élèves</item><!--Chat-->
+        <item>Paramètres</item><!--Impostazioni-->
+    </string-array>
+    <string name="chat">Conversation</string>
 </resources>

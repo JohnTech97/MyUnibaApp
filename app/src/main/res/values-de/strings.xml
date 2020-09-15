@@ -163,5 +163,29 @@
     <string name="borsa_di_studio">Borsa di studio</string>
     <string name="documenti_identit">Documenti identità</string>
     <string name="contatti">Contatti</string>
+    <string name="text_noFingerprint">Dieses Gerät unterstützt keine Erkennung von Fingerabdrücken</string>
+    <string name="text_fingerprint">"Sie können die biometrische Erkennung jederzeit im Abschnitt <strong> Sicherheit </strong> deaktivieren "</string>
+    <string name="inserisci_le_credenziali">Anmeldeinformationen einfügen</string>
+    <string name="type_something">Schreibe etwas</string>
+
+    <string-array name="home_widgets_descriptions">
+        <item>Mit der Sekretärin können Sie bürokratische Dinge erledigen</item><!--Segreteria-->
+        <item>Kommunizieren Sie mit Ihren Kollegen und Professoren, auch indem Sie Dokumente teilen</item><!--Chat-->
+        <item>In der Broschüre können Sie Ihre akademischen Karriereinformationen anzeigen</item><!--Libretto-->
+        <item>Sie können die Prüfungen buchen, die Sie noch ablegen müssen</item><!--Elenco esami-->
+        <item>Buchungen verwalten</item><!--Bacheca prenotazioni-->
+        <item>Sehen Sie, wie die Prüfungen, die Sie abgelegt haben, ablaufen</item><!--Bacheca esiti-->
+        <item>Erhalten Sie Informationen zu Ihrem akademischen Profil</item><!--Profilo-->
+    </string-array>
+
+    <string-array name="professor_home_widgets_descriptions">
+        <item>Definieren Sie einen neuen Prüfungstermin für Ihre Prüfungen</item><!--Aggiunta esame-->
+        <item>Benoten Sie Ihre Schüler</item><!--Valutazione studenti-->
+        <item>Ändern Sie die Prüfungsdaten für Daten, die Sie zuvor erstellt haben</item><!--Modifica esame-->
+        <item>Erhalten Sie Ihre Kontoinformationen</item><!--Profilo-->
+        <item>Kommunizieren Sie mit Ihren Schülern</item><!--Chat-->
+        <item>Einstellungen</item><!--Impostazioni-->
+    </string-array>
+    <string name="chat">Konversation</string>
 
 </resources>
