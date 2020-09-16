@@ -70,7 +70,7 @@ public class Fingerprints extends DrawerActivity {
                     super.onAuthenticationSucceeded(result);
 
                     progressBar.setVisibility(View.VISIBLE);
-                    buttonCredentials.setVisibility(View.INVISIBLE);
+                    buttonCredentials.setVisibility(View.GONE);
 
                     String username = sessionManager.getSessionUsername();
                     String password = sessionManager.getSessionPassword();
