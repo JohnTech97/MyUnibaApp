@@ -7,15 +7,46 @@
     android:orientation="vertical"
     tools:context="sms.myunibapp.profileUser.ProfessorProfile">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/profilo_professori"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:layout_gravity="center"/>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/custom_layout_view"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/profile"
+                android:textSize="30sp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pictureProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_man"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/general"
+            android:textSize="22sp"
+            android:textColor="@color/color_text"
+            android:fontFamily="@font/poppins_semibold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,7 +55,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
-        app:cardBackgroundColor="@color/widgets_background"
+        app:cardBackgroundColor="@color/background_color_app"
         app:cardCornerRadius="13dp"
         app:cardElevation="13dp">
 
@@ -40,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/surname"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold" />
 
             <TextView
                 android:id="@+id/professore_cognome"
@@ -58,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/name"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/color_text"
+                android:fontFamily="@font/poppins_semibold" />
 
             <TextView
                 android:id="@+id/professore_nome"
@@ -75,8 +108,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/aula_professori"
+                android:textColor="@color/color_text"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/poppins_semibold"/>
 
             <TextView
                 android:id="@+id/aula_professore"
@@ -94,9 +128,9 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:text="@string/insegnamenti_professori"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:layout_gravity="center"/>
+        android:textSize="22sp"
+        android:textColor="@color/color_text"
+        android:fontFamily="@font/poppins_semibold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -105,7 +139,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
-        app:cardBackgroundColor="@color/widgets_background"
+        app:cardBackgroundColor="@color/background_color_app"
         app:cardCornerRadius="13dp"
         app:cardElevation="13dp">
 
