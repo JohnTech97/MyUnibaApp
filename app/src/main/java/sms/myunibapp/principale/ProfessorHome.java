@@ -24,6 +24,7 @@ import sms.myunibapp.profileUser.ProfessorProfile;
 import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.DashboardWidgets;
 import sms.myunibapp.unibaServices.AddExam;
+import sms.myunibapp.unibaServices.ChatActivity;
 import sms.myunibapp.unibaServices.ManageExam;
 import sms.myunibapp.unibaServices.StudentEvalutation;
 
@@ -48,7 +49,7 @@ public class ProfessorHome extends AppCompatActivity {
 
         Resources res=getResources();
         String descr[]=res.getStringArray(R.array.professor_home_widgets_descriptions);
-        DashboardWidgets aggiuntaEsami, valutazioneStudenti, gestione, profilo, impostazioni;
+        DashboardWidgets aggiuntaEsami, valutazioneStudenti, gestione, profilo, chat, impostazioni;
         aggiuntaEsami=new DashboardWidgets(this);
         aggiuntaEsami.inflate();
         aggiuntaEsami.setIcon(getDrawable(R.drawable.icon_add));
@@ -89,11 +90,21 @@ public class ProfessorHome extends AppCompatActivity {
 
         widgets.addView(profilo);
 
+        chat=new DashboardWidgets(this);
+        chat.inflate();
+        chat.setIcon(getDrawable(R.drawable.chat_icon));//placeholder
+        chat.setNomeWidget(res.getString(R.string.chat));
+        chat.setDescrizione(descr[4]);
+        chat.setTarget(ChatActivity.class);
+        chat.setClickable(true);
+
+        widgets.addView(chat);
+
         impostazioni=new DashboardWidgets(this);
         impostazioni.inflate();
         impostazioni.setIcon(getDrawable(R.drawable.settings_icon));//placeholder
         impostazioni.setNomeWidget(res.getString(R.string.settings));
-        impostazioni.setDescrizione(descr[4]);
+        impostazioni.setDescrizione(descr[5]);
         impostazioni.setTarget(Settings.class);
         impostazioni.setClickable(true);
 
@@ -109,6 +120,7 @@ public class ProfessorHome extends AppCompatActivity {
         valutazioneStudenti.setOnClickListener(click);
         gestione.setOnClickListener(click);
         profilo.setOnClickListener(click);
+        chat.setOnClickListener(click);
         impostazioni.setOnClickListener(click);
 
         prof=new ProfessorData();

@@ -167,5 +167,25 @@
     <string name="borsa_di_studio">Borsa di studio</string>
     <string name="documenti_identit">Documenti identità</string>
     <string name="contatti">Contatti</string>
+    <string name="chat">Conversazioni</string>
+    <string name="type_something">Scrivi qualcosa</string>
 
+    <string-array name="home_widgets_descriptions">
+        <item>La segreteria ti permette di svolgere le pratiche di carattere burocratico</item><!--Segreteria-->
+        <item>Comunica con i tuoi colleghi o con i professori, anche scambiando documenti</item><!--Chat-->
+        <item>Con il libretto puoi ricevere informazioni utili sulla tua carriera universitaria</item><!--Libretto-->
+        <item>Puoi prenotare gli esami che hai ancora in programma da svolgere</item><!--Elenco esami-->
+        <item>Gestisci le prenotazioni</item><!--Bacheca prenotazioni-->
+        <item>Visualizza l\'andamento degli esami che hai affrontato</item><!--Bacheca esiti-->
+        <item>Ricevi le informazioni associate al tuo account universitario</item><!--Profilo-->
+    </string-array>
+
+    <string-array name="professor_home_widgets_descriptions">
+        <item>Definisci un nuovo appello associato ai tuoi insegnamenti</item><!--Aggiunta esame-->
+        <item>Inserisci l\'andamento dei tuoi studenti che hanno affrontato un esame</item><!--Valutazione studenti-->
+        <item>Modifica i dettagli degli esami da te creati in precedenza</item><!--Modifica esame-->
+        <item>Ricevi le informazioni associate al tuo account</item><!--Profilo-->
+        <item>Comunica con i tuoi studenti</item><!--Chat-->
+        <item>Impostazioni</item><!--Impostazioni-->
+    </string-array>
 </resources>
