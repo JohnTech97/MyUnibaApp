@@ -19,7 +19,7 @@ import java.util.Date;
 
 import sms.myunibapp.oggetti.DrawerActivity;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends DrawerActivity {
 
 
     private FirebaseListAdapter<ChatMessage> adapter;

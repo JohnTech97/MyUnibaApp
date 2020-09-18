@@ -27,7 +27,7 @@ import sms.myunibapp.DateTimePicker;
 import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ProfessorHome;
 
-public class AddExam extends DrawerActivity {
+public class AddExam extends AppCompatActivity {
 
     private ArrayList<String> datiMateria;
     private int[] numeroDate;

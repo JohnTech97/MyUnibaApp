@@ -26,7 +26,7 @@ import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.advancedViews.BookedExamDetails;
 
-public class BookingsBoard extends AppCompatActivity {
+public class BookingsBoard extends DrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

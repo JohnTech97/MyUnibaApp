@@ -28,7 +28,7 @@ import sms.myunibapp.unibaServices.ChatActivity;
 import sms.myunibapp.unibaServices.ManageExam;
 import sms.myunibapp.unibaServices.StudentEvalutation;
 
-public class ProfessorHome extends AppCompatActivity {
+public class ProfessorHome extends DrawerActivity {
 
     public class ProfessorData{
         public String nome;

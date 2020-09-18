@@ -25,7 +25,7 @@ import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.advancedViews.ExamOutcomeDetails;
 
-public class OutcomeBoard extends AppCompatActivity {
+public class OutcomeBoard extends DrawerActivity {
 
 
     @Override

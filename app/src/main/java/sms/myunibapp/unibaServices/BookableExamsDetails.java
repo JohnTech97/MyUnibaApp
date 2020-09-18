@@ -35,7 +35,7 @@ import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.advancedViews.BookableExamDetails;
 
-public class BookableExamsDetails extends AppCompatActivity {
+public class BookableExamsDetails extends DrawerActivity {
 
     private final int CALENDAR = 1;
 

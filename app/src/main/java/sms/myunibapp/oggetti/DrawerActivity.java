@@ -143,7 +143,7 @@ public class DrawerActivity extends AppCompatActivity  {
                         startActivity(intent);
                         break;
                     case R.id.who_we_are:
-                        intent = new Intent(getBaseContext(), WhoAre.class);
+                        Toast.makeText(getApplicationContext(), "Work in progress", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         break;
                     case R.id.mappa:

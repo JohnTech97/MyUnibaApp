@@ -29,7 +29,7 @@ import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 import sms.myunibapp.advancedViews.BookableExamItem;
 
-public class BookableExams extends AppCompatActivity {
+public class BookableExams extends DrawerActivity {
 
     private FirebaseDatabase db;
 

@@ -29,7 +29,7 @@ import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
 
-public class Booklet extends AppCompatActivity {
+public class Booklet extends DrawerActivity {
 
     private boolean isShowDetailsSelected = false;
 
