@@ -1,6 +1,6 @@
 package sms.myunibapp.principale;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,15 +9,14 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,28 +24,22 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.advancedViews.DashboardWidgets;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.profileUser.Profile;
 import sms.myunibapp.unibaServices.BookableExams;
 import sms.myunibapp.unibaServices.BookingsBoard;
@@ -64,16 +57,12 @@ public class HomeActivity extends DrawerActivity {
     private AlertDialog dialog;
     private SharedPreferences editor;
 
-    BottomAppBar bottomAppBar;
-
     /**
      * TITOLO NOME UTENTE
      */
     private TextView nome, matricola;
     private CircleImageView profilePic;
-    public Uri imageUri;
     private FirebaseStorage storage;
-    private StorageReference storageReference;
 
 
     /* ACCESSO AL DATABASE */
@@ -87,15 +76,11 @@ public class HomeActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_dashboard);
 
-        drawer = findViewById(R.id.menu_navigazione);
-        NavigationView nav = findViewById(R.id.navigation_menu);
-        Toolbar toolbar = findViewById(R.id.menu_starter);
         layout = findViewById(R.id.widgets);
 
         //Creazione della parte superiore della pagina
         initializeView();
         createHeaderDash();
-
 
         /* INIZIALIZZAZIONE DATI ESAMI */
         ExamsData.initializeData(this);
@@ -114,20 +99,10 @@ public class HomeActivity extends DrawerActivity {
                 isFinished = true;
             }
         }.start();
-        setSupportActionBar(toolbar);
-
-       // ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-       // drawer.addDrawerListener(mainMenu);
-       // mainMenu.syncState();
 
         //Immagine cliccabile e si può modificare
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, Profile.class));
-            }
-        });
-
+        profilePic.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, Profile.class)));
+        getSupportActionBar().setTitle("Dashboard");
 
         /**
          * AGGIUNTA DEI WIDGETS
@@ -154,7 +129,6 @@ public class HomeActivity extends DrawerActivity {
         //DATI PER IL CARICAMENTO DELL'IMMAGINE
         profilePic = findViewById(R.id.image_of_profile);
         storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
     }
 
     private void createHeaderDash(){
@@ -168,8 +142,7 @@ public class HomeActivity extends DrawerActivity {
                 nome.setText(snapshot.child(FirebaseDb.USER_NOME).getValue(String.class));
                 matricola.setText(snapshot.child(FirebaseDb.USER_MATRICOLA).getValue(String.class));
                 String link = snapshot.child(FirebaseDb.USER_AVATAR).getValue(String.class);
-                int size=profilePic.getWidth();
-                Picasso.get().load(link).resize(size, size).into(profilePic);
+                showImage(link);
             }
 
             @Override
@@ -178,51 +151,17 @@ public class HomeActivity extends DrawerActivity {
         });
     }
 
-    //serve un unico listener da utilizzare in tutte le schermate
-    public static NavigationView.OnNavigationItemSelectedListener getNavigationBarListener(AppCompatActivity app) {
-        return item -> {
-            Class target = null;
+    private void showImage(String link) {
 
-            switch (item.getItemId()) {
-                case R.id.home:
-                    target = HomeActivity.class;
-                    break;
-                case R.id.segreteria:
-                    target = Secretary.class;
-                    break;
-                case R.id.lista_esami:
-                    target = BookableExams.class;
-                    break;
-                case R.id.bacheca_prenotazioni:
-                    target = BookingsBoard.class;
-                    break;
-                case R.id.bacheca_esiti:
-                    target = OutcomeBoard.class;
-                    break;
-                case R.id.carriera:
-                    target = Booklet.class;
-                    break;
-                case R.id.profilo_menu:
-                    target = Profile.class;
-                    break;
-                case R.id.who_we_are:
+        Drawable image = getResources().getDrawable(R.drawable.icon_man);
 
-                    break;
-                case R.id.mappa:
-                    target = LuoghiDiInteresse.class;
-                    break;
-                case R.id.impostazioni:
-                    target = Settings.class;
-                    break;
-                case R.id.logout:
-                    break;
-            }//il target deve essere diverso dalla schermata corrente, per evitare di tornare inutilmente nella stessa pagina
-            if (target != null && target != app.getClass() && isFinished) {//se la progress bar è visibile vuol dire che non ha finito di caricare
-                app.startActivity(new Intent(app, target));
-                app.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-            return true;
-        };
+        if(link.isEmpty()){
+            profilePic.setImageDrawable(image);
+        }else {
+            int size = profilePic.getWidth();
+            Picasso.get().load(link).resize(size, size).into(profilePic);
+        }
+
     }
 
     //informazioni essenziali per automatizzare il più possibile la creazione dinamica dei widget
@@ -299,7 +238,7 @@ public class HomeActivity extends DrawerActivity {
             DashboardWidgets profilo, libretto, calendario, esiti;
             profilo = new DashboardWidgets(this);
             profilo.inflate();
-            profilo.setIcon(getDrawable(R.drawable.icon_fingerprint));//placeholder
+            profilo.setIcon(getDrawable(R.drawable.missing_icon));//placeholder
             profilo.setNomeWidget(items[0].getText().toString());
             profilo.setTarget(Profile.class);
             profilo.setClickable(true);
@@ -397,8 +336,8 @@ public class HomeActivity extends DrawerActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             close();
         }
@@ -409,12 +348,12 @@ public class HomeActivity extends DrawerActivity {
      */
     private void close() {
         Resources res = getResources();
-        AlertDialog.Builder conferma = new AlertDialog.Builder(HomeActivity.this);
+        AlertDialog.Builder conferma = new AlertDialog.Builder(getApplicationContext());
         conferma.setTitle(res.getString(R.string.exitDialogTitle));
         conferma.setMessage(res.getString(R.string.exitDialogMessage));
         conferma.setPositiveButton(res.getString(R.string.dialogConfirm), (dialog, which) -> {
             finish();
-            System.exit(0);
+            sessionManager.logout();
         });
         conferma.setNegativeButton(res.getString(R.string.dialogDecline), (dialog, which) -> dialog.cancel());
         conferma.show();

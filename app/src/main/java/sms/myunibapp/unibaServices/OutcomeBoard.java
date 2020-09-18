@@ -20,10 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.ExamOutcomeDetails;
 
 public class OutcomeBoard extends AppCompatActivity {
@@ -33,14 +32,6 @@ public class OutcomeBoard extends AppCompatActivity {
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.activity_exam_outcome);
-        DrawerLayout drawer=findViewById(R.id.menu_navigazione_outcome);
-        Toolbar toolbar=findViewById(R.id.menu_starter_outcome);
-        NavigationView nav= findViewById(R.id.navigation_menu_outcome);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 

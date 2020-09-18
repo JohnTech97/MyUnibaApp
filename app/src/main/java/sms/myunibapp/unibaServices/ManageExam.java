@@ -26,10 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import sms.myunibapp.DateTimePicker;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ProfessorHome;
 import sms.myunibapp.SpinnerData;
 
-public class ManageExam extends AppCompatActivity {
+public class ManageExam extends DrawerActivity {
 
     private ArrayList<SpinnerData> datiMateria;
     private int numeroEsameSelezionato;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myunibapp">
+    package="com.example.myunibapp" >
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -20,8 +20,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_uniba_round"
         android:supportsRtl="true"
-        android:theme="@style/FullScreenSchede">
-        <activity android:name="sms.myunibapp.unibaServices.ChatActivity"></activity>
+        android:theme="@style/FullScreenSchede" >
+        <activity android:name="sms.myunibapp.unibaServices.ChatActivity" />
         <activity
             android:name="sms.myunibapp.accessApp.Fingerprints"
             android:theme="@style/FullScreen" />
@@ -48,7 +48,7 @@
         <activity android:name="sms.myunibapp.principale.Settings" /> <!-- SPLASH SCREEN -->
         <activity
             android:name="sms.myunibapp.principale.SplashScreen"
-            android:theme="@style/FullScreen">
+            android:theme="@style/FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -21,10 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookedExamDetails;
 
 public class BookingsBoard extends AppCompatActivity {
@@ -35,14 +34,6 @@ public class BookingsBoard extends AppCompatActivity {
         setContentView(R.layout.activity_booked_exams);
 
         LinearLayout listaEsami = findViewById(R.id.prenotati);
-        DrawerLayout drawer = findViewById(R.id.menu_navigazione_booked_exam);
-        Toolbar toolbar = findViewById(R.id.menu_starter_booked_exam);
-        NavigationView nav = findViewById(R.id.navigation_menu_booked_exam);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail());
 

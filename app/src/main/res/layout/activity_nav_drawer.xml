@@ -8,44 +8,38 @@
     tools:context="sms.myunibapp.principale.HomeActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:id="@+id/menu_navigazione"
-    android:layout_above="@id/menu_starter">
+    android:id="@+id/menu_navigazione">
 
+    <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/toolbar" />
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/navigation_menu"
         app:headerLayout="@layout/header_navigation"
         app:menu="@menu/main_menu"
         android:layout_gravity="start"
         android:background="#FFF"
+        android:fitsSystemWindows="true"
         />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/menu_starter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_color_app"
-            app:title="Dashboard"
-            app:titleTextColor="#FFF" >
-
-            <ProgressBar
-                android:id="@+id/progress_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <include layout="@layout/activity_home_dashboard"/>
-
-    </LinearLayout>
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

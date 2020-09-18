@@ -24,9 +24,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import sms.myunibapp.DateTimePicker;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ProfessorHome;
 
-public class AddExam extends AppCompatActivity {
+public class AddExam extends DrawerActivity {
 
     private ArrayList<String> datiMateria;
     private int[] numeroDate;

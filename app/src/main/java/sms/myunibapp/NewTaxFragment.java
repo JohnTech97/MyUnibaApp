@@ -28,8 +28,6 @@ public class NewTaxFragment extends Fragment {
     RecyclerView recyclerViewTax;
     List<Tax> itemList;
 
-
-
     public NewTaxFragment() {
         // Required empty public constructor
     }

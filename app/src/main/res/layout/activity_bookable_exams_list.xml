@@ -5,7 +5,6 @@
     android:id="@+id/menu_navigazione_bookable_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/menu_starter"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 

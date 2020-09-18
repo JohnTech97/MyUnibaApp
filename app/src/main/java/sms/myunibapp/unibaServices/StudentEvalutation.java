@@ -22,10 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ProfessorHome;
 import sms.myunibapp.SpinnerData;
 
-public class StudentEvalutation extends AppCompatActivity {
+public class StudentEvalutation extends DrawerActivity {
 
     private boolean isStarting1 = true;
     private boolean isStarting2 = true;

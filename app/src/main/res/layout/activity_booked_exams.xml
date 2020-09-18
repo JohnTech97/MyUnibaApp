@@ -5,7 +5,6 @@
     android:id="@+id/menu_navigazione_booked_exam"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/menu_starter"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 

@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import sms.myunibapp.SessionManager;
-import sms.myunibapp.accessApp.LoginActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 
 public class ExamsData {
 

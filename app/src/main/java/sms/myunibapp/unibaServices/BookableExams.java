@@ -24,10 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookableExamItem;
 
 public class BookableExams extends AppCompatActivity {
@@ -40,14 +39,6 @@ public class BookableExams extends AppCompatActivity {
         setContentView(R.layout.activity_bookable_exams_list);
 
         LinearLayout listaEsami = findViewById(R.id.lista_esami_prenotabili);
-        DrawerLayout drawer=findViewById(R.id.menu_navigazione_bookable_list);
-        Toolbar toolbar=findViewById(R.id.menu_starter_bookable_list);
-        NavigationView nav= findViewById(R.id.navigation_menu_bookable_list);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail()).child("Esami da superare");

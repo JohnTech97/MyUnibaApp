@@ -25,17 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-import sms.myunibapp.SessionManager;
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 import sms.myunibapp.advancedViews.BookableExamDetails;
 
 public class BookableExamsDetails extends AppCompatActivity {
@@ -47,14 +44,6 @@ public class BookableExamsDetails extends AppCompatActivity {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.activity_exams_details);
         LinearLayout listaEsami = findViewById(R.id.prenotabili);
-        DrawerLayout drawer = findViewById(R.id.menu_navigazione_exam_details);
-        Toolbar toolbar = findViewById(R.id.menu_starter_exam_details);
-        NavigationView nav = findViewById(R.id.navigation_menu_exam_details);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         Bundle b = getIntent().getExtras();
         String key = b.getString("key");

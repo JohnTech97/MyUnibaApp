@@ -12,14 +12,12 @@ import android.widget.TextView;
 import com.example.myunibapp.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
-import sms.myunibapp.SessionManager;
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 
 public class ChatActivity extends AppCompatActivity {
 

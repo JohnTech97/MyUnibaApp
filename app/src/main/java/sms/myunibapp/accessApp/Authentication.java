@@ -1,88 +1,33 @@
-package sms.myunibapp.principale;
+package sms.myunibapp.accessApp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myunibapp.R;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.SessionManager;
+import sms.myunibapp.principale.HomeActivity;
+import sms.myunibapp.principale.ProfessorHome;
 
-/**
- * Questa classe contiene solo il drawer. E' una classe base. Tutte le classi legate al drawer, dovranno estendere
- * questa classe, per avere anche esse il drawer.
- */
-public class DrawerActivity extends AppCompatActivity  {
+class Authentication extends AppCompatActivity {
 
     public static final String EMAIL_UNIBA = "@studenti.uniba.it";
-    private static final int DELAY = 4000;
-
-    public static SessionManager sessionManager;
 
     //Collegamento al database
     protected FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-    /* ACCESSO AL DATABASE */
-    protected DatabaseReference userReference = FirebaseDatabase.getInstance().getReference().child(FirebaseDb.TABLE_STUDENTE);
-
     private static String userEmailFB;
 
-    BottomAppBar bottomAppBar; //Barra di navigazione
-    FloatingActionButton floatingActionButton;
-
-    protected FrameLayout progressBar;
+    public static SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Valorizzo il session manager
         sessionManager = new SessionManager(getApplicationContext());
-
-        //Progress Bar
-        progressBar = findViewById(R.id.progress_view);
-
-        //BOTTOM APP BAR
-        bottomAppBar = findViewById(R.id.bottomAppBar);
-        floatingActionButton = findViewById(R.id.add_widget);
-        setSupportActionBar(bottomAppBar);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.appbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-
-            case R.id.informazioni :
-                Toast.makeText(DrawerActivity.this, "INFO! ", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.menuSettings :
-                Toast.makeText(DrawerActivity.this, "SETTINGS! ", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.menu_navigazione :
-                Toast.makeText(DrawerActivity.this, "MENU! ", Toast.LENGTH_LONG).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -126,6 +71,4 @@ public class DrawerActivity extends AppCompatActivity  {
             }
         });
     }
-
-
 }

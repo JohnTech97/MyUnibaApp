@@ -16,11 +16,9 @@ import com.example.myunibapp.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import sms.myunibapp.forgotPassword.ForgotPasswordActivity;
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 
-public class LoginActivity extends DrawerActivity {
-
-    public static final String EMAIL_UNIBA = "@studenti.uniba.it";
+public class LoginActivity extends Authentication {
 
     //Credenziali di accesso
     private EditText editTextUsername;
@@ -37,17 +35,18 @@ public class LoginActivity extends DrawerActivity {
     private static String username;
     private String password;
 
+    private FrameLayout progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main_login);
+        setContentView(R.layout.activity_login);
 
         initializeVariables(); //Inizializzazione delle variabili
         progressBar.setVisibility(View.GONE);
 
-        boolean isChecked = checkRemember();
-
+        checkRemember();
 
         /* ACCESSO ALL'APPLICAZIONE */
         mLoginButton.setOnClickListener(v -> {

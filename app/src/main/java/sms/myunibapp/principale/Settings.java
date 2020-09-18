@@ -15,8 +15,9 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.example.myunibapp.R;
 
 import sms.myunibapp.SpinnerData;
+import sms.myunibapp.oggetti.DrawerActivity;
 
-public class Settings extends AppCompatActivity {
+public class Settings extends DrawerActivity {
 
     private boolean hasLanguageChanged = false;
     private SwitchCompat fingerprints;

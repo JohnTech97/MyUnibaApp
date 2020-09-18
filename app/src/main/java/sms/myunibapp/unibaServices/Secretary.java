@@ -9,8 +9,9 @@ import androidx.cardview.widget.CardView;
 import com.example.myunibapp.R;
 
 import sms.myunibapp.NewTaxFragment;
+import sms.myunibapp.oggetti.DrawerActivity;
 
-public class Secretary extends AppCompatActivity {
+public class Secretary extends DrawerActivity {
 
     CardView cardView;
 

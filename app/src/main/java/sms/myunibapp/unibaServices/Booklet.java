@@ -25,10 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import sms.myunibapp.principale.DrawerActivity;
+import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
-import sms.myunibapp.accessApp.LoginActivity;
 
 public class Booklet extends AppCompatActivity {
 
@@ -40,14 +39,6 @@ public class Booklet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_libretto);
-        DrawerLayout drawer=findViewById(R.id.menu_navigazione_booklet);
-        Toolbar toolbar=findViewById(R.id.menu_starter_booklet);
-        NavigationView nav= findViewById(R.id.navigation_menu_booklet);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));
 
         ScrollView scrollView = findViewById(R.id.scrollview_libretto);
         TableLayout tabellaEsami = findViewById(R.id.tabella_libretto);
