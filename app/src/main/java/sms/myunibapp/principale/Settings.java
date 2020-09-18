@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.myunibapp.R;
 
+import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.SpinnerData;
 import sms.myunibapp.oggetti.DrawerActivity;
 
@@ -56,7 +57,7 @@ public class Settings extends DrawerActivity {
         //si potrebbe fare con adapter.getPosition(String), ma il toString definito in SpinnerData è già assegnato per ritornare
         //la lingua per esteso, e non l'abbreviazione che invece viene memorizzata nelle SharedPreferences
         int pos = 0;
-        String lingua = preferences.getString("Language", "");
+        String lingua = preferences.getString(FirebaseDb.USER_LINGUA, "");
         if (!lingua.equals("")) {//se si accede alle impostazioni per la prima volta
             for (; pos < languages.length; pos++) {
                 if (languages[pos].abbreviazione.equals(lingua)) {

@@ -82,6 +82,7 @@ public class Fingerprints extends Authentication {
         } else if (biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED
                 || biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE) {
             //inserimento manuale delle credenziali
+            sessionManager.setFingerprintsEnable(false);
             startActivity(new Intent(sms.myunibapp.accessApp.Fingerprints.this, LoginActivity.class));
         }
         buttonCredentials.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));

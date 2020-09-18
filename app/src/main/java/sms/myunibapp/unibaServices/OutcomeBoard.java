@@ -32,6 +32,7 @@ public class OutcomeBoard extends DrawerActivity {
     protected void onCreate(Bundle b){
         super.onCreate(b);
         setContentView(R.layout.activity_exam_outcome);
+        getSupportActionBar().setTitle("Bacheca Esiti");
 
         LinearLayout listaEsiti = findViewById(R.id.esiti);
 

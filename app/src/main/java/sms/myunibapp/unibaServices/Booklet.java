@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.myunibapp.R;
@@ -40,15 +41,13 @@ public class Booklet extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_libretto);
 
-        ScrollView scrollView = findViewById(R.id.scrollview_libretto);
+        getSupportActionBar().setTitle("Libretto");
+        NestedScrollView scrollView = findViewById(R.id.scrollview_libretto);
         TableLayout tabellaEsami = findViewById(R.id.tabella_libretto);
         Button showDetails = findViewById(R.id.show_details);
         TextView ma=findViewById(R.id.media_aritmetica);
         TextView mp=findViewById(R.id.media_ponderata);
         TextView perc=findViewById(R.id.percentuale_esami);
-        TextView libretto=findViewById(R.id.activity_libretto);
-
-        libretto.setText(getResources().getString(R.string.booklet));
 
         showDetails.setOnClickListener(v -> {
             //inverto le colonne mostrate

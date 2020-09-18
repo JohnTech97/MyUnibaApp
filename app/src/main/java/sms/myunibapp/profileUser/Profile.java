@@ -38,14 +38,7 @@ public class Profile extends DrawerActivity {
 
        initDataLayout();
 
-        /*DrawerLayout drawer=findViewById(R.id.menu_navigazione_profile);
-        Toolbar toolbar=findViewById(R.id.menu_starter_profile);
-        NavigationView nav= findViewById(R.id.navigation_menu_profile);
-        ActionBarDrawerToggle mainMenu = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.open_drawer, R.string.close_drawer);
-        drawer.addDrawerListener(mainMenu);
-        mainMenu.syncState();
-        nav.bringToFront();
-        nav.setNavigationItemSelectedListener(HomeActivity.getNavigationBarListener(this));*/
+        getSupportActionBar().setTitle("Profilo");
 
         /*
          * Immagine cliccabile e si può modificare

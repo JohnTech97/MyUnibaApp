@@ -33,6 +33,8 @@ public class BookingsBoard extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booked_exams);
 
+        getSupportActionBar().setTitle("Bacheca Prenotazioni");
+
         LinearLayout listaEsami = findViewById(R.id.prenotati);
 
        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail());

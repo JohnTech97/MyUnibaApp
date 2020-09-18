@@ -67,6 +67,7 @@ class Authentication extends AppCompatActivity {
                 finish();
 
             } else {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 Toast.makeText(this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });

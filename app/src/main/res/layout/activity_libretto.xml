@@ -9,41 +9,40 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:id="@+id/menu_navigazione_booklet">
-
-        <TextView
-            android:id="@+id/activity_libretto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Placeholder"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/media_aritmetica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/arithmetic_mean" />
+            android:layout_marginStart="10dp"
+            android:text="@string/arithmetic_mean"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/color_text"/>
 
         <TextView
             android:id="@+id/media_ponderata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/weighted_mean" />
+            android:text="@string/weighted_mean"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/color_text"/>
 
         <TextView
             android:id="@+id/percentuale_esami"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/percentage" />
+            android:layout_marginStart="10dp"
+            android:text="@string/percentage"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/color_text"/>
 
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollview_libretto"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -124,13 +123,14 @@
 
             </TableLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
             android:text="Legenda"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -139,6 +139,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_gravity="end"
             android:layout_marginTop="20dp">
 
@@ -203,7 +204,8 @@
             android:id="@+id/show_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal|bottom"
             android:text="@string/show_details"
             android:textAllCaps="false" />
 

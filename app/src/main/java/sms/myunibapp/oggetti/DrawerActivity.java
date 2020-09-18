@@ -77,7 +77,6 @@ public class DrawerActivity extends AppCompatActivity  {
         toolbar = (Toolbar) fullView.findViewById(R.id.tool_bar);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
         toolbar.setTitle("");
         this.getSupportActionBar().setElevation(0);
 

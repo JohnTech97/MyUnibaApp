@@ -43,7 +43,6 @@ public class SessionManager {
     public static final String PASSWORD = "Pass";
     public static final String FINGERPRINTS = "fingerprintsEnabled";
     public static final String LANGUAGE = "Language";
-    public static final String PATHFOTO = "pathfoto";
 
 
     /**
@@ -77,15 +76,6 @@ public class SessionManager {
     }
 
     /**
-     *
-     * @param pathfoto
-     */
-    public void setProfilePic(String pathfoto) {
-        editor.putString(PATHFOTO, pathfoto);
-        editor.commit();
-    }
-
-    /**
      * Funzione che restituisce l'username di sessione
      *
      * @return username
@@ -111,15 +101,6 @@ public class SessionManager {
         return preferences.getString(PASSWORD, "");
     }
 
-
-    /**
-     * Funzione che restituisce l'url della foto profilo
-     *
-     * @return url foto profilo
-     */
-    public String getProfilePic() {
-        return preferences.getString(PATHFOTO, null);
-    }
 
     /**
      * Funzione che restituisce la lingua del sistema impostata
@@ -165,4 +146,9 @@ public class SessionManager {
         myContext.startActivity(login);
     }
 
+    public boolean setFingerprintsEnable(boolean isEnable) {
+        editor.putBoolean(FINGERPRINTS, isEnable);
+        editor.commit();
+        return isEnable;
+    }
 }

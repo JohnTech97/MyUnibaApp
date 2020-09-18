@@ -22,6 +22,8 @@ public class Secretary extends DrawerActivity {
 
         cardView = findViewById(R.id.button_tax);
 
+        getSupportActionBar().setTitle("Segreteria");
+
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

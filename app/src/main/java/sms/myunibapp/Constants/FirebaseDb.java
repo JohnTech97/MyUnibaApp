@@ -21,6 +21,6 @@ public class FirebaseDb {
 
     //dati di accesso dell'utente
 
-    public static final String USER_ESAMI = "Esami";
+    public static final String USER_LINGUA = "Language";
 
 }

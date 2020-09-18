@@ -58,7 +58,7 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <include layout="@layout/progress_view"/>
+
 
     <Button
         android:id="@+id/button_insertCredentials"
@@ -75,4 +75,5 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <include layout="@layout/progress_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

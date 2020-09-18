@@ -45,6 +45,7 @@ public class BookableExamsDetails extends DrawerActivity {
         setContentView(R.layout.activity_exams_details);
         LinearLayout listaEsami = findViewById(R.id.prenotabili);
 
+
         Bundle b = getIntent().getExtras();
         String key = b.getString("key");
         String nomeEsame = b.getString("nomeEsame");

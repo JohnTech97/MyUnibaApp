@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import sms.myunibapp.Constants.FirebaseDb;
 import sms.myunibapp.oggetti.DrawerActivity;
 import sms.myunibapp.principale.ExamsData;
 import sms.myunibapp.principale.HomeActivity;
@@ -38,10 +39,12 @@ public class BookableExams extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookable_exams_list);
 
+        getSupportActionBar().setTitle("Elenco Esami");
+
         LinearLayout listaEsami = findViewById(R.id.lista_esami_prenotabili);
 
         db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference().child("Studente").child(DrawerActivity.sessionManager.getSessionEmail()).child("Esami da superare");
+        DatabaseReference ref = db.getReference().child(FirebaseDb.TABLE_STUDENTE).child(DrawerActivity.sessionManager.getSessionEmail()).child("Esami da superare");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
